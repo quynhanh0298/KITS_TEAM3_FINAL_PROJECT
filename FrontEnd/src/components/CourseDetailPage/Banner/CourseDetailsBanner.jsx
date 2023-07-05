@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import StarRatings from "react-star-ratings";
 import { Button } from "components/Button/Button";
-import personAvt from "../../assets/images/personAvt.svg";
-import detailsPageBg from "../../assets/images/detailsPageBg.svg";
+import personAvt from "../../../assets/images/personAvt.svg";
 
 const StyleCourseDetailsBanner = styled.div`
   height: 1196px;
   padding-top: 176px;
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-left: 140px;
   .wrapper-popular-categlories {
     display: flex;
     flex-wrap: wrap;
@@ -120,6 +123,29 @@ const StyleCourseDetailsBanner = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+  }
+  @media screen and (max-width: 1315px) {
+    width: 100%;
+    margin-left: 0px;
+    .wrapper-popular-categlories{
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .banner-title, .description{
+      align-items: center;
+      text-align: center;
+    }
+    .mentor, .start-group{
+      justify-content: center;
+    }
+    .rating{
+      justify-content: space-evenly;
+    }
+  }
+  @media screen and (max-width: 797px) {
+    .rating, .start-group{
+      flex-direction: column;
+    }
   }
 `;
 
