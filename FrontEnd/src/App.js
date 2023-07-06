@@ -4,8 +4,10 @@ import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
 import Contact from './pages/Contact';
+
 import PricePage from './pages/PricePage';
 import HelpPage from './pages/HelpPage'
+import CourseDetail from 'pages/CourseDetails';
 function App() {
     return <div className='App'>
         <BrowserRouter>
@@ -16,6 +18,7 @@ function App() {
                         <Route path='contact' element={<Contact />} />
                         <Route path='pricing' element={<PricePage />} />
                         <Route path='help' element={<HelpPage />} />
+                        <Route path='coursedetails' element={<CourseDetail />} />
                     </Route>
             </Routes>
         </BrowserRouter>
