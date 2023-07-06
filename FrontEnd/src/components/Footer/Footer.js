@@ -8,8 +8,8 @@ import indeedIcon from 'assets/icons/indeed.svg'
 import youtubeIconIcon from 'assets/icons/youture.svg'
 import instagramIcon from 'assets/icons/instagram.svg'
 
-import appStore from 'assets/images/app-store.svg'
-import googlePlay from 'assets/images/google-play.png'
+import appStore from 'assets/images/google-play-1.png'
+import googlePlay from 'assets/images/google-play-1.png'
 const FooterStyled = styled.div`
     
     background: #0C4CA3;
@@ -21,6 +21,11 @@ const FooterStyled = styled.div`
         gap: 14px;
         margin-top: 60px;
     }
+    .left-footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
     .left-footer-end{
         color: #FFF;
         font-size: 16px;
@@ -30,8 +35,39 @@ const FooterStyled = styled.div`
         line-height: 254.5%;
     }
     .left-right-footer{
+        height: 100%;
         display: flex;
-        padding-top: 34px;
+        padding: 34px 0px;
+        justify-content: space-between;
+    }
+    .right-footer{
+        display: flex;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 36px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .right-footer2,
+    .right-footer1{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .right-footer1 > p,
+    .right-footer2 > p{
+        margin-bottom: 16px;
+    }
+    /* .right-footer2{
+        width: 300px;
+    } */
+    .right-footer-title{
+        font-weight: 500;
+        margin-bottom: 18px;
+    }
+    .right-footer-img{
 
     }
 
@@ -41,38 +77,50 @@ const Footer = () => {
         <div className="wrapper-home-details-about-pricing left-right-footer">
             <div className="left-footer">
                 <div>
-                    <img src={kits} />
-                </div>
-                <div className="media">
-                    <Media icon={facebookIcon} />
-                    <Media icon={tweetIcon} />
-                    <Media icon={indeedIcon} />
-                    <Media icon={youtubeIconIcon} />
-                    <Media icon={instagramIcon} />
+                    <div>
+                        <img src={kits} />
+                    </div>
+                    <div className="media">
+                        <Media icon={facebookIcon} />
+                        <Media icon={tweetIcon} />
+                        <Media icon={indeedIcon} />
+                        <Media icon={youtubeIconIcon} />
+                        <Media icon={instagramIcon} />
+                    </div>
+
                 </div>
                 <p className="left-footer-end">© Copyright Leon Inc 2023. All rights reserved</p>
             </div>
 
+
             <div className="right-footer">
                 <div className="right-footer1">
-                    <p>Useful Links</p>
-                    <p>Safety and Security Policies</p>
-                    <p>About</p>
-                    <p>Pricing</p>
-                    <p>Value Code</p>
-                    <p>Legal</p>
-                    <img src={appStore}/>
+                    <div>
+                        <p className="right-footer-title">Useful Links</p>
+                        <p>Safety and Security Policies</p>
+                        <p>About</p>
+                        <p>Pricing</p>
+                        <p>Value Code</p>
+                        <p>Legal</p>
+                    </div>
+                    <div>
+                        <img className="right-footer-img" src={appStore} />
+                    </div>
                 </div>
 
                 <div className="right-footer2">
-                    <p>Contact Us</p>
-                    <p>support@kits.com</p>
-                    <p>1-800-200-300</p>
-                    <p>3500 Deer Crock Rd Palo Alto,CA</p>
-                    <img src={googlePlay} />
+                    <div>
+                        <p className="right-footer-title">Contact Us</p>
+                        <p>support@kits.com</p>
+                        <p>1-800-200-300</p>
+                        <p>3500 Deer Crock Rd Palo Alto,CA</p>
+                    </div>
+                    <div>
+                        <img src={googlePlay} />
+                    </div>
                 </div>
             </div>
         </div>
-    </FooterStyled >
+    </FooterStyled>
 }
 export default Footer;
