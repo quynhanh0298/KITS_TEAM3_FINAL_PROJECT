@@ -31,3 +31,19 @@ a {
     width: 100vw;
     height: 100vh;
 } */
+
+
+    .back {
+        
+        color: black;
+        text-align: center;
+    }
+  .back h1 {
+    font-size: 100px;
+    font-weight: 400;
+  }
+  .back h2 {
+    font-weight: 500;
+    font-size: 17px;
+    text-transform: uppercase;
+  }
