@@ -5,7 +5,8 @@ import { DashboardHeader } from "../DashboardHeader";
 const Container = styled.div`
   position: relative;
   display: flex;
-  background: gray;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(62px);
   background-size: 400% 400%;
   justify-content: center;
 `;

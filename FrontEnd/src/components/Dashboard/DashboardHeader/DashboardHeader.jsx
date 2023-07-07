@@ -21,9 +21,9 @@ export const DashboardHeader = () => {
     <HeaderStyled>
       <SearchBar setPlaceholder="Search tutor" />
       <div className="header-right">
-        <BellIcon />
-        <SettingIcon />
-        <AvtHeadIcon />
+        <BellIcon cursor="pointer" />
+        <SettingIcon cursor="pointer" />
+        <AvtHeadIcon cursor="pointer" />
       </div>
     </HeaderStyled>
   );
