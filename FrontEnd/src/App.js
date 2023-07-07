@@ -14,6 +14,7 @@ import MessagesPage from "pages/MessagesPage";
 import SessionsPage from "pages/SessionsPage";
 import HourOfPurchaseHistoryPage from "pages/HourOfPurchaseHistoryPage";
 import MyTutorsPage from "pages/MyTutorsPage";
+import MyClassesPage from "pages/MyClassesPage";
 function App() {
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function App() {
               element={<HourOfPurchaseHistoryPage />}
             />
             <Route path="my-tutors" element={<MyTutorsPage />} />
+            <Route path="my-classes" element={<MyClassesPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

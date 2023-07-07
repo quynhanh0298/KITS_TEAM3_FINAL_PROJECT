@@ -6,9 +6,9 @@ import { ReactComponent as MessIcon } from "../../../assets/icons/dashboardicon/
 import { ReactComponent as MyTutorsIcon } from "../../../assets/icons/dashboardicon/mytutors-icon.svg";
 import { ReactComponent as PurchaseIcon } from "../../../assets/icons/dashboardicon/purchase-icon.svg";
 import { ReactComponent as SessionsIcon } from "../../../assets/icons/dashboardicon/sessions-icon.svg";
-import { ReactComponent as YellowCircleIcon } from "../../../assets/icons/dashboardicon/circle-icon.svg";
-import { ReactComponent as RedCircleIcon } from "../../../assets/icons/dashboardicon/red-circle-icon.svg";
-import { ReactComponent as BlueCircleIcon } from "../../../assets/icons/dashboardicon/blue-circle-icon.svg";
+import { ReactComponent as ArrowPointDown } from "../../../assets/icons/dashboardicon/arrow-point-down.svg";
+import { useState } from "react";
+import { MyClassesCard } from "../MyClassesCard";
 const StyledSidebar = styled.div`
   width: 100%;
   padding-right: 26px;
@@ -17,6 +17,7 @@ const StyledSidebar = styled.div`
   align-items: flex-start;
   .KitLogo {
     margin-left: 63px;
+    margin-top: 59px;
   }
   .top-sidebar {
     display: flex;
@@ -39,6 +40,20 @@ const StyledSidebar = styled.div`
     font-weight: 500;
     line-height: normal;
     margin: 22px 0px 22px 63px;
+  }
+  .bottom-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+  }
+  .show {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 63px;
+    gap: 16px;
+    cursor: pointer;
   }
 `;
 const StyledNavItem = styled.div`
@@ -83,6 +98,9 @@ const NavItem = ({ path, text, icon, children }) => {
   );
 };
 export const Sidebar = () => {
+  const [isOpen, setOpen] = useState(false);
+  const toggleShowMore = () => setOpen(!isOpen);
+
   return (
     <StyledSidebar>
       <KitLogo className="KitLogo" width="99px" height="36px"></KitLogo>
@@ -113,9 +131,58 @@ export const Sidebar = () => {
       </div>
       <div className="class-text">Classes</div>
       <div className="bottom-sidebar">
-        <NavItem text="Design" icon={<YellowCircleIcon />} />
-        <NavItem text="Development" icon={<BlueCircleIcon />} />
-        <NavItem text="Illustrations" icon={<RedCircleIcon />} />
+        <MyClassesCard
+          name="Design"
+          quantity={5}
+          newColor="#FED66F"
+          path="/mainboard/my-classes"
+        />
+        <MyClassesCard
+          name="Development"
+          quantity={5}
+          newColor="#77ADFF"
+          path="/mainboard/my-classes"
+        />
+        <MyClassesCard
+          name="Illustrations"
+          quantity={5}
+          newColor="#F66E6E"
+          path="/mainboard/my-classes"
+        />
+        {isOpen && (
+          <>
+            <MyClassesCard
+              name="Design"
+              quantity={5}
+              newColor="#FED66F"
+              path="/mainboard/my-classes"
+            />
+            <MyClassesCard
+              name="Development"
+              quantity={5}
+              newColor="#77ADFF"
+              path="/mainboard/my-classes"
+            />
+            <MyClassesCard
+              name="Illustrations"
+              quantity={5}
+              newColor="#F66E6E"
+              path="/mainboard/my-classes"
+            />
+          </>
+        )}
+        {isOpen && (
+          <div className="show" onClick={toggleShowMore}>
+            <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
+            Show less
+          </div>
+        )}
+        {!isOpen && (
+          <div className="show" onClick={toggleShowMore}>
+            <ArrowPointDown />
+            Show more
+          </div>
+        )}
       </div>
     </StyledSidebar>
   );
