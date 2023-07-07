@@ -18,7 +18,7 @@ const DivStyled = styled.div`
     font-weight: 400;
     line-height: normal;
   }
-  .right {
+  .right-card {
     display: flex;
     width: 17px;
     height: 17px;
@@ -61,7 +61,7 @@ export const MyClassesCard = ({ newColor, name, quantity, path }) => {
           <CircleIcon fill={newColor} />
           {name}
         </div>
-        <div className="right">{quantity}</div>
+        <div className="right-card">{quantity}</div>
       </DivStyled>
     </NavLink>
   );
