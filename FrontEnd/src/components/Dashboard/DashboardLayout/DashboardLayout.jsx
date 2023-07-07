@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Sidebar } from "../Sidebar";
 import { Outlet } from "react-router-dom";
+import { DashboardHeader } from "../DashboardHeader";
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -29,6 +30,10 @@ const SideBarStyled = styled.div`
   float: left;
   width: 25%;
   height: 1450px;
+  
+  @media screen and (max-width: 1224px){
+    width: 150px;
+  }
 `;
 export const DashboardLayout = () => {
   return (
@@ -37,7 +42,7 @@ export const DashboardLayout = () => {
         <SideBarStyled>
           <Sidebar></Sidebar>
         </SideBarStyled>
-
+        <DashboardHeader />
         <Outlet />
       </StyleLayout>
     </Container>
