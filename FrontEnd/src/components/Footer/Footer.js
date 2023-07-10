@@ -13,7 +13,7 @@ import googlePlay from 'assets/images/google-play-1.png'
 const FooterStyled = styled.div`
     
     background: #0C4CA3;
-    height: 590px;
+    height: 520px;
     width: calc(100vw - var(--scrollbar-width));
     margin-left: calc(50% - 50vw);
     .media{
