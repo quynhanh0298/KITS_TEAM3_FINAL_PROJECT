@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import { useState } from "react";
 import { ReactComponent as KitLogo } from "../../../assets/images/kits-logo.svg";
 import { ReactComponent as DashboardIcon } from "../../../assets/icons/dashboardicon/dashboard-icon.svg";
 import { ReactComponent as MessIcon } from "../../../assets/icons/dashboardicon/mess-icon.svg";
@@ -7,16 +9,15 @@ import { ReactComponent as MyTutorsIcon } from "../../../assets/icons/dashboardi
 import { ReactComponent as PurchaseIcon } from "../../../assets/icons/dashboardicon/purchase-icon.svg";
 import { ReactComponent as SessionsIcon } from "../../../assets/icons/dashboardicon/sessions-icon.svg";
 import { ReactComponent as ArrowPointDown } from "../../../assets/icons/dashboardicon/arrow-point-down.svg";
-import { useState } from "react";
 import { MyClassesCard } from "../MyClassesCard";
 const StyledSidebar = styled.div`
   width: 100%;
+  padding-left: 63px;
   padding-right: 26px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   .KitLogo {
-    margin-left: 63px;
     margin-top: 59px;
   }
   .top-sidebar {
@@ -39,7 +40,7 @@ const StyledSidebar = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin: 22px 0px 22px 63px;
+    margin: 22px 0px 22px 0px;
   }
   .bottom-sidebar {
     display: flex;
@@ -51,9 +52,22 @@ const StyledSidebar = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 63px;
-    gap: 16px;
+    gap: 23.93px;
     cursor: pointer;
+    color: #cbcbcb;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  @media screen and (max-width: 1224px) {
+    padding: 0px;
+    align-items: center;
+    .show{
+      text-align: center;
+      justify-content: center;
+    }
   }
 `;
 const StyledNavItem = styled.div`
@@ -70,7 +84,6 @@ const StyledNavItem = styled.div`
     text-decoration: unset;
     color: #7a797d;
     align-items: center;
-    margin-left: 63px;
     gap: 16px;
   }
   .active {
@@ -84,6 +97,10 @@ const StyledNavItem = styled.div`
   }
   .NavLink {
     width: 100%;
+  }
+  @media screen and (max-width: 1224px) {
+    padding: 0px;
+    justify-content: center;
   }
 `;
 const NavItem = ({ path, text, icon, children }) => {
@@ -100,56 +117,63 @@ const NavItem = ({ path, text, icon, children }) => {
 export const Sidebar = () => {
   const [isOpen, setOpen] = useState(false);
   const toggleShowMore = () => setOpen(!isOpen);
-
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
   return (
     <StyledSidebar>
-      <KitLogo className="KitLogo" width="99px" height="36px"></KitLogo>
+      {isDesktopOrLaptop && <KitLogo className="KitLogo" width="99px" height="36px" />}
+      {isTabletOrMobile && <KitLogo className="KitLogo" width="99px" height="36px" />}
       <div className="top-sidebar">
-        <NavItem
-          text="Dashboard"
-          path="/mainboard/dashboard"
-          icon={<DashboardIcon />}
-        />
-        <NavItem text="Messages" path="/mainboard/messages" icon={<MessIcon />}>
-          <div className="noti" />
-        </NavItem>
-        <NavItem
-          text="Sessions"
-          path="/mainboard/sessions"
-          icon={<SessionsIcon />}
-        />
-        <NavItem
-          text="Hour purchase history"
-          path="/mainboard/hour-purchase-history"
-          icon={<PurchaseIcon />}
-        />
-        <NavItem
-          text="My tutors"
-          path="/mainboard/my-tutors"
-          icon={<MyTutorsIcon />}
-        />
+        {isDesktopOrLaptop && (
+          <>
+            <NavItem
+              text="Dashboard"
+              path="/mainboard/dashboard"
+              icon={<DashboardIcon />}
+            />
+            <NavItem
+              text="Messages"
+              path="/mainboard/messages"
+              icon={<MessIcon />}
+            >
+              <div className="noti" />
+            </NavItem>
+            <NavItem
+              text="Sessions"
+              path="/mainboard/sessions"
+              icon={<SessionsIcon />}
+            />
+            <NavItem
+              text="Hour purchase history"
+              path="/mainboard/hour-purchase-history"
+              icon={<PurchaseIcon />}
+            />
+            <NavItem
+              text="My tutors"
+              path="/mainboard/my-tutors"
+              icon={<MyTutorsIcon />}
+            />
+          </>
+        )}
+
+        {isTabletOrMobile && (
+          <>
+            <NavItem path="/mainboard/dashboard" icon={<DashboardIcon />} />
+            <NavItem path="/mainboard/messages" icon={<MessIcon />} />
+            <NavItem path="/mainboard/sessions" icon={<SessionsIcon />} />
+            <NavItem
+              path="/mainboard/hour-purchase-history"
+              icon={<PurchaseIcon />}
+            />
+            <NavItem path="/mainboard/my-tutors" icon={<MyTutorsIcon />} />
+          </>
+        )}
       </div>
       <div className="class-text">Classes</div>
       <div className="bottom-sidebar">
-        <MyClassesCard
-          name="Design"
-          quantity={5}
-          newColor="#FED66F"
-          path="/mainboard/my-classes"
-        />
-        <MyClassesCard
-          name="Development"
-          quantity={5}
-          newColor="#77ADFF"
-          path="/mainboard/my-classes"
-        />
-        <MyClassesCard
-          name="Illustrations"
-          quantity={5}
-          newColor="#F66E6E"
-          path="/mainboard/my-classes"
-        />
-        {isOpen && (
+        {isDesktopOrLaptop && (
           <>
             <MyClassesCard
               name="Design"
@@ -169,19 +193,85 @@ export const Sidebar = () => {
               newColor="#F66E6E"
               path="/mainboard/my-classes"
             />
+            {isOpen && (
+              <>
+                <MyClassesCard
+                  name="Design"
+                  quantity={5}
+                  newColor="#FED66F"
+                  path="/mainboard/my-classes"
+                />
+                <MyClassesCard
+                  name="Development"
+                  quantity={5}
+                  newColor="#77ADFF"
+                  path="/mainboard/my-classes"
+                />
+                <MyClassesCard
+                  name="Illustrations"
+                  quantity={5}
+                  newColor="#F66E6E"
+                  path="/mainboard/my-classes"
+                />
+              </>
+            )}
+            {isOpen && (
+              <div className="show" onClick={toggleShowMore}>
+                <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
+                Show less
+              </div>
+            )}
+            {!isOpen && (
+              <div className="show" onClick={toggleShowMore}>
+                <ArrowPointDown />
+                Show more
+              </div>
+            )}
           </>
         )}
-        {isOpen && (
-          <div className="show" onClick={toggleShowMore}>
-            <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
-            Show less
-          </div>
-        )}
-        {!isOpen && (
-          <div className="show" onClick={toggleShowMore}>
-            <ArrowPointDown />
-            Show more
-          </div>
+        {isTabletOrMobile && (
+          <>
+            <MyClassesCard
+              name="Design"
+              path="/mainboard/my-classes"
+            />
+            <MyClassesCard
+              name="Development"
+              path="/mainboard/my-classes"
+            />
+            <MyClassesCard
+              name="Illustrations"
+              path="/mainboard/my-classes"
+            />
+            {isOpen && (
+              <>
+                <MyClassesCard
+                  name="Design"
+                  path="/mainboard/my-classes"
+                />
+                <MyClassesCard
+                  name="Development"
+                  path="/mainboard/my-classes"
+                />
+                <MyClassesCard
+                  name="Illustrations"
+                  path="/mainboard/my-classes"
+                />
+              </>
+            )}
+            {isOpen && (
+              <div className="show" onClick={toggleShowMore}>
+                {isDesktopOrLaptop && <ArrowPointDown style={{ transform: "rotate(180deg)" }} />}
+                Show less
+              </div>
+            )}
+            {!isOpen && (
+              <div className="show" onClick={toggleShowMore}>
+                {isDesktopOrLaptop && <ArrowPointDown />}
+                Show more
+              </div>
+            )}
+          </>
         )}
       </div>
     </StyledSidebar>

@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import { useMediaQuery } from "react-responsive";
 const DivStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 67px;
   .left {
     display: flex;
     flex-direction: row;
@@ -41,6 +40,10 @@ const DivStyled = styled.div`
     }
     fill: "red";
   }
+  
+  @media screen and (max-width: 1224px){
+    justify-content: center;
+  }
 `;
 const CircleIcon = ({ fill }) => (
   <svg
@@ -54,14 +57,15 @@ const CircleIcon = ({ fill }) => (
   </svg>
 );
 export const MyClassesCard = ({ newColor, name, quantity, path }) => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
     <NavLink to={path}>
       <DivStyled newColor={newColor} name={name} quantity={quantity}>
         <div className="left">
-          <CircleIcon fill={newColor} />
+          {!isTabletOrMobile && <CircleIcon fill={newColor} />}
           {name}
         </div>
-        <div className="right-card">{quantity}</div>
+        {!isTabletOrMobile && <div className="right-card">{quantity}</div>}
       </DivStyled>
     </NavLink>
   );
