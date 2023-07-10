@@ -16,6 +16,8 @@ const StyleLayout = styled.div`
   backdrop-filter: blur(62px);
   min-height: 1450px;
   width: 1728px;
+  display: flex;
+  flex-direction: row;
   .right {
     float: right;
     width: 80%;
@@ -31,8 +33,8 @@ const SideBarStyled = styled.div`
   float: left;
   width: 25%;
   height: 1450px;
-  
-  @media screen and (max-width: 1224px){
+
+  @media screen and (max-width: 1224px) {
     width: 150px;
   }
 `;
@@ -42,9 +44,11 @@ export const DashboardLayout = () => {
       <StyleLayout>
         <SideBarStyled>
           <Sidebar></Sidebar>
-        </SideBarStyled>
-        <DashboardHeader />
-        <Outlet />
+        </SideBarStyled>{" "}
+        <div className="right">
+          <DashboardHeader />
+          <Outlet />
+        </div>
       </StyleLayout>
     </Container>
   );
