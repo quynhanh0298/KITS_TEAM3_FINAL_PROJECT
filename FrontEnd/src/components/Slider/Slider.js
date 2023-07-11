@@ -3,7 +3,17 @@ import '../../App.css'
 import curve from 'assets/images/curve.svg'
 import playIcon from 'assets/icons/playicon.svg'
 import waveCheckIcon from 'assets/icons/wave-check.svg'
+import girlImage from 'assets/images/home-page-girl.png'
+import studentIcon from 'assets/icons/student.svg'
+import emailIcon from 'assets/icons/email.svg'
+import groupStudentIcon from 'assets/icons/group-student.svg'
 import { Button } from "components/Button/Button"
+
+import avatar1 from 'assets/images/avatars/avatar1.svg'
+import avatar2 from 'assets/images/avatars/avatar2.svg'
+import avatar3 from 'assets/images/avatars/avatar3.svg'
+import showMore from 'assets/icons/show-more.svg'
+
 const SliderStyled = styled.div`
     height: 1000px;
     width: calc(100vw - var(--scrollbar-width));
@@ -18,6 +28,9 @@ const SliderStyled = styled.div`
     .welcome {
         padding-top: 300px;
         max-width: 750px;        
+    }
+    .wrapper-welcome{
+        position: relative;
     }
     .welcome-header{
         font-size: 64px;
@@ -68,17 +81,135 @@ const SliderStyled = styled.div`
     .play-now-text{
         color: #2E2C2C;
         font-size: 24px;
-        font-family: Poppins;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
     }
+    .wave-check{
+        margin-top: 75px;
+        ul {
+           list-style-type: none;
+           display: flex;
+        }
+        img, p{
+            display: inline-block;
+        }
+        li{
+            display: flex;
+            align-items: center;
+        }
+    }
+    .welcome-img{
+        position: absolute;
+        right: 5%;
+        top: 5%;
+    }
+    .congratulations{
+        position: absolute;
+        top: 0;
+        display: flex;
+        width: 217px;
+        border-radius: 24px;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px 0px #0000000D;
+        box-shadow: 0px -4px 10px 0px #0000000D;
+        padding: 13px 21px 15px;
+
+        .congratulation-text{
+            margin-left: 8px;
+            color: #504E4E;
+            font-style: normal;
+            line-height: normal;
+            .congratulation-title{
+                font-size: 16px;
+                font-weight: 600;
+            }
+            .congratulation-desc{
+                font-size: 10px;
+                font-weight: 500;
+            }
+        }
+    }
+    .interactive{
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 172px;
+        border-radius: 24px;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px 0px #0000000D;
+        box-shadow: 0px -4px 10px 0px #0000000D;
+        padding: 18px;
+        color: #504E4E;
+        font-style: normal;
+        line-height: normal;
+
+        .interactive-quality{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .congratulation-desc{
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+    .students{
+        position: absolute;
+        background-color: #fff;
+        bottom: 0;
+        width: 240px;
+        border-radius: 24px;
+        box-shadow: 0px 4px 10px 0px #0000000D;
+        box-shadow: 0px -4px 10px 0px #0000000D;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .avatar {
+            cursor: pointer;
+            position: relative;
+            /* height: 54px;
+            width: 54px; */
+            border-radius: 50%;
+            /* border: 2px solid white; */
+            float: left;
+            margin-left: -18px;
+            transition: all 100ms ease-in-out;
+        }
+        .show-more{
+            height: 58px;
+            width: 58px;
+            background: linear-gradient(0deg, #D9D9D9, #D9D9D9),
+            linear-gradient(0deg, #FFFFFF, #FFFFFF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid white;
+        }
+        .student-quality{
+            padding: 8px 0 8px;
+            color: #504E4E;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 21px;
+            span{
+                margin-right: 8px;
+            }
+
+        }
+        .avatar-container{
+            padding-bottom: 16px;
+        }
+    }
 `
 const Slider = () => {
     return <SliderStyled>
-        <div className="wrapper-home-details-about-pricing">
+        <div className="wrapper-home-details-about-pricing wrapper-welcome">
             <div className="welcome">
-
                 <p className="welcome-header">
                     Access Your Class From
                     <span className="welcome-header-blue">Anywhere & Anytime</span>
@@ -101,18 +232,57 @@ const Slider = () => {
                 <div className="wave-check">
                     <ul>
                         <li>
-                            <img src={waveCheckIcon}/>
-                            <p>Experienced Instructors</p>
+                            <img src={waveCheckIcon} />
+                            <p className="wave-title">Experienced Instructors</p>
                         </li>
                         <li>
-                            <img src={waveCheckIcon}/>
-                            <p>Experienced Instructors</p>
+                            <img src={waveCheckIcon} />
+                            <p className="wave-title">Quality Videos</p>
                         </li>
                         <li>
-                            <img src={waveCheckIcon}/>
-                            <p>Experienced Instructors</p>
+                            <img src={waveCheckIcon} />
+                            <p className="wave-title">Affordable Prices</p>
                         </li>
                     </ul>
+                </div>
+            </div>
+
+            <div className="welcome-img">
+                <img src={girlImage} />
+                <div className="congratulations">
+                    <img src={emailIcon} />
+                    <div className="congratulation-text">
+                        <p className="congratulation-title">congratulations</p>
+                        <p className="congratulation-desc">You have successfully completed this Course</p>
+                    </div>
+                </div>
+
+                <div className="interactive">
+                    <img src={studentIcon} />
+                    <p className="interactive-quality">10,000+</p>
+                    <p className="interactive-title">Interactive Courses</p>
+                </div>
+
+                <div className="students">
+                    <div className="student-quality">
+                        <span>30k Students</span>
+                        <img src={groupStudentIcon} />
+                    </div>
+                    <div class="avatar-container">
+                        <div class="avatar">
+                            <img src={avatar1} />
+                        </div>
+                        <div class="avatar">
+                            <img src={avatar2} />
+                        </div>
+                        <div class="avatar">
+                            <img src={avatar3} />
+                        </div>
+                        <div class="avatar show-more">
+                            <img src={showMore} />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
