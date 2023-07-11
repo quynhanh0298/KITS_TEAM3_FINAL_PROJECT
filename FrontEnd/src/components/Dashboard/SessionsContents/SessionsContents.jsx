@@ -4,7 +4,7 @@ import { DropdownSelector } from "../Selector";
 import { CalenderSelector } from "../Selector";
 import { TimeSelector } from "../Selector/TimeSelector";
 import { Button } from "components/Button/Button";
-import { SessionsTable } from "../SessionsTable/SessionsTable";
+import { SessionsTable } from "../Table/SessionsTable";
 
 const SessionsContentsStyled = styled.div`
   height: 1273px;

@@ -22,6 +22,11 @@ const StyleLayout = styled.div`
     float: right;
     width: 80%;
   }
+  @media screen and (max-width: 1224px) {
+    .right{
+      width: 90%;
+    }
+  }
 `;
 const SideBarStyled = styled.div`
   border: 2px solid rgba(0, 0, 0, 0.04);
@@ -35,7 +40,7 @@ const SideBarStyled = styled.div`
   height: 1450px;
 
   @media screen and (max-width: 1224px) {
-    width: 150px;
+    width: 10%;
   }
 `;
 export const DashboardLayout = () => {
@@ -43,7 +48,7 @@ export const DashboardLayout = () => {
     <Container>
       <StyleLayout>
         <SideBarStyled>
-          <Sidebar></Sidebar>
+          <Sidebar />
         </SideBarStyled>{" "}
         <div className="right">
           <DashboardHeader />
