@@ -8,7 +8,10 @@ import fakeData from "../../../MOCK_DATA.json";
 const MyClassPageContentsStyled = styled.div`
   height: 1273px;
   padding-top: 47px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   h3 {
     color: #464444;
     font-family: Poppins;

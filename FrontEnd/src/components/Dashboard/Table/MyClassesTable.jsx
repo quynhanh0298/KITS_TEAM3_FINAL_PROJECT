@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import * as React from "react";
 import { usePagination, useTable } from "react-table";
-
+import { useMediaQuery } from "react-responsive";
 import { DButton } from "../DashboardButton";
 
 const MyClassesTableStyled = styled.div`
-  width: 100%;
-  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  max-height: fit-content;
   border-radius: 12px;
   background: #fff;
   box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.15);
@@ -41,9 +43,6 @@ const MyClassesTableStyled = styled.div`
     -webkit-appearance: none;
     margin: 0;
   }
-  table {
-    width: 100%;
-  }
   th,
   td {
     padding: 15px;
@@ -66,14 +65,43 @@ const MyClassesTableStyled = styled.div`
     text-align: center;
     align-items: center;
   }
-  @media screen and (max-width: 1140px){
-    width: 100%;
-    overflow-y: hidden;
-    overflow: scroll;
+  @media screen and (max-width: 1200px) {
+    table thead {
+      display: none;
+    }
+
+    table,
+    table tbody,
+    table tr,
+    table td {
+      display: block;
+      width: 100%;
+    }
+    table tr {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: row;
+    }
+    table td {
+      position: relative;
+    }
+    .td-left,
+    .td-right,
+    .td-wrapper-left,
+    .td-wrapper-right {
+      width: 100%;
+    }
+    .td-left {
+      text-align: left;
+    }
+    .td-right {
+      text-align: right;
+    }
   }
 `;
 export const MyClassesTable = ({ inputData }) => {
   const data = React.useMemo(() => inputData, [inputData]);
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 1200px)" });
   const columns = React.useMemo(
     () => [
       {
@@ -144,14 +172,50 @@ export const MyClassesTable = ({ inputData }) => {
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()} {...getTableProps()}>
           {page.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
-                ))}
+                {isSmallScreen && (
+                  <>
+                    {headerGroups.map((headerGroups) => (
+                      <div
+                        className="td-wrapper-left"
+                        {...headerGroups.getHeaderGroupProps()}
+                      >
+                        {headerGroups.headers.map((column) => {
+                          return (
+                            <td
+                              className="td-left"
+                              {...column.getHeaderProps()}
+                            >
+                              {column.render("Header")}
+                            </td>
+                          );
+                        })}
+                      </div>
+                    ))}
+                    <div className="td-wrapper-right">
+                      {row.cells.map((cell) => (
+                        <td className="td-right" {...cell.getCellProps()}>
+                          {" "}
+                          {cell.render("Cell")}{" "}
+                        </td>
+                      ))}
+                    </div>
+                  </>
+                )}
+                {!isSmallScreen && (
+                  <>
+                    {row.cells.map((cell) => (
+                      <td className="td-right" {...cell.getCellProps()}>
+                        {" "}
+                        {cell.render("Cell")}{" "}
+                      </td>
+                    ))}
+                  </>
+                )}
               </tr>
             );
           })}
