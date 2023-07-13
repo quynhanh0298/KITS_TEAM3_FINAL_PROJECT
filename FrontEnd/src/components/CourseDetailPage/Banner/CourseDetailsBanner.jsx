@@ -2,6 +2,8 @@ import styled from "styled-components";
 import StarRatings from "react-star-ratings";
 import { Button } from "components/Button/Button";
 import personAvt from "../../../assets/images/personAvt.svg";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"
 
 const StyleCourseDetailsBanner = styled.div`
   height: 1196px;
@@ -150,6 +152,17 @@ const StyleCourseDetailsBanner = styled.div`
 `;
 
 export const CourseDetailsBanner = () => {
+  const { id } = useParams();
+  const [course, setCourse] =   useState([])
+  useEffect(() => {
+    fetch(`http://localhost:8080/admin/courses/${id}`)
+    .then(res=>res.json())
+    .then((data)=>{
+      setCourse(data);
+    }
+  )
+  } ,[id])
+  
   return (
     <StyleCourseDetailsBanner>
       <div className="wrapper-popular-categlories">
@@ -159,27 +172,25 @@ export const CourseDetailsBanner = () => {
         <div className="categlory">#Programming</div>
       </div>
       <div className="banner-title">
-        Web design and development Crash course 2022
+        {course.name}
       </div>
       <div className="description">
-        Launch your career as a website designer and developer. Build job-ready
-        skills for an in-demand career and earn a credential from Meta. No
-        degree or prior experience required to get started.{" "}
+        {course.desciption}{" "}
       </div>
       <div className="rating">
         <div className="rate">
           <StarRatings
-            rating={4.5}
+            rating={course.rating}
             starDimension="35px"
             starSpacing="5px"
             starRatedColor="#FED66F"
           />
           <div className="rating-number">
-            <span>4.8</span>/5.0
+            <span>{course.rating}</span>/5.0
           </div>
         </div>
         <div className="reviews-count">722 reviews</div>
-        <div className="enroll-count">2,320 already enrolled</div>
+        <div className="enroll-count">{course.enroll} enrolled</div>
       </div>
       <div className="mentor">
         <img src={personAvt} alt="" />
