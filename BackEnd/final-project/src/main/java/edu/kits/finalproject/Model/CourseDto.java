@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +18,9 @@ public class CourseDto implements Serializable {
     private String desciption;
     private String thumbnail;
     private double rating;
-    private int viewed;
+    private int enroll;
     private int active;
     private Date created_at;
+    private CategoryDto categoryDto;
+    private List<UserDto> userDtos;
 }

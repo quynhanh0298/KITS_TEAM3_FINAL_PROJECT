@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -21,4 +22,5 @@ public class CategoryDto implements Serializable {
     private String name;
 
     private int active;
+    private Set<CourseDto> courseDtos;
 }
