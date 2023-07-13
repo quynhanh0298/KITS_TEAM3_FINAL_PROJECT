@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SearchBar } from "../SearchBar";
+import { NavLink } from "react-router-dom";
 import { ReactComponent as BellIcon } from "../../../assets/icons/dashboardicon/bell-icon.svg";
 import { ReactComponent as SettingIcon } from "../../../assets/icons/dashboardicon/Setting-Icon.svg";
 import { ReactComponent as AvtHeadIcon } from "../../../assets/icons/dashboardicon/Avt-Icon.svg";
@@ -21,6 +22,14 @@ const HeaderStyled = styled.div`
     gap: 10px;
   }
 `;
+const NavItem = ({ path, text, icon }) => {
+  return (
+    <NavLink to={path}>
+      {icon}
+      {text}
+    </NavLink>
+  );
+};
 export const DashboardHeader = () => {
   const isSmallScreen = useMediaQuery({ query: "(max-width: 612px)" });
   return (
@@ -30,7 +39,7 @@ export const DashboardHeader = () => {
           <SearchBar setPlaceholder="Search tutor" />
           <div className="header-right">
             <BellIcon cursor="pointer" />
-            <SettingIcon cursor="pointer" />
+            <NavItem icon={<SettingIcon />} path="/settings"/>
             <AvtHeadIcon cursor="pointer" />
           </div>
         </>
@@ -39,7 +48,7 @@ export const DashboardHeader = () => {
         <>
           <div className="header-right">
             <BellIcon cursor="pointer" />
-            <SettingIcon cursor="pointer" />
+            <NavItem icon={<SettingIcon />} path="/settings"/>
             <AvtHeadIcon cursor="pointer" />
           </div>
           <SearchBar setPlaceholder="Search tutor" />
