@@ -1,12 +1,12 @@
 import '../../App.css'
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
+import avatar1 from 'assets/images/avatars/avatar1.svg'
 import { Card } from 'components/Card/Card';
 
 const CategoriesStyled = styled.div`
-    height: 400px;
-    background-color: yellow;
-    /* background: #FAFEFF; */
+    /* background-color: yellow; */
+    background: #FAFEFF;
     .sub-title{
         font-size: 20px;
         font-weight: 500;
@@ -115,11 +115,9 @@ const Categories = () => {
         </div>
 
         <div className='courses'>
-            <Card/>
-            <div className='tutor'>
-                <p>Diallo Liam</p>
-            </div>
-            <p>demo</p>
+            <Card avatar={avatar1} tutorName={"Diallo Liam"} courseName={"Web design and  development Crash course 2022"} rating={4.8}/>
+            {/* <div className='tutor'>
+            </div> */}
         </div>
     </CategoriesStyled>
 }
