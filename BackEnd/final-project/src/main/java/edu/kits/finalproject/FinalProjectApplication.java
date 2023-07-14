@@ -1,6 +1,12 @@
 package edu.kits.finalproject;
 
+import edu.kits.finalproject.Domain.Course;
+import edu.kits.finalproject.Domain.User;
+import edu.kits.finalproject.Model.CourseDto;
+import edu.kits.finalproject.Model.UserDto;
+import edu.kits.finalproject.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +36,23 @@ public class FinalProjectApplication {
         };
     }
 
+    @Autowired
+    UserRepository userRepository;
+
     public static void main(String[] args) {
+
         SpringApplication.run(FinalProjectApplication.class, args);
+
+//        Course tempCourse1 = new Course("C#", 23000, "Great", "thumnail", 4.7, 1220);
+//        User tempUser1 = new User("Lisa", "female", "lisa@gmail.com", "123456", 0123);
+//        tempCourse1.addUser(tempUser1);
+
+
     }
+//    public void run(){
+//        CourseDto tempCourseDto1 = new CourseDto("C++", 23000, "wow", "vsvs", 4.5, 122);
+//        UserDto tempUserDto1 = new UserDto("Lisa", "famale", "lisa@gmail.com", "123456", 0123);
+//        tempCourseDto1.addUserDto(tempUserDto1);
+//    }
 
 }
