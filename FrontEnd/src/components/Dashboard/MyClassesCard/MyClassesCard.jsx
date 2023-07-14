@@ -40,8 +40,8 @@ const DivStyled = styled.div`
     }
     fill: "red";
   }
-  
-  @media screen and (max-width: 1224px){
+
+  @media screen and (max-width: 1224px) {
     justify-content: center;
   }
 `;
@@ -62,8 +62,8 @@ export const MyClassesCard = ({ newColor, name, quantity, path }) => {
     <NavLink to={path}>
       <DivStyled newColor={newColor} name={name} quantity={quantity}>
         <div className="left">
-          {!isTabletOrMobile && <CircleIcon fill={newColor} />}
-          {name}
+          <CircleIcon fill={newColor} />
+          {!isTabletOrMobile && <>{name}</>}
         </div>
         {!isTabletOrMobile && <div className="right-card">{quantity}</div>}
       </DivStyled>

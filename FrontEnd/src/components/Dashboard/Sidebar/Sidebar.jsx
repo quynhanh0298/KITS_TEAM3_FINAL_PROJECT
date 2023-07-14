@@ -64,9 +64,12 @@ const StyledSidebar = styled.div`
   @media screen and (max-width: 1224px) {
     padding: 0px;
     align-items: center;
-    .show{
+    .show {
       text-align: center;
       justify-content: center;
+    }
+    .bottom-sidebar {
+      margin-top: 75.49px;
     }
   }
 `;
@@ -123,8 +126,12 @@ export const Sidebar = () => {
   });
   return (
     <StyledSidebar>
-      {isDesktopOrLaptop && <KitLogo className="KitLogo" width="99px" height="36px" />}
-      {isTabletOrMobile && <KitLogo className="KitLogo" width="99px" height="36px" />}
+      {isDesktopOrLaptop && (
+        <KitLogo className="KitLogo" width="99px" height="36px" />
+      )}
+      {isTabletOrMobile && (
+        <KitLogo className="KitLogo" width="99px" height="36px" />
+      )}
       <div className="top-sidebar">
         {isDesktopOrLaptop && (
           <>
@@ -171,7 +178,7 @@ export const Sidebar = () => {
           </>
         )}
       </div>
-      <div className="class-text">Classes</div>
+      {isDesktopOrLaptop && <div className="class-text">Classes</div>}
       <div className="bottom-sidebar">
         {isDesktopOrLaptop && (
           <>
@@ -231,44 +238,36 @@ export const Sidebar = () => {
         )}
         {isTabletOrMobile && (
           <>
-            <MyClassesCard
-              name="Design"
-              path="/mainboard/my-classes"
-            />
-            <MyClassesCard
-              name="Development"
-              path="/mainboard/my-classes"
-            />
-            <MyClassesCard
-              name="Illustrations"
-              path="/mainboard/my-classes"
-            />
+            <MyClassesCard newColor="#FED66F" path="/mainboard/my-classes" />
+            <MyClassesCard newColor="#FED66F" path="/mainboard/my-classes" />
+            <MyClassesCard newColor="#FED66F" path="/mainboard/my-classes" />
             {isOpen && (
               <>
                 <MyClassesCard
-                  name="Design"
+                  newColor="#FED66F"
                   path="/mainboard/my-classes"
                 />
                 <MyClassesCard
-                  name="Development"
+                  newColor="#FED66F"
                   path="/mainboard/my-classes"
                 />
                 <MyClassesCard
-                  name="Illustrations"
+                  newColor="#FED66F"
                   path="/mainboard/my-classes"
                 />
               </>
             )}
             {isOpen && (
               <div className="show" onClick={toggleShowMore}>
-                {isDesktopOrLaptop && <ArrowPointDown style={{ transform: "rotate(180deg)" }} />}
-                Show less
+                <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
+
+                {isDesktopOrLaptop && <>Show less</>}
               </div>
             )}
             {!isOpen && (
               <div className="show" onClick={toggleShowMore}>
-                {isDesktopOrLaptop && <ArrowPointDown />}
-                Show more
+                <ArrowPointDown />
+                {isDesktopOrLaptop && <>Show more</>}
               </div>
             )}
           </>
