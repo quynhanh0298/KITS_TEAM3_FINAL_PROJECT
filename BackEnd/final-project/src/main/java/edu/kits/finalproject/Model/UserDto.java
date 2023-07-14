@@ -16,7 +16,15 @@ public class UserDto implements Serializable {
     private String gender;
     private String email;
     private String password;
-    private byte phoneNumber;
-    private byte active;
+    private int phoneNumber;
+    private int active;
     private List<CourseDto> courseDtos;
+
+    public UserDto(String name, String gender, String email, String password, int phoneNumber) {
+        this.name = name;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
 }

@@ -12,4 +12,8 @@ public class ResponseDto {
     private String data;
     private String error;
     private String error_code;
+
+    public ResponseDto(String message) {
+        this.message = message;
+    }
 }

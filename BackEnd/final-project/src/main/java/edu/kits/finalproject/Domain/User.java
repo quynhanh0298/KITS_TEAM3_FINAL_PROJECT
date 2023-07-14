@@ -32,11 +32,11 @@ public class User implements Serializable {
     private String password;
 
     @Column
-    private byte phoneNumber;
+    private int phoneNumber;
 
     @Column
     @ColumnDefault(value = "1")
-    private byte active;
+    private int active;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -48,4 +48,11 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private List<Course> courses;
 
+    public User(String name, String gender, String email, String password, int phoneNumber) {
+        this.name = name;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
 }

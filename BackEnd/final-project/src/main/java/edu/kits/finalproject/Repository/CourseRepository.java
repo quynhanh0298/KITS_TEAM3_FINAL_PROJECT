@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CoursePepository extends JpaRepository<Course, Long> {
+public interface CourseRepository extends JpaRepository<Course, Long> {
     List<Course> findByNameContaining(String name);
     Page<Course> findByNameContaining(String name, Pageable pageable);
 

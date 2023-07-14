@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +31,9 @@ public class Course implements Serializable {
     @Column(columnDefinition = "nvarchar(500)")
     private String desciption;
 
-    @Column(length = 200)
-    private String thumbnail;
+    @Lob
+    @Column(columnDefinition="MEDIUMBLOB")
+    private byte[] thumbnail;
 
     @Column
     private double rating;
@@ -38,7 +41,8 @@ public class Course implements Serializable {
     @Column
     private int enroll;
 
-    @Column(nullable = false)
+    @Column
+    @ColumnDefault(value = "1")
     private int active;
 
     @Temporal(TemporalType.DATE)
@@ -61,4 +65,13 @@ public class Course implements Serializable {
             joinColumns = @JoinColumn(name = "courseId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private List<User> users;
+
+    public Course(String name, double price, String desciption, byte[] thumbnail, double rating, int enroll) {
+        this.name = name;
+        this.price = price;
+        this.desciption = desciption;
+        this.thumbnail = thumbnail;
+        this.rating = rating;
+        this.enroll = enroll;
+    }
 }
