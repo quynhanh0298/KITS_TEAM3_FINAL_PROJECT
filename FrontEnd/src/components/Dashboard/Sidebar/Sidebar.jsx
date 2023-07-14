@@ -153,6 +153,11 @@ export const Sidebar = () => {
               icon={<SessionsIcon />}
             />
             <NavItem
+              text="My Courses"
+              path="/mainboard/my-courses"
+              icon={<SessionsIcon />}
+            />
+            <NavItem
               text="Hour purchase history"
               path="/mainboard/hour-purchase-history"
               icon={<PurchaseIcon />}
