@@ -3,6 +3,7 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import avatar1 from 'assets/images/avatars/avatar1.svg'
 import { Card } from 'components/Card/Card';
+import ProductList from 'components/ProductList/productList';
 
 const CategoriesStyled = styled.div`
     /* background-color: yellow; */
@@ -115,7 +116,7 @@ const Categories = () => {
         </div>
 
         <div className='courses'>
-            <Card avatar={avatar1} tutorName={"Diallo Liam"} courseName={"Web design and  development Crash course 2022"} rating={4.8}/>
+            <ProductList />
             {/* <div className='tutor'>
             </div> */}
         </div>
