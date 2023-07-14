@@ -23,6 +23,8 @@ public class FinalProjectApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/admin/categoties").allowedOrigins("http://localhost:3000");
                 registry.addMapping("/admin/courses/{id}").allowedOrigins("http://localhost:3000");
+                registry.addMapping("/admin/courses").allowedOrigins("http://localhost:3000");
+
 
             }
         };
