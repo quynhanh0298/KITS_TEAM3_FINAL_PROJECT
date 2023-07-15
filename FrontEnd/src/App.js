@@ -15,6 +15,10 @@ import SessionsPage from "pages/SessionsPage";
 import HourOfPurchaseHistoryPage from "pages/HourOfPurchaseHistoryPage";
 import MyTutorsPage from "pages/MyTutorsPage";
 import MyClassesPage from "pages/MyClassesPage";
+import SignUp from "pages/SignUp";
+import LogIn from "pages/student/LogIn";
+import ForgotPassword from "pages/student/ForgotPassword";
+import ResetPassword from "pages/student/ResetPassword";
 function App() {
   return (
     <div className="App">
@@ -27,6 +31,12 @@ function App() {
             <Route path="pricing" element={<PricePage />} />
             <Route path="help" element={<HelpPage />} />
             <Route path="coursedetails" element={<CourseDetail />} />
+          </Route>
+          <Route path="/">
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="log-in" element={<LogIn />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="reset-password" element={<ResetPassword />} />
           </Route>
           <Route path="/mainboard" element={<DashboardLayout />}>
             <Route path="dashboard" element={<DashboardPage />} />
