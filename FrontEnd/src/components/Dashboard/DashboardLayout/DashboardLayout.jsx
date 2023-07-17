@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Sidebar } from "../Sidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { DashboardHeader } from "../DashboardHeader";
+import { ProfileColumn } from "../ProfileColumn";
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -23,7 +24,7 @@ const StyleLayout = styled.div`
     width: 80%;
   }
   @media screen and (max-width: 1224px) {
-    .right{
+    .right {
       width: 90%;
     }
   }
@@ -38,22 +39,35 @@ const SideBarStyled = styled.div`
   float: left;
   width: 25%;
   height: 1450px;
-
   @media screen and (max-width: 1224px) {
     width: 10%;
   }
 `;
 export const DashboardLayout = () => {
+  const location = useLocation();
   return (
     <Container>
       <StyleLayout>
         <SideBarStyled>
           <Sidebar />
         </SideBarStyled>{" "}
-        <div className="right">
-          <DashboardHeader />
-          <Outlet />
-        </div>
+        {location.pathname !== "/mainboard/dashboard" && (
+          <>
+            <div className="right">
+              <DashboardHeader />
+              <Outlet />
+            </div>
+          </>
+        )}
+        {location.pathname === "/mainboard/dashboard" && (
+          <>
+            <div className="right" style={{ width: "60%" }}>
+              <DashboardHeader />
+              <Outlet />
+            </div>
+            <ProfileColumn />
+          </>
+        )}
       </StyleLayout>
     </Container>
   );
