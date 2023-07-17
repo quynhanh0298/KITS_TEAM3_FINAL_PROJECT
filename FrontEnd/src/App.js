@@ -1,5 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
@@ -8,6 +12,7 @@ import Contact from "./pages/Contact";
 import PricePage from "./pages/PricePage";
 import HelpPage from "./pages/HelpPage";
 import CourseDetail from "pages/CourseDetails";
+import Cart from "./pages/Cart";
 import { DashboardLayout } from "components/Dashboard/DashboardLayout";
 import DashboardPage from "pages/DashboardPage";
 import MessagesPage from "pages/MessagesPage";
@@ -19,6 +24,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -27,6 +33,7 @@ function App() {
             <Route path="pricing" element={<PricePage />} />
             <Route path="help" element={<HelpPage />} />
             <Route path="coursedetails/:id" element={<CourseDetail />} />
+            <Route path="cart"  element={<Cart />}/>
           </Route>
           <Route path="/mainboard" element={<DashboardLayout />}>
             <Route path="dashboard" element={<DashboardPage />} />
