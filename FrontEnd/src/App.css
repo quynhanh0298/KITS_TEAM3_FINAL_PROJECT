@@ -1,28 +1,28 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    --scrollbar-width: 9px;
+  --scrollbar-width: 9px;
 }
 
 body::-webkit-scrollbar {
-    width: scrollbarwidthpx;
+  width: scrollbarwidthpx;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .wrapper {
-    position: relative;
+  position: relative;
 }
 
-.wrapper-home-details-about-pricing{
-    max-width: 1320px;
-    margin: 0 auto;
+.wrapper-home-details-about-pricing {
+  max-width: 1320px;
+  margin: 0 auto;
 }
 
 /* .App {
@@ -32,18 +32,16 @@ a {
     height: 100vh;
 } */
 
-
-    .back {
-        
-        color: black;
-        text-align: center;
-    }
-  .back h1 {
-    font-size: 100px;
-    font-weight: 400;
-  }
-  .back h2 {
-    font-weight: 500;
-    font-size: 17px;
-    text-transform: uppercase;
-  }
+.back {
+  color: black;
+  text-align: center;
+}
+.back h1 {
+  font-size: 100px;
+  font-weight: 400;
+}
+.back h2 {
+  font-weight: 500;
+  font-size: 17px;
+  text-transform: uppercase;
+}
