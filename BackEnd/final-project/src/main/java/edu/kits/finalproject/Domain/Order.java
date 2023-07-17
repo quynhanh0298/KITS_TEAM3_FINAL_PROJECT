@@ -27,7 +27,7 @@ public class Order implements Serializable {
     @Column(nullable = false)
     private short status;
 
-    
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "customerId")
