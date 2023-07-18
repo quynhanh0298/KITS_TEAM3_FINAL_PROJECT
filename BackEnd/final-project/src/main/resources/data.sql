@@ -1,7 +1,18 @@
+INSERT INTO roles (name) values ("tutor");
+INSERT INTO roles (name) values ("student");
+
+INSERT INTO users (name, gender, email, password, phone_number)
+    VALUES  ('Lisa', 'female', 'lisa@gmail.com', '12345', 01234);
+INSERT INTO users (name, gender, email, password, phone_number)
+    VALUES  ('Jaca', 'male', 'jaca@gmail.com', '12345', 01234);
+
 INSERT INTO courses (name, price, desciption, rating, enroll, active)
     VALUES ('Java core',100, 'Everything about java', 4.5, 200, 1);
 INSERT INTO courses (name, price, desciption, rating, enroll, active)
 VALUES ('Spring boot',100, 'Spring boot course', 4.7, 500, 1);
+
+INSERT INTO user_course VALUES (1,1);
+INSERT INTO user_course VALUES (1,2);
 
 INSERT INTO categories (name, active)
     VALUES ('Programming', 1);
