@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "../ProductList/productList.css"
-import {Card} from '../Card/Card'
+import { Card } from '../Card/Card'
 
 import avatar1 from 'assets/images/avatars/avatar1.svg'
 
@@ -33,36 +33,36 @@ const ProductList = () => {
     }
   };
 
-  
+
 
 
 
   const [courses, setCourses] = useState([])
 
-  useEffect(()=> {
+  useEffect(() => {
     fetch("http://localhost:8080/admin/courses")
-    .then(res=>res.json())
-    .then((result) => {
+      .then(res => res.json())
+      .then((result) => {
         setCourses(result)
-    })
+      })
 
-  },[])
+  }, [])
 
   return (
     <>
-        
-        <Carousel  responsive={responsive}>
-            <div className='product-container'>
-            {courses.map(course =>(
-            <Card className="product" id={course.courseId} avatar={avatar1} tutorName={"Diallo Liam"} 
-            courseName={course.name} 
-            rating={course.rating} />
 
-            ))}
-            </div>
-       
-        </Carousel>;
-        
+      <Carousel responsive={responsive}>
+        <div className='product-container'>
+          {courses.map(course => (
+            <Card className="product" id={course.courseId} avatar={avatar1} tutorName={"Diallo Liam"}
+              courseName={course.name}
+              rating={course.rating} />
+
+          ))}
+        </div>
+
+      </Carousel>;
+
     </>
   )
 }

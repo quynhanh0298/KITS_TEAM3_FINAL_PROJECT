@@ -69,7 +69,6 @@ const PaypalCheckoutButton = (props) => {
             onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log("order" , order);
-                order.
                 handleApprove(data.orderID)
             }}
 
@@ -80,7 +79,7 @@ const PaypalCheckoutButton = (props) => {
             onError={(err) => {
                 setError(err);
                 console.error("Paypal checkout onError", err);
-            }}
+            }} 
         />
 };
 
