@@ -48,6 +48,10 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private List<Course> courses;
 
+    @ManyToOne
+    @JoinColumn(name = "RoleId")
+    private Role role;
+
     public User(String name, String gender, String email, String password, int phoneNumber) {
         this.name = name;
         this.gender = gender;
