@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -18,14 +19,20 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
+
     @Temporal(TemporalType.DATE)
     private Date orderDate;
+
     //    @Column(nullable = false)
     //    private int customerId;
     @Column(nullable = false)
     private double amount;
+
     @Column(nullable = false)
     private short status;
+
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+//    private Set<Course> courses;
 
 //    @ManyToOne
 //    @JoinColumn(name = "customerId")

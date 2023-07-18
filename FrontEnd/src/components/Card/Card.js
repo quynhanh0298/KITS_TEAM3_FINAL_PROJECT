@@ -51,40 +51,38 @@ const CardStyled = styled.div`
     }
 `
 
-export const Card = ({ id,avatar, tutorName, courseName, rating }) => {
+export const Card = ({ id, avatar, tutorName, courseName, rating }) => {
     const navigate = useNavigate();
 
-  const handleClick = () => {
-    // You can customize the URL based on the component ID
-    // For example:
-    const url = `/coursedetails/${id}`;
+    const handleClick = () => {
+        // You can customize the URL based on the component ID
+        // For example:
+        const url = `/coursedetails/${id}`;
 
-    // Navigate to the new page
-    navigate(url);
+        // Navigate to the new page
+        navigate(url);
+    }
 
-    
-  }
+    const handleMouseEnter = () => {
+        // Update the cursor style when the mouse enters the element
+        document.body.style.cursor = 'pointer';
+    };
 
-  const handleMouseEnter = () => {
-    // Update the cursor style when the mouse enters the element
-    document.body.style.cursor = 'pointer';
-  };
-
-  const handleMouseLeave = () => {
-    // Reset the cursor style when the mouse leaves the element
-    document.body.style.cursor = 'auto';
-  };
+    const handleMouseLeave = () => {
+        // Reset the cursor style when the mouse leaves the element
+        document.body.style.cursor = 'auto';
+    };
     return <CardStyled>
         <div className="img">
-        <div className="thumbnail">
-            <img src={courseImage1} />
-        </div>
-            
+            <div className="thumbnail">
+                <img src={courseImage1} />
+            </div>
+
             <div className="tutorInfo">
                 <img src={avatar} />
                 <p className="tutorName">{tutorName}</p>
             </div>
-            <div 
+            <div
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
