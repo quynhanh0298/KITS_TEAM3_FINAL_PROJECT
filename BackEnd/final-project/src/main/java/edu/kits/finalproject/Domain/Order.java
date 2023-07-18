@@ -20,6 +20,15 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
+    @Column
+    private String paymentId;
+
+    @Column
+    private String paymentMail;
+
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    private List<Course> courses;
+
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
@@ -28,8 +37,8 @@ public class Order implements Serializable {
     @Column(nullable = false)
     private double amount;
 
-    @Column(nullable = false)
-    private short status;
+//    @Column(nullable = false)
+//    private short status;
 
 //    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 //    private Set<Course> courses;
@@ -38,6 +47,6 @@ public class Order implements Serializable {
 //    @JoinColumn(name = "customerId")
 //    private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetails;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private Set<OrderDetail> orderDetails;
 }
