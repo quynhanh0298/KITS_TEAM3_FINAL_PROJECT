@@ -67,11 +67,11 @@ const PageStyled = styled.div`
     border-radius: 13px;
   }
   .carousel-container .react-multi-carousel-track {
-    gap: 100px;
+    gap: 200px;
   }
   .react-multi-carousel-item {
     max-width: 438px;
-    min-width: 360px;
+    min-width: 268px;
   }
   .ranking-table {
     margin-top: 66px;

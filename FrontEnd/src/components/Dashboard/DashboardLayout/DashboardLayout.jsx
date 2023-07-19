@@ -45,6 +45,7 @@ const SideBarStyled = styled.div`
 `;
 export const DashboardLayout = () => {
   const location = useLocation();
+
   return (
     <Container>
       <StyleLayout>
@@ -61,7 +62,7 @@ export const DashboardLayout = () => {
         )}
         {location.pathname === "/mainboard/dashboard" && (
           <>
-            <div className="right" style={{ width: "60%" }}>
+            <div className="right" style={{ width: "50%" }}>
               <DashboardHeader />
               <Outlet />
             </div>

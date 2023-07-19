@@ -12,6 +12,7 @@ import { ReactComponent as ArrowPointDown } from "../../../assets/icons/dashboar
 import { MyClassesCard } from "../MyClassesCard";
 const StyledSidebar = styled.div`
   width: 100%;
+  min-width: 355px;
   padding-left: 63px;
   padding-right: 26px;
   display: flex;
