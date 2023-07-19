@@ -1,5 +1,6 @@
 package edu.kits.finalproject.Domain;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
