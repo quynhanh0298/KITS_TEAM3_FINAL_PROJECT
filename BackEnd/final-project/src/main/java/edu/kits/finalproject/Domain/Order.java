@@ -15,8 +15,7 @@ import java.util.Date;
 @Table(name = "orders")
 public class Order implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private String orderId;
 
     @Temporal(TemporalType.DATE)
     private Date orderDate;
@@ -27,7 +26,7 @@ public class Order implements Serializable {
     private double amount;
 
     @Column(nullable = false)
-    private short status;
+    private String status;
 
 //    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Column

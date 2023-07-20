@@ -56,10 +56,6 @@ public class Course implements Serializable {
     @JoinColumn(name = "categoryId")
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "orderId")
-    private Order order;
-
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE,

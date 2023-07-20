@@ -1,37 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import "../ProductList/productList.css"
-import { Card } from '../Card/Card'
+import {Card} from '../Card/Card'
 
 import avatar1 from 'assets/images/avatars/avatar1.svg'
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import styled from 'styled-components';
+
 
 const ProductList = () => {
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 4
-        },
-        minidesktop: {
-            breakpoint: { max: 1190, min: 1024 },
-            items: 3
-        },
-        tablet: {
-            breakpoint: { max: 1080, min: 464 },
-            items: 2
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
-    };
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    minidesktop: {
+      breakpoint: { max: 1190, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1080, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
   
 
