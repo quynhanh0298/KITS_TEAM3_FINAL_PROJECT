@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CollectionId;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -31,13 +32,14 @@ public class Order implements Serializable {
     @Column(nullable = false)
     private short status;
 
-//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-//    private Set<Course> courses;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @Column
+    private String courses;
 
 //    @ManyToOne
 //    @JoinColumn(name = "customerId")
 //    private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetails;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private Set<OrderDetail> orderDetails;
 }

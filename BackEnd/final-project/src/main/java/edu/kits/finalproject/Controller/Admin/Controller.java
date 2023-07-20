@@ -10,10 +10,10 @@ import edu.kits.finalproject.Model.UserDto;
 import edu.kits.finalproject.Repository.UserRepository;
 import edu.kits.finalproject.Service.CategoryService;
 import edu.kits.finalproject.Service.CourseService;
+import edu.kits.finalproject.Service.OrderService;
 import edu.kits.finalproject.Service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +38,9 @@ public class Controller {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/courses")
     @ResponseBody
@@ -82,12 +85,18 @@ public class Controller {
         return modelMapper.map(user, UserDto.class);
     }
 
-    @PostMapping(path = "/add-order",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseDto> addOrder(@RequestBody Order order){
-        System.out.println(order);
-        return null;
+//    @PostMapping(path = "/add-order",
+//        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+//        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(value = "/add-order",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Order addOrder(@RequestBody Order order){
+        System.out.println("==========add-order"+ order);
+//        try{
+//            orderService.
+//        }
+        return order;
 
     }
 }
