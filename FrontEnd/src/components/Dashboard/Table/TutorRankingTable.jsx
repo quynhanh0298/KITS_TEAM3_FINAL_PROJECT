@@ -117,6 +117,10 @@ const TableStyled = styled.div`
     .td-right {
       text-align: right;
     }
+    .avt-name,
+    .ranking {
+      justify-content: right;
+    }
   }
 `;
 export const TutorRankingTable = ({ inputData }) => {

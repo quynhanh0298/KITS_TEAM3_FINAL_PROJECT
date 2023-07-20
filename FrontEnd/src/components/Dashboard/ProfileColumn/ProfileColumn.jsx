@@ -4,7 +4,7 @@ import { ProfileChart } from "../DashboardProfileChart";
 import { CourseScheduleCard } from "../DashboardCard";
 const PageStyled = styled.div`
   width: 25%;
-  min-width: 423px;
+  //min-width: 423px;
   padding: 54px 34px 0px 32px;
   background: #f7f7f7;
   display: flex;

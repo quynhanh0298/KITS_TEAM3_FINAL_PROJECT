@@ -1,22 +1,23 @@
 import styled from "styled-components";
-import Carousel from "react-multi-carousel";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+
 import "react-multi-carousel/lib/styles.css";
 import { StudentReviewCard, TutorCard } from "../DashboardCard";
 import fakeData from "../../../TUTOR_CARD_MOCK_DATA.json";
 import fakeData2 from "../../../STUDENT_REVIEWS_MOCK_DATA.json";
 import fakeData3 from "../../../TUTOR_RANKING_MOCK_DATA.json";
-import { ReactComponent as ArrowLeft } from "../../../assets/icons/dashboardicon/arrow-left.svg";
-import { ReactComponent as ArrowRight } from "../../../assets/icons/dashboardicon/arrow-right.svg";
 import { useState } from "react";
 import { TutorHoverCard } from "../DashboardCard/TutorHoverCard";
 import { TutorRankingTable } from "../Table";
 
 const PageStyled = styled.div`
+  width: 90%;
   margin: 52px 99px 0px 68px;
   background: "rgba(255, 255, 255, 0.7)";
   backdrop-filter: blur(62px);
-
   .head-page {
+    width: 100%;
     padding-bottom: 24px;
     box-shadow: 0 1px 0 0 #edebeb;
     h3 {
@@ -37,10 +38,12 @@ const PageStyled = styled.div`
     }
   }
   .slider-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 32px;
     .slider-content-head {
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -59,7 +62,7 @@ const PageStyled = styled.div`
       }
     }
   }
-  .react-multi-carousel-list {
+  /* .react-multi-carousel-list {
     border-radius: 13px;
   }
   .carousel-container {
@@ -72,8 +75,9 @@ const PageStyled = styled.div`
   .react-multi-carousel-item {
     max-width: 438px;
     min-width: 268px;
-  }
+  } */
   .ranking-table {
+    width: 100%;
     margin-top: 66px;
     h2 {
       color: #2e2c2c;
@@ -85,34 +89,50 @@ const PageStyled = styled.div`
     }
   }
 `;
+const responsiveAlice = {
+  0: { items: 1 },
+  568: { items: 2 },
+  1024: { items: 3 },
+};
 const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 3,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 3,
-  },
+  0: { items: 1 },
+  568: { items: 1 },
+  1024: { items: 1 },
 };
-const reviewResponsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+// const responsive = {
+//   desktop: {
+//     breakpoint: { max: 3000, min: 1024 },
+//     items: 3,
+//     partialVisibilityGutter: 40,
+//   },
+//   tablet: {
+//     breakpoint: { max: 1024, min: 464 },
+//     items: 2,
+//     partialVisibilityGutter: 40,
+//   },
+//   mobile: {
+//     breakpoint: { max: 464, min: 0 },
+//     items: 1,
+//     partialVisibilityGutter: 40,
+//   },
+// };
+// const reviewResponsive = {
+//   desktop: {
+//     breakpoint: { max: 3000, min: 1024 },
+//     items: 1,
+//     partialVisibilityGutter: 40,
+//   },
+//   tablet: {
+//     breakpoint: { max: 1024, min: 464 },
+//     items: 1,
+//     partialVisibilityGutter: 40,
+//   },
+//   mobile: {
+//     breakpoint: { max: 464, min: 0 },
+//     items: 1,
+//     partialVisibilityGutter: 40,
+//   },
+// };
 export const DashboardContents = () => {
   const [isShow, setIsShow] = useState(false);
   const [getId, setId] = useState();
@@ -132,16 +152,62 @@ export const DashboardContents = () => {
       <div className="slider-content">
         <div className="slider-content-head">
           <span>Your recommendations</span>
-          <div className="arrows-group">
-            <ArrowLeft />
-            <ArrowRight />
-          </div>
         </div>
-        <Carousel
+        <AliceCarousel
+          mouseTracking
+          responsive={responsiveAlice}
+          controlsStrategy="alternate"
+          disableDotsControls={true}
+          infinite
+        >
+          {fakeData.map((o) => {
+            return (
+              <TutorCard
+                bgColor="#D0C1F1"
+                avatar={o.avatar}
+                isVerified="true"
+                tutorName={o.name}
+                tutorSchool={o.school_name}
+                rating={o.rating}
+                status={o.status}
+                onMouseEnter={() => {
+                  setIsShow(true);
+                  setId(o.id);
+                  setStudentReview(o.rating);
+                }}
+                onMouseLeave={() => setIsShow(false)}
+              />
+            );
+          })}
+        </AliceCarousel>
+        {/* <Carousel
           responsive={responsive}
           centerMode={true}
           partialVisbile={false}
           infinite={true}
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          className=""
+          containerClass="container-with-dots"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          sliderClass=""
+          slidesToSlide={1}
+          swipeable
         >
           {fakeData.map((o) => {
             return (
@@ -197,11 +263,47 @@ export const DashboardContents = () => {
               })}
             </Carousel>
           </TutorHoverCard>
+        )} */}
+        {isShow && (
+          <TutorHoverCard
+            id={getId}
+            bgColor="#D0C1F1"
+            onMouseEnter={() => {
+              setIsShow(true);
+            }}
+            onMouseLeave={() => setIsShow(false)}
+            rating={getStudentReview}
+          >
+            <AliceCarousel
+              mouseTracking
+              responsive={responsive}
+              controlsStrategy="alternate"
+              autoPlay
+              autoPlayInterval={5000}
+              animationDuration={1000}
+              disableButtonsControls={true}
+              disableDotsControls={true}
+              infinite
+            >
+              {fakeData2.map((o) => {
+                return (
+                  <StudentReviewCard
+                    reviewsContent={o.reviews_content}
+                    reviewsDate={o.reviews_date}
+                    avatar={o.avatar}
+                    studentName={o.student_name}
+                    studentType={o.student_type}
+                    rating={o.rating}
+                  />
+                );
+              })}
+            </AliceCarousel>
+          </TutorHoverCard>
         )}
-        <div className="ranking-table">
-          <h2>Best tutors of the week</h2>
-          <TutorRankingTable inputData={fakeData3}/>
-        </div>
+      </div>
+      <div className="ranking-table">
+        <h2>Best tutors of the week</h2>
+        <TutorRankingTable inputData={fakeData3} />
       </div>
     </PageStyled>
   );
