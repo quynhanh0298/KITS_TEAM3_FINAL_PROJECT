@@ -33,38 +33,38 @@ const ProductList = () => {
         }
     };
 
-  
 
 
 
-  const [courses, setCourses] = useState([])
 
-  useEffect(()=> {
-    fetch("http://localhost:8080/admin/courses")
-    .then(res=>res.json())
-    .then((result) => {
-        setCourses(result)
-    })
+    const [courses, setCourses] = useState([])
 
-  },[])
+    useEffect(() => {
+        fetch("http://localhost:8080/admin/courses")
+            .then(res => res.json())
+            .then((result) => {
+                setCourses(result)
+            })
 
-  return (
-    <>
-        
-        <Carousel  responsive={responsive}>
-            <div className='product-container'>
-            {courses.map(course =>(
-            <Card className="product" id={course.courseId} avatar={avatar1} tutorName={"Diallo Liam"} 
-            courseName={course.name} 
-            rating={course.rating} />
+    }, [])
 
-            ))}
-            </div>
-       
-        </Carousel>;
-        
-    </>
-  )
+    return (
+        <>
+
+            <Carousel responsive={responsive}>
+                <div className='product-container'>
+                    {courses.map(course => (
+                        <Card className="product" id={course.courseId} avatar={avatar1} tutorName={"Diallo Liam"}
+                            courseName={course.name}
+                            rating={course.rating} />
+
+                    ))}
+                </div>
+
+            </Carousel>;
+
+        </>
+    )
 }
 
 export default ProductList

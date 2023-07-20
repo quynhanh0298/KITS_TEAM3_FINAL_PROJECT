@@ -88,15 +88,21 @@ public class Controller {
 //    @PostMapping(path = "/add-order",
 //        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
 //        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/add-order",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Order addOrder(@RequestBody Order order){
-        System.out.println("==========add-order"+ order);
-//        try{
-//            orderService.
-//        }
-        return order;
-
+    public ResponseEntity<ResponseDto> addOrder(@RequestBody Order order){
+        String message = "";
+        try{
+            orderService.store(order.getOrderId(), order.getOrderDate(), order.getAmount(), order.getStatus(), order.getCourses());
+            message = "Uploaded order successfully: ";
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
+        }catch (Exception e){
+            message = "Could not upload oder!";
+            System.out.println("Exception");
+        }
+        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
     }
 }
