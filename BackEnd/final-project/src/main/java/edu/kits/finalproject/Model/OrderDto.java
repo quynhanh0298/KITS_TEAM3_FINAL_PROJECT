@@ -11,9 +11,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDto implements Serializable {
-    private Long orderId;
+    private String orderId;
     private Date orderDate;
-    private Long customerId;
+    private String courses;
     private double amount;
-    private short status;
+    private String status;
 }

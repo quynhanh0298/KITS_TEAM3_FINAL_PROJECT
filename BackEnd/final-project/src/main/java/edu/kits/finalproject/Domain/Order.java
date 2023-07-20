@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -17,8 +15,7 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private String orderId;
 
     @Temporal(TemporalType.DATE)
     private Date orderDate;
@@ -29,15 +26,16 @@ public class Order implements Serializable {
     private double amount;
 
     @Column(nullable = false)
-    private short status;
+    private String status;
 
-//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-//    private Set<Course> courses;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @Column
+    private String courses;
 
-//    @ManyToOne
+    //    @ManyToOne
 //    @JoinColumn(name = "customerId")
 //    private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<OrderDetail> orderDetails;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private Set<OrderDetail> orderDetails;
 }

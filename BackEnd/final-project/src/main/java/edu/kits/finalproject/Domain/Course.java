@@ -66,6 +66,10 @@ public class Course implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private List<User> users;
 
+//    @ManyToOne
+//    @JoinColumn(name = "orderId")
+//    private Order order;
+
     public Course(String name, double price, String desciption, byte[] thumbnail, double rating, int enroll) {
         this.name = name;
         this.price = price;
@@ -73,5 +77,9 @@ public class Course implements Serializable {
         this.thumbnail = thumbnail;
         this.rating = rating;
         this.enroll = enroll;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }
