@@ -10,8 +10,6 @@ import edu.kits.finalproject.Model.UserDto;
 import edu.kits.finalproject.Repository.UserRepository;
 import edu.kits.finalproject.Service.CategoryService;
 import edu.kits.finalproject.Service.CourseService;
-import edu.kits.finalproject.Service.OrderService;
-import edu.kits.finalproject.Service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,14 +31,6 @@ public class Controller {
     private CourseService courseService;
     @Autowired
     private CategoryService categoryService;
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private OrderService orderService;
 
     @GetMapping("/courses")
     @ResponseBody
@@ -74,20 +64,6 @@ public class Controller {
             message = "Could not upload the file: " + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
         }
-    }
-
-    @GetMapping("/get-tutor-from-course/{id}")
-    @ResponseBody
-    public UserDto getUserOwnTheCourse(@PathVariable(name = "id") Long id) {
-        Course course = courseService.getCourseById(id);
-        List<User> users = course.getUsers();
-        User user = users.get(0);
-        return modelMapper.map(user, UserDto.class);
-    }
-
-//    @PostMapping(path = "/add-order",
-//        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-//        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/add-order",
