@@ -68,3 +68,47 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+Dashboard files flow:
+
+
+DashboardLayout component:
+    DashboardHeader
+    Sidebar
+    ProfileColumn
+    DashboardContents
+
+DashboardHeader component:
+    SearchBar
+
+Sidebar component:
+    MyClassesCard
+
+ProfileColumn component:
+    DashboardCard
+    DashboardProfileChart
+
+DashboardContents component :
+    TutorRankingTable
+    TutorHoverCard
+    StudentReviewCard
+    TutorCard
+
+MyClassPageContents component:
+    DropdownSelector
+    CalenderSelector
+    Button
+    MyClassesTable
+
+MyCoursesContents component:
+    DropdownSelector
+    Button
+
+SessionsContents component:
+    DropdownSelector
+    CalenderSelector
+    TimeSelector
+    Button
+    SessionsTable
