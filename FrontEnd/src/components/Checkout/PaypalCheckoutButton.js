@@ -1,18 +1,55 @@
 import { PayPalButtons} from '@paypal/react-paypal-js'
 import { useState } from 'react';
+import axios from 'axios';
+
 import { useSelector } from 'react-redux'
 
 
 const PaypalCheckoutButton = (props) => {
     const liveCart = useSelector((state) => state.cart);
 
+    let courseAddToDb = ""
+
+    liveCart.cartItem?.map(item => {
+        courseAddToDb += item.courseId
+        courseAddToDb += ","
+
+    })
+
     const { cart } = props;
 
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
+    
+      
+      
 
-    const handleApprove = (orderID) =>{
-        //Call backend function to fullfill order
+    const handleApprove = (orderID, time, amount, status) =>{
+        const orderSendToDb = {
+             orderId : orderID,
+             orderDate: time,
+             amount:  amount,
+             status: status,
+             courses: courseAddToDb
+
+          };
+          console.log(orderSendToDb)
+
+        
+
+        axios({
+            method: 'POST',
+            url: 'http://localhost:8080/admin/add-order',
+            headers: {
+                'Content-Type': 'application/json',
+                    },
+            data: orderSendToDb,
+        })
+            .then(result => {
+                console.log(orderSendToDb)
+            })
+            .catch(error => console.log(error))
+          
         
         //if response is success
         setPaidFor(true);
@@ -21,6 +58,8 @@ const PaypalCheckoutButton = (props) => {
         //if response is error
         //alert("Your payment was processed successfully. However, we are unable to fulfill your purchase. Please contact us for assistance")
     }
+
+    
 
     if(paidFor){
         alert("Your payment was processed successfully")
@@ -69,6 +108,7 @@ const PaypalCheckoutButton = (props) => {
             onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log("order" , order);
+                order.
                 handleApprove(data.orderID)
             }}
 

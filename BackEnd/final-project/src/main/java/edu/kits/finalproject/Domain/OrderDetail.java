@@ -1,6 +1,5 @@
 package edu.kits.finalproject.Domain;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +26,7 @@ public class OrderDetail implements Serializable {
     @JoinColumn(name = "productId")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "orderId")
-    private Order order;
+//    @ManyToOne
+//    @JoinColumn(name = "orderId")
+//    private Order order;
 }

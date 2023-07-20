@@ -14,9 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDto implements Serializable {
     private Long orderId;
-    private String paymentId;
-    private String paymentMail;
-    private List<CourseDto> courses;
     private Date orderDate;
+    private Long customerId;
     private double amount;
+    private short status;
 }
