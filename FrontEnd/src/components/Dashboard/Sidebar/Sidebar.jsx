@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
 import { ReactComponent as KitLogo } from "../../../assets/images/kits-logo.svg";
@@ -63,6 +63,17 @@ const StyledSidebar = styled.div`
     font-weight: 500;
     line-height: normal;
   }
+  .specpath {
+    padding: 0px;
+    align-items: center;
+    .show {
+      text-align: center;
+      justify-content: center;
+    }
+    .bottom-sidebar {
+      margin-top: 75.49px;
+    }
+  }
   @media screen and (max-width: 1224px) {
     padding: 0px;
     align-items: center;
@@ -108,9 +119,33 @@ const StyledNavItem = styled.div`
     justify-content: center;
   }
 `;
+const NavSpecStyled = {
+  padding: "0px",
+  justifyContent: "center",
+};
+const SpecStyled = {
+  padding: "0px",
+  alignItems: "center",
+};
+const ShowSpecStyled = {
+  textAlign: "center",
+  justifyContent: "center",
+};
+const BottomSidebarStyled = {
+  marginTop: "75.49px",
+  alignItems: "center",
+};
 const NavItem = ({ path, text, icon, children }) => {
+  const location = useLocation();
+  const { id, orderId } = useParams();
   return (
-    <StyledNavItem>
+    <StyledNavItem
+      style={
+        location.pathname === `/mainboard/video-player/${orderId}/${id}`
+          ? NavSpecStyled
+          : null
+      }
+    >
       <NavLink to={path}>
         {icon}
         {text}
@@ -120,6 +155,8 @@ const NavItem = ({ path, text, icon, children }) => {
   );
 };
 export const Sidebar = () => {
+  const location = useLocation();
+  const { id, orderId } = useParams();
   const [isOpen, setOpen] = useState(false);
   const toggleShowMore = () => setOpen(!isOpen);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
@@ -127,52 +164,56 @@ export const Sidebar = () => {
     query: "(min-width: 1224px)",
   });
   return (
-    <StyledSidebar>
-      {isDesktopOrLaptop && (
-        <KitLogo className="KitLogo" height="36px" />
-      )}
-      {isTabletOrMobile && (
-        <KitLogo className="KitLogo" height="36px" />
-      )}
+    <StyledSidebar
+      style={
+        location.pathname === `/mainboard/video-player/${orderId}/${id}`
+          ? SpecStyled
+          : null
+      }
+    >
+      {isDesktopOrLaptop && <KitLogo className="KitLogo" height="36px" />}
+      {isTabletOrMobile && <KitLogo className="KitLogo" height="36px" />}
       <div className="top-sidebar">
-        {isDesktopOrLaptop && (
-          <>
-            <NavItem
-              text="Dashboard"
-              path="/mainboard/dashboard"
-              icon={<DashboardIcon />}
-            />
-            <NavItem
-              text="Messages"
-              path="/mainboard/messages"
-              icon={<MessIcon />}
-            >
-              <div className="noti" />
-            </NavItem>
-            <NavItem
-              text="Sessions"
-              path="/mainboard/sessions"
-              icon={<SessionsIcon />}
-            />
-            <NavItem
-              text="My Courses"
-              path="/mainboard/my-courses"
-              icon={<SessionsIcon />}
-            />
-            <NavItem
-              text="Hour purchase history"
-              path="/mainboard/hour-purchase-history"
-              icon={<PurchaseIcon />}
-            />
-            <NavItem
-              text="My tutors"
-              path="/mainboard/my-tutors"
-              icon={<MyTutorsIcon />}
-            />
-          </>
-        )}
+        {isDesktopOrLaptop &&
+          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+            <>
+              <NavItem
+                text="Dashboard"
+                path="/mainboard/dashboard"
+                icon={<DashboardIcon />}
+              />
+              <NavItem
+                text="Messages"
+                path="/mainboard/messages"
+                icon={<MessIcon />}
+              >
+                <div className="noti" />
+              </NavItem>
+              <NavItem
+                text="Sessions"
+                path="/mainboard/sessions"
+                icon={<SessionsIcon />}
+              />
+              <NavItem
+                text="My Courses"
+                path="/mainboard/my-courses"
+                icon={<SessionsIcon />}
+              />
+              <NavItem
+                text="Hour purchase history"
+                path="/mainboard/hour-purchase-history"
+                icon={<PurchaseIcon />}
+              />
+              <NavItem
+                text="My tutors"
+                path="/mainboard/my-tutors"
+                icon={<MyTutorsIcon />}
+              />
+            </>
+          )}
 
-        {isTabletOrMobile && (
+        {(isTabletOrMobile ||
+          location.pathname === `/mainboard/video-player/${orderId}/${id}`) && (
           <>
             <NavItem path="/mainboard/dashboard" icon={<DashboardIcon />} />
             <NavItem path="/mainboard/messages" icon={<MessIcon />} />
@@ -185,65 +226,77 @@ export const Sidebar = () => {
           </>
         )}
       </div>
-      {isDesktopOrLaptop && <div className="class-text">Classes</div>}
-      <div className="bottom-sidebar">
-        {isDesktopOrLaptop && (
-          <>
-            <MyClassesCard
-              name="Design"
-              quantity={5}
-              newColor="#FED66F"
-              path="/mainboard/my-classes"
-            />
-            <MyClassesCard
-              name="Development"
-              quantity={5}
-              newColor="#77ADFF"
-              path="/mainboard/my-classes"
-            />
-            <MyClassesCard
-              name="Illustrations"
-              quantity={5}
-              newColor="#F66E6E"
-              path="/mainboard/my-classes"
-            />
-            {isOpen && (
-              <>
-                <MyClassesCard
-                  name="Design"
-                  quantity={5}
-                  newColor="#FED66F"
-                  path="/mainboard/my-classes"
-                />
-                <MyClassesCard
-                  name="Development"
-                  quantity={5}
-                  newColor="#77ADFF"
-                  path="/mainboard/my-classes"
-                />
-                <MyClassesCard
-                  name="Illustrations"
-                  quantity={5}
-                  newColor="#F66E6E"
-                  path="/mainboard/my-classes"
-                />
-              </>
-            )}
-            {isOpen && (
-              <div className="show" onClick={toggleShowMore}>
-                <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
-                Show less
-              </div>
-            )}
-            {!isOpen && (
-              <div className="show" onClick={toggleShowMore}>
-                <ArrowPointDown />
-                Show more
-              </div>
-            )}
-          </>
+      {isDesktopOrLaptop &&
+        location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+          <div className="class-text">Classes</div>
         )}
-        {isTabletOrMobile && (
+      <div
+        className="bottom-sidebar"
+        style={
+          location.pathname === `/mainboard/video-player/${orderId}/${id}`
+            ? BottomSidebarStyled
+            : null
+        }
+      >
+        {isDesktopOrLaptop &&
+          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+            <>
+              <MyClassesCard
+                name="Design"
+                quantity={5}
+                newColor="#FED66F"
+                path="/mainboard/my-classes"
+              />
+              <MyClassesCard
+                name="Development"
+                quantity={5}
+                newColor="#77ADFF"
+                path="/mainboard/my-classes"
+              />
+              <MyClassesCard
+                name="Illustrations"
+                quantity={5}
+                newColor="#F66E6E"
+                path="/mainboard/my-classes"
+              />
+              {isOpen && (
+                <>
+                  <MyClassesCard
+                    name="Design"
+                    quantity={5}
+                    newColor="#FED66F"
+                    path="/mainboard/my-classes"
+                  />
+                  <MyClassesCard
+                    name="Development"
+                    quantity={5}
+                    newColor="#77ADFF"
+                    path="/mainboard/my-classes"
+                  />
+                  <MyClassesCard
+                    name="Illustrations"
+                    quantity={5}
+                    newColor="#F66E6E"
+                    path="/mainboard/my-classes"
+                  />
+                </>
+              )}
+              {isOpen && (
+                <div className="show" onClick={toggleShowMore}>
+                  <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
+                  Show less
+                </div>
+              )}
+              {!isOpen && (
+                <div className="show" onClick={toggleShowMore}>
+                  <ArrowPointDown />
+                  Show more
+                </div>
+              )}
+            </>
+          )}
+        {(isTabletOrMobile ||
+          location.pathname === `/mainboard/video-player/${orderId}/${id}`) && (
           <>
             <MyClassesCard newColor="#FED66F" path="/mainboard/my-classes" />
             <MyClassesCard newColor="#FED66F" path="/mainboard/my-classes" />
@@ -265,16 +318,33 @@ export const Sidebar = () => {
               </>
             )}
             {isOpen && (
-              <div className="show" onClick={toggleShowMore}>
+              <div
+                className="show"
+                onClick={toggleShowMore}
+                style={
+                  location.pathname ===
+                  `/mainboard/video-player/${orderId}/${id}`
+                    ? ShowSpecStyled
+                    : null
+                }
+              >
                 <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
 
-                {isDesktopOrLaptop && <>Show less</>}
+                {isDesktopOrLaptop &&
+                  location.pathname !==
+                    `/mainboard/video-player/${orderId}/${id}` && (
+                    <>Show less</>
+                  )}
               </div>
             )}
             {!isOpen && (
               <div className="show" onClick={toggleShowMore}>
                 <ArrowPointDown />
-                {isDesktopOrLaptop && <>Show more</>}
+                {isDesktopOrLaptop &&
+                  location.pathname !==
+                    `/mainboard/video-player/${orderId}/${id}` && (
+                    <>Show more</>
+                  )}
               </div>
             )}
           </>

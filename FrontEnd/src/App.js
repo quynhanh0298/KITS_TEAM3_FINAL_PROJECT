@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import 'react-toastify/dist/ReactToastify.css';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js'
-
+import "react-toastify/dist/ReactToastify.css";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home";
@@ -14,7 +13,7 @@ import PricePage from "./pages/PricePage";
 import HelpPage from "./pages/HelpPage";
 import CourseDetail from "pages/CourseDetails";
 import Cart from "./pages/Cart";
-import CheckoutPage from "./pages/CheckoutPage"
+import CheckoutPage from "./pages/CheckoutPage";
 import { DashboardLayout } from "components/Dashboard/DashboardLayout";
 import DashboardPage from "pages/DashboardPage";
 import MessagesPage from "pages/MessagesPage";
@@ -23,6 +22,8 @@ import HourOfPurchaseHistoryPage from "pages/HourOfPurchaseHistoryPage";
 import MyTutorsPage from "pages/MyTutorsPage";
 import MyClassesPage from "pages/MyClassesPage";
 import CoursesPage from "pages/MyCoursesPage";
+import VideoPlayerPage from "pages/VideoPlayerPage";
+
 function App() {
   return (
     <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
@@ -53,6 +54,7 @@ function App() {
             />
             <Route path="my-tutors" element={<MyTutorsPage />} />
             <Route path="my-classes" element={<MyClassesPage />} />
+            <Route path="video-player/:orderId/:id" element={<VideoPlayerPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
@@ -62,3 +64,4 @@ function App() {
 }
 
 export default App;
+

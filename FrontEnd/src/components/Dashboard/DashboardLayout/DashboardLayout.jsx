@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Sidebar } from "../Sidebar";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { DashboardHeader } from "../DashboardHeader";
 import { ProfileColumn } from "../ProfileColumn";
 import { useMediaQuery } from "react-responsive";
@@ -47,6 +47,7 @@ const SideBarStyled = styled.div`
 `;
 export const DashboardLayout = () => {
   const location = useLocation();
+  const { id, orderId } = useParams();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1620px)" });
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1620px)",
@@ -54,17 +55,33 @@ export const DashboardLayout = () => {
   return (
     <Container>
       <StyleLayout>
-        <SideBarStyled>
-          <Sidebar />
-        </SideBarStyled>{" "}
-        {location.pathname !== "/mainboard/dashboard" && (
+        {(isTabletOrMobile ||
+          location.pathname === `/mainboard/video-player/${orderId}/${id}`) && (
           <>
-            <div className="right">
+            <SideBarStyled style={{ width: "10%", maxWidth: "123px" }}>
+              <Sidebar />
+            </SideBarStyled>
+            <div className="right" style={{ width: "90%" }}>
               <DashboardHeader />
               <Outlet />
             </div>
           </>
         )}
+        {isDesktopOrLaptop &&
+          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+            <SideBarStyled>
+              <Sidebar />
+            </SideBarStyled>
+          )}{" "}
+        {location.pathname !== "/mainboard/dashboard" &&
+          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+            <>
+              <div className="right">
+                <DashboardHeader />
+                <Outlet />
+              </div>
+            </>
+          )}
         {location.pathname === "/mainboard/dashboard" && (
           <>
             {isDesktopOrLaptop && (
