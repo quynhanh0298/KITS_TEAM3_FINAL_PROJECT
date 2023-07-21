@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import './card.css'
 const CardStyled = styled.div`
     width: 100%;
-    width: 465px;
+    width: 375px;
     /* height: 513px; */
     border-radius: 10px;
     box-shadow: 0px 4px 34px 0px rgba(0, 0, 0, 0.05), 0px -4px 34px 0px rgba(0, 0, 0, 0.05);
     margin-right:30px;
+    margin-bottom: 33px;
     .thumbnail img{
         width: 100%;
     }
@@ -51,17 +52,21 @@ const CardStyled = styled.div`
     }
 `
 
-export const Card = ({ id,avatar, tutorName, courseName, rating }) => {
+export const Card = ({ id,orderId,avatar, tutorName, courseName, rating }) => {
     const navigate = useNavigate();
 
   const handleClick = () => {
-    // You can customize the URL based on the component ID
-    // For example:
+    if(!orderId){
     const url = `/coursedetails/${id}`;
 
     // Navigate to the new page
     navigate(url);
+    } else{
+        const urlWithOrder = `/coursedetails/${orderId}/${id}`;
 
+        // Navigate to the new page
+        navigate(urlWithOrder);  
+    }
     
   }
 

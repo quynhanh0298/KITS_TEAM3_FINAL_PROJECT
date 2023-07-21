@@ -37,6 +37,7 @@ function App() {
             <Route path="pricing" element={<PricePage />} />
             <Route path="help" element={<HelpPage />} />
             <Route path="coursedetails/:id" element={<CourseDetail />} />
+            <Route path="coursedetails/:orderId/:id" element={<CourseDetail />} />
             <Route path="cart"  element={<Cart />}/>
             <Route path="checkout"  element={<CheckoutPage />}/>
 
@@ -45,7 +46,7 @@ function App() {
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="messages" element={<MessagesPage />} />
             <Route path="sessions" element={<SessionsPage />} />
-            <Route path="my-courses" element={<CoursesPage />} />
+            <Route path="my-courses/:orderId" element={<CoursesPage />} />
             <Route
               path="hour-purchase-history"
               element={<HourOfPurchaseHistoryPage />}
