@@ -34,9 +34,11 @@ public class CourseServiceImpl implements CourseService {
         return new Course();
     }
 
+
+
     @Override
-    public Course store(String name, double price, String description, MultipartFile file, double rating, int enroll) throws IOException {
-        Course course = new Course(name, price, description, file.getBytes(), rating, enroll);
+    public Course store(String name, double price, String description, MultipartFile file, double rating, int enroll,String listOfVideo) throws IOException {
+        Course course = new Course(name, price, description, file.getBytes(), rating, enroll,listOfVideo);
         System.out.println(name);
         return coursePepository.save(course);
     }

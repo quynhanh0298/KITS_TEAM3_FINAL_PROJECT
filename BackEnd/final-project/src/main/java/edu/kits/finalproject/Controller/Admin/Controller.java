@@ -64,7 +64,7 @@ public class Controller {
     public ResponseEntity<ResponseDto> addCourse(@RequestParam("file") MultipartFile file, @RequestParam("name") String name){
         String message = "";
         try{
-            courseService.store(name, 10, "new course", file, 0, 0);
+            courseService.store(name, 10, "new course", file, 0, 0,"hello");
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
         }catch (Exception e){

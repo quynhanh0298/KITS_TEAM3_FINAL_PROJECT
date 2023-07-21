@@ -13,7 +13,8 @@ public interface CourseService{
 
     Course getCourseById(Long id);
 
-    Course store(String name, double price, String description, MultipartFile file, double rating, int enroll) throws IOException;
+
+    Course store(String name, double price, String description, MultipartFile file, double rating, int enroll, String listOfVideo) throws IOException;
 
     User getTutor(Long id);
 }

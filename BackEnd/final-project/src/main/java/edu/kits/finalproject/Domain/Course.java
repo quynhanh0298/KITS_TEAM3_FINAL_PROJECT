@@ -35,6 +35,10 @@ public class Course implements Serializable {
     @Column(columnDefinition="MEDIUMBLOB")
     private byte[] thumbnail;
 
+
+    @Column(columnDefinition = "nvarchar(500)")
+    private String listOfVideo;
+
     @Column
     private double rating;
 
@@ -70,13 +74,14 @@ public class Course implements Serializable {
 //    @JoinColumn(name = "orderId")
 //    private Order order;
 
-    public Course(String name, double price, String desciption, byte[] thumbnail, double rating, int enroll) {
+    public Course(String name, double price, String desciption, byte[] thumbnail, double rating, int enroll, String listOfVideo) {
         this.name = name;
         this.price = price;
         this.desciption = desciption;
         this.thumbnail = thumbnail;
         this.rating = rating;
         this.enroll = enroll;
+        this.listOfVideo = listOfVideo;
     }
 
     public List<User> getUsers() {
