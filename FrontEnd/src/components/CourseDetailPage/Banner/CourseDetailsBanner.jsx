@@ -3,7 +3,7 @@ import StarRatings from "react-star-ratings";
 import { Button } from "components/Button/Button";
 import personAvt from "../../../assets/images/personAvt.svg";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const StyleCourseDetailsBanner = styled.div`
   height: 1196px;
@@ -162,7 +162,7 @@ export const CourseDetailsBanner = () => {
     }
   )
   } ,[id])
-  
+  const navi = useNavigate();
   return (
     <StyleCourseDetailsBanner>
       <div className="wrapper-popular-categlories">
@@ -208,6 +208,7 @@ export const CourseDetailsBanner = () => {
           height="81px"
           borderRadius="55px"
           fontSize="22px"
+          onClick={() => navi(`/mainboard/video-player/${orderId}/${id}`)}
         >
            Learning
         </Button>

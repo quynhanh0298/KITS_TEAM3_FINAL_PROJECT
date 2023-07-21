@@ -12,7 +12,7 @@ const ButtonStyled = styled.button`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    
+    cursor: pointer;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
@@ -22,7 +22,7 @@ const ButtonStyled = styled.button`
     }
 `
 
-export const Button = ({ width, height, textColor, bgColor, boderColor, borderRadius, fontSize, children }) => {
+export const Button = ({ width, height, textColor, bgColor, boderColor, borderRadius, fontSize, children, onClick }) => {
     return <ButtonStyled
         width={width}
         height={height}
@@ -31,6 +31,7 @@ export const Button = ({ width, height, textColor, bgColor, boderColor, borderRa
         borderRadius={borderRadius}
         fontSize={fontSize}
         boderColor={boderColor}
+        onClick={onClick}
     >
         <div>
             {children}
