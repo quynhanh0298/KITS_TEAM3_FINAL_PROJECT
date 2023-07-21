@@ -152,7 +152,7 @@ const StyleCourseDetailsBanner = styled.div`
 `;
 
 export const CourseDetailsBanner = () => {
-  const { id } = useParams();
+  const { id,orderId } = useParams();
   const [course, setCourse] =   useState([])
   useEffect(() => {
     fetch(`http://localhost:8080/admin/courses/${id}`)
@@ -200,15 +200,20 @@ export const CourseDetailsBanner = () => {
       </div>
       <div className="start-group">
         <div className="start-group-text">Start as early as Today</div>
-        <Button
+        
+        {orderId ? (
+          <Button
           bgColor="#0C4CA3"
           width="251px"
           height="81px"
           borderRadius="55px"
-          fontSize="32px"
+          fontSize="22px"
         >
-          Enroll
+           Learning
         </Button>
+        ):(
+          <></>
+        )}
       </div>
     </StyleCourseDetailsBanner>
   );

@@ -3,10 +3,7 @@ package edu.kits.finalproject.Controller.Admin;
 import edu.kits.finalproject.Domain.Course;
 import edu.kits.finalproject.Domain.Order;
 import edu.kits.finalproject.Domain.User;
-import edu.kits.finalproject.Model.CategoryDto;
-import edu.kits.finalproject.Model.CourseDto;
-import edu.kits.finalproject.Model.ResponseDto;
-import edu.kits.finalproject.Model.UserDto;
+import edu.kits.finalproject.Model.*;
 import edu.kits.finalproject.Repository.UserRepository;
 import edu.kits.finalproject.Service.CategoryService;
 import edu.kits.finalproject.Service.CourseService;
@@ -104,5 +101,11 @@ public class Controller {
             System.out.println("Exception");
         }
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
+    }
+
+    @GetMapping("/order/{orderId}")
+    @ResponseBody
+    public OrderDto getOrderById(@PathVariable(name = "orderId") String orderId){
+        return modelMapper.map(orderService.getOrderById(orderId), OrderDto.class);
     }
 }
