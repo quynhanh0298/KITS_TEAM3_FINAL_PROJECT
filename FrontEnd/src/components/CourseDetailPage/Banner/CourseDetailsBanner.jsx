@@ -162,6 +162,8 @@ export const CourseDetailsBanner = () => {
     }
   )
   } ,[id])
+  console.log( course)
+
   const navi = useNavigate();
   return (
     <StyleCourseDetailsBanner>
@@ -208,7 +210,7 @@ export const CourseDetailsBanner = () => {
           height="81px"
           borderRadius="55px"
           fontSize="22px"
-          onClick={() => navi(`/mainboard/video-player/${orderId}/${id}`)}
+          onClick={() => navi(`/mainboard/video-player/${id}`)}
         >
            Learning
         </Button>
