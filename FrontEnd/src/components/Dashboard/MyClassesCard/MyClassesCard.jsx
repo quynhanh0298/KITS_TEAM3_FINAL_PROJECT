@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 const DivStyled = styled.div`
   display: flex;
@@ -57,15 +57,29 @@ const CircleIcon = ({ fill }) => (
   </svg>
 );
 export const MyClassesCard = ({ newColor, name, quantity, path }) => {
+  const location = useLocation();
+  const { id, orderId } = useParams();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
-    <NavLink to={path}>
+    <NavLink
+      to={path}
+      style={
+        location.pathname === `/mainboard/video-player/${orderId}/${id}`
+          ? { justifyContent: 'center' }
+          : null
+      }
+    >
       <DivStyled newColor={newColor} name={name} quantity={quantity}>
         <div className="left">
           <CircleIcon fill={newColor} />
-          {!isTabletOrMobile && <>{name}</>}
+          {!isTabletOrMobile &&
+            location.pathname !==
+              `/mainboard/video-player/${orderId}/${id}` && <>{name}</>}
         </div>
-        {!isTabletOrMobile && <div className="right-card">{quantity}</div>}
+        {!isTabletOrMobile &&
+          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+            <div className="right-card">{quantity}</div>
+          )}
       </DivStyled>
     </NavLink>
   );

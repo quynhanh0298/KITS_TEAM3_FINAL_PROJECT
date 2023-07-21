@@ -1,16 +1,14 @@
 import styled from "styled-components";
 import { DropdownSelector } from "../Selector";
 import { Button } from "components/Button/Button";
-import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import {Card} from '../../Card/Card'
+import { Card } from "../../Card/Card";
 
-import avatar1 from 'assets/images/avatars/avatar1.svg'
+import avatar1 from "assets/images/avatars/avatar1.svg";
 
-
-import axios from 'axios';
-
+import axios from "axios";
 
 const PageStyled = styled.div`
   h3 {
@@ -55,7 +53,7 @@ const PageStyled = styled.div`
       0px 4px 34px 0px rgba(0, 0, 0, 0.05),
       0px -4px 34px 0px rgba(0, 0, 0, 0.05);
   }
-  .cards-wrapper{
+  .cards-wrapper {
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -65,31 +63,34 @@ const PageStyled = styled.div`
 `;
 export const MyCoursesContents = () => {
   const { orderId } = useParams();
-  
-  const [courses, setCourses] = useState([])
+
+  const [courses, setCourses] = useState([]);
 
   const [orders, setOrders] = useState([]);
-  const [charArray, setCharAray] = useState('');
-  
+  const [charArray, setCharAray] = useState("");
+
   useEffect(() => {
-    axios.get(`http://localhost:8080/admin/order/${orderId}`)
+    axios
+      .get(`http://localhost:8080/admin/order/${orderId}`)
       .then((response) => {
         setOrders(response.data);
-        setCharAray(response.data.courses.replace(/,/g, ''))
+        setCharAray(response.data.courses.replace(/,/g, ""));
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       });
 
     fetch("http://localhost:8080/admin/courses")
-    .then(res=>res.json())
-    .then((result) => {
-        setCourses(result)
-    })
+      .then((res) => res.json())
+      .then((result) => {
+        setCourses(result);
+      });
   }, []);
 
-  
-  const selectedCourses = courses.filter(course => charArray.includes(course.courseId));
+  const selectedCourses = courses.filter((course) =>
+    charArray.includes(course.courseId)
+  );
+  console.log(selectedCourses);
   // const numbers = text.replace(/,/g, '');
   // console.log(typeof numbers)
   // const numbers = text.split(/\D+/).map((num) => parseInt(num)).filter((num) => !isNaN(num));
@@ -114,23 +115,21 @@ export const MyCoursesContents = () => {
         </Button>
       </div>
       <div>
-      
-      <h3>ORDER ID: {orderId}</h3>
-
+        <h3>ORDER ID: {orderId}</h3>
       </div>
-      <div>
-      
-    </div>
+      <div></div>
       <div className="cards-wrapper">
-
-      {selectedCourses.map((course) => (
-        
-        <Card className="product" orderId={orderId} id={course.courseId} avatar={avatar1} tutorName={"Diallo Liam"} 
-            courseName={course.name} 
-            rating={course.rating} />
-        
-      ))}
-        
+        {selectedCourses.map((course) => (
+          <Card
+            className="product"
+            orderId={orderId}
+            id={course.courseId}
+            avatar={avatar1}
+            tutorName={"Diallo Liam"}
+            courseName={course.name}
+            rating={course.rating}
+          />
+        ))}
       </div>
     </PageStyled>
   );
