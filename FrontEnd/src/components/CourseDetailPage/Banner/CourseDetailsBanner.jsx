@@ -151,7 +151,7 @@ const StyleCourseDetailsBanner = styled.div`
   }
 `;
 
-export const CourseDetailsBanner = () => {
+export const CourseDetailsBanner = ({orderId}) => {
   const { id } = useParams();
   const [course, setCourse] =   useState([])
   useEffect(() => {
@@ -208,6 +208,15 @@ export const CourseDetailsBanner = () => {
           fontSize="32px"
         >
           Enroll
+        </Button>
+        <Button
+          bgColor="#ff8c00"
+          width="251px"
+          height="81px"
+          borderRadius="55px"
+          fontSize="32px"
+        >
+          List
         </Button>
       </div>
     </StyleCourseDetailsBanner>
