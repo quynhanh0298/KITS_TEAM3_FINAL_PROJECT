@@ -22,6 +22,7 @@ import SessionsPage from "pages/SessionsPage";
 import HourOfPurchaseHistoryPage from "pages/HourOfPurchaseHistoryPage";
 import MyTutorsPage from "pages/MyTutorsPage";
 import MyClassesPage from "pages/MyClassesPage";
+import CoursesPage from "pages/MyCoursesPage";
 function App() {
   return (
     <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
@@ -44,6 +45,7 @@ function App() {
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="messages" element={<MessagesPage />} />
             <Route path="sessions" element={<SessionsPage />} />
+            <Route path="my-courses" element={<CoursesPage />} />
             <Route
               path="hour-purchase-history"
               element={<HourOfPurchaseHistoryPage />}

@@ -1,4 +1,6 @@
+import { DashboardContents } from "components/Dashboard/DashboardContents";
+
 const DashboardPage = () => {
-  return <h1>DashboardPage</h1>;
+  return <DashboardContents />;
 };
 export default DashboardPage;
