@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Sidebar } from "../Sidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { DashboardHeader } from "../DashboardHeader";
+import { ProfileColumn } from "../ProfileColumn";
+import { useMediaQuery } from "react-responsive";
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -15,15 +17,16 @@ const StyleLayout = styled.div`
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(62px);
   min-height: 1450px;
-  width: 1728px;
+  max-width: 1728px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   .right {
     float: right;
-    width: 80%;
+    width: 75%;
   }
   @media screen and (max-width: 1224px) {
-    .right{
+    .right {
       width: 90%;
     }
   }
@@ -38,22 +41,49 @@ const SideBarStyled = styled.div`
   float: left;
   width: 25%;
   height: 1450px;
-
   @media screen and (max-width: 1224px) {
     width: 10%;
   }
 `;
 export const DashboardLayout = () => {
+  const location = useLocation();
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1620px)" });
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1620px)",
+  });
   return (
     <Container>
       <StyleLayout>
         <SideBarStyled>
           <Sidebar />
         </SideBarStyled>{" "}
-        <div className="right">
-          <DashboardHeader />
-          <Outlet />
-        </div>
+        {location.pathname !== "/mainboard/dashboard" && (
+          <>
+            <div className="right">
+              <DashboardHeader />
+              <Outlet />
+            </div>
+          </>
+        )}
+        {location.pathname === "/mainboard/dashboard" && (
+          <>
+            {isDesktopOrLaptop && (
+              <>
+                <div className="right" style={{ width: "50%" }}>
+                  <DashboardHeader />
+                  <Outlet />
+                </div>
+                <ProfileColumn />
+              </>
+            )}
+            {isTabletOrMobile && (
+              <div className="right">
+                <DashboardHeader />
+                <Outlet />
+              </div>
+            )}
+          </>
+        )}
       </StyleLayout>
     </Container>
   );

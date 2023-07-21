@@ -19,6 +19,8 @@ const StyledSidebar = styled.div`
   align-items: flex-start;
   .KitLogo {
     margin-top: 59px;
+    max-width: 99px;
+    width: 100%;
   }
   .top-sidebar {
     display: flex;
@@ -127,10 +129,10 @@ export const Sidebar = () => {
   return (
     <StyledSidebar>
       {isDesktopOrLaptop && (
-        <KitLogo className="KitLogo" width="99px" height="36px" />
+        <KitLogo className="KitLogo" height="36px" />
       )}
       {isTabletOrMobile && (
-        <KitLogo className="KitLogo" width="99px" height="36px" />
+        <KitLogo className="KitLogo" height="36px" />
       )}
       <div className="top-sidebar">
         {isDesktopOrLaptop && (
@@ -150,6 +152,11 @@ export const Sidebar = () => {
             <NavItem
               text="Sessions"
               path="/mainboard/sessions"
+              icon={<SessionsIcon />}
+            />
+            <NavItem
+              text="My Courses"
+              path="/mainboard/my-courses"
               icon={<SessionsIcon />}
             />
             <NavItem
