@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import { DropdownSelector } from "../Selector";
 import { Button } from "components/Button/Button";
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom"
+
+import {Card} from '../../Card/Card'
+
+import avatar1 from 'assets/images/avatars/avatar1.svg'
+
+
+import axios from 'axios';
+
 
 const PageStyled = styled.div`
   h3 {
@@ -46,6 +56,7 @@ const PageStyled = styled.div`
       0px -4px 34px 0px rgba(0, 0, 0, 0.05);
   }
   .cards-wrapper{
+    width: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -53,6 +64,36 @@ const PageStyled = styled.div`
   }
 `;
 export const MyCoursesContents = () => {
+  const { orderId } = useParams();
+  
+  const [courses, setCourses] = useState([])
+
+  const [orders, setOrders] = useState([]);
+  const [charArray, setCharAray] = useState('');
+  
+  useEffect(() => {
+    axios.get(`http://localhost:8080/admin/order/${orderId}`)
+      .then((response) => {
+        setOrders(response.data);
+        setCharAray(response.data.courses.replace(/,/g, ''))
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+
+    fetch("http://localhost:8080/admin/courses")
+    .then(res=>res.json())
+    .then((result) => {
+        setCourses(result)
+    })
+  }, []);
+
+  
+  const selectedCourses = courses.filter(course => charArray.includes(course.courseId));
+  // const numbers = text.replace(/,/g, '');
+  // console.log(typeof numbers)
+  // const numbers = text.split(/\D+/).map((num) => parseInt(num)).filter((num) => !isNaN(num));
+  // console.log(numbers)
   return (
     <PageStyled>
       <h3>Filter</h3>
@@ -72,17 +113,24 @@ export const MyCoursesContents = () => {
           Filter
         </Button>
       </div>
+      <div>
+      
+      <h3>ORDER ID: {orderId}</h3>
+
+      </div>
+      <div>
+      
+    </div>
       <div className="cards-wrapper">
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
-        <div className="card-test"></div>
+
+      {selectedCourses.map((course) => (
+        
+        <Card className="product" orderId={orderId} id={course.courseId} avatar={avatar1} tutorName={"Diallo Liam"} 
+            courseName={course.name} 
+            rating={course.rating} />
+        
+      ))}
+        
       </div>
     </PageStyled>
   );

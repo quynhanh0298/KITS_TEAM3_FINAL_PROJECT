@@ -3,7 +3,7 @@ import StarRatings from "react-star-ratings";
 import { Button } from "components/Button/Button";
 import personAvt from "../../../assets/images/personAvt.svg";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const StyleCourseDetailsBanner = styled.div`
   height: 1196px;
@@ -151,8 +151,8 @@ const StyleCourseDetailsBanner = styled.div`
   }
 `;
 
-export const CourseDetailsBanner = ({orderId}) => {
-  const { id } = useParams();
+export const CourseDetailsBanner = () => {
+  const { id,orderId } = useParams();
   const [course, setCourse] =   useState([])
   useEffect(() => {
     fetch(`http://localhost:8080/admin/courses/${id}`)
@@ -162,7 +162,7 @@ export const CourseDetailsBanner = ({orderId}) => {
     }
   )
   } ,[id])
-  
+  const navi = useNavigate();
   return (
     <StyleCourseDetailsBanner>
       <div className="wrapper-popular-categlories">
@@ -200,24 +200,21 @@ export const CourseDetailsBanner = ({orderId}) => {
       </div>
       <div className="start-group">
         <div className="start-group-text">Start as early as Today</div>
-        <Button
+        
+        {orderId ? (
+          <Button
           bgColor="#0C4CA3"
           width="251px"
           height="81px"
           borderRadius="55px"
-          fontSize="32px"
+          fontSize="22px"
+          onClick={() => navi(`/mainboard/video-player/${orderId}/${id}`)}
         >
-          Enroll
+           Learning
         </Button>
-        <Button
-          bgColor="#ff8c00"
-          width="251px"
-          height="81px"
-          borderRadius="55px"
-          fontSize="32px"
-        >
-          List
-        </Button>
+        ):(
+          <></>
+        )}
       </div>
     </StyleCourseDetailsBanner>
   );

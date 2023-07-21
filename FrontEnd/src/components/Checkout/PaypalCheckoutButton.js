@@ -3,10 +3,14 @@ import { useState } from 'react';
 import axios from 'axios';
 
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+
 
 
 const PaypalCheckoutButton = (props) => {
     const liveCart = useSelector((state) => state.cart);
+    const navigate = useNavigate();
+
 
     let courseAddToDb = ""
 
@@ -57,6 +61,11 @@ const PaypalCheckoutButton = (props) => {
 
         //if response is error
         //alert("Your payment was processed successfully. However, we are unable to fulfill your purchase. Please contact us for assistance")
+            
+        const url = `/mainboard/my-courses/${orderID}`;
+
+        // Navigate to the new page
+        navigate(url);
     }
 
     
