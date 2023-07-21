@@ -16,9 +16,13 @@ import HourOfPurchaseHistoryPage from "pages/HourOfPurchaseHistoryPage";
 import MyTutorsPage from "pages/MyTutorsPage";
 import MyClassesPage from "pages/MyClassesPage";
 import SignUp from "pages/SignUp";
-import LogIn from "pages/student/LogIn";
-import ForgotPassword from "pages/student/ForgotPassword";
-import ResetPassword from "pages/student/ResetPassword";
+import LogInStudent from "pages/student/LogIn";
+import ForgotPasswordStudent from "pages/student/ForgotPassword";
+import ResetPasswordStudent from "pages/student/ResetPassword";
+import LogInTutor from "pages/tutor/LogIn";
+import ForgotPasswordTutor from "pages/tutor/ForgotPassword";
+import ResetPasswordTutor from "pages/tutor/ResetPassword";
+
 function App() {
   return (
     <div className="App">
@@ -34,9 +38,27 @@ function App() {
           </Route>
           <Route path="/">
             <Route path="sign-up" element={<SignUp />} />
-            <Route path="log-in" element={<LogIn />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route path="reset-password" element={<ResetPassword />} />
+            <Route path="log-in-student" element={<LogInStudent />} />
+            <Route
+              path="forgot-password-student"
+              element={<ForgotPasswordStudent />}
+            />
+            <Route
+              path="reset-password-student"
+              element={<ResetPasswordStudent />}
+            />
+          </Route>
+          <Route path="/">
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="log-in-tutor" element={<LogInTutor />} />
+            <Route
+              path="forgot-password-tutor"
+              element={<ForgotPasswordTutor />}
+            />
+            <Route
+              path="reset-password-tutor"
+              element={<ResetPasswordTutor />}
+            />
           </Route>
           <Route path="/mainboard" element={<DashboardLayout />}>
             <Route path="dashboard" element={<DashboardPage />} />

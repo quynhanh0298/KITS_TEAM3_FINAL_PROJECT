@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import KITSLogo from "../../assets/images/kits-logo.svg";
-import AsAStudent from "../../assets/images/as-a-student.svg";
+import AsATutor from "../../assets/icons/as-tutor.svg";
 import { Button } from "components/Button/Button";
 
-const StyledForgotPassword = styled.div`
+const StyledResetPassword = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #dee4f3;
+  background: #def2f3;
   .logo {
     padding-top: 81px;
     padding-bottom: 54px;
@@ -20,6 +20,7 @@ const StyledForgotPassword = styled.div`
     .as-a-student {
       padding-bottom: 41px;
     }
+    width: 50%;
     padding-left: 151px;
     padding-right: 151px;
     display: flex;
@@ -51,33 +52,21 @@ const StyledForgotPassword = styled.div`
   }
 `;
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   return (
-    <StyledForgotPassword>
+    <StyledResetPassword>
       <img className="logo" src={KITSLogo} alt="" />
       <div className="main">
-        <img className="as-a-student-img" src={AsAStudent} alt="" />
-        <div className="as-a-student">Forgot Password</div>
-        <input
-          className="info"
-          type="text"
-          placeholder="Enter Recovery Email"
-        />
-        <div className="note">
-          A recovery link would be sent to your email, use it to reset your
-          password.
-        </div>
-        <Button
-          width={"218px"}
-          height={"69px"}
-          borderRadius={"31px"}
-          bgColor={"#0C4CA3"}
-        >
-          Send email
+        <img className="as-a-student-img" src={AsATutor} alt="" />
+        <div className="as-a-student">Reset Password</div>
+        <input className="info" type="text" placeholder="Enter new password" />
+        <input className="info" type="text" placeholder="Confirm password" />
+        <Button borderRadius={"31px"} bgColor={"#0C4CA3"}>
+          Reset Password
         </Button>
       </div>
-    </StyledForgotPassword>
+    </StyledResetPassword>
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import KITSLogo from "../../assets/images/kits-logo.svg";
-import AsAStudent from "../../assets/images/as-a-student.svg";
+import AsATutor from "../../assets/icons/as-tutor.svg";
 import { Button } from "components/Button/Button";
 
 const StyledForgotPassword = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #dee4f3;
+  background: #def2f3;
   .logo {
     padding-top: 81px;
     padding-bottom: 54px;
@@ -56,7 +56,7 @@ const ForgotPassword = () => {
     <StyledForgotPassword>
       <img className="logo" src={KITSLogo} alt="" />
       <div className="main">
-        <img className="as-a-student-img" src={AsAStudent} alt="" />
+        <img className="as-a-student-img" src={AsATutor} alt="" />
         <div className="as-a-student">Forgot Password</div>
         <input
           className="info"
