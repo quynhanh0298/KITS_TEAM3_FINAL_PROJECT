@@ -54,7 +54,7 @@ function App() {
             />
             <Route path="my-tutors" element={<MyTutorsPage />} />
             <Route path="my-classes" element={<MyClassesPage />} />
-            <Route path="video-player/:orderId/:id" element={<VideoPlayerPage />} />
+            <Route path="video-player/:id" element={<VideoPlayerPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

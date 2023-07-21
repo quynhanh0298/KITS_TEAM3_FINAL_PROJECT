@@ -25,6 +25,7 @@ public class CourseDto implements Serializable {
     private Date created_at;
     private CategoryDto categoryDto;
     private List<UserDto> userDtos;
+    private String listOfVideo;
 
     public void addUserDto(UserDto userDto){
         if(userDtos == null){
