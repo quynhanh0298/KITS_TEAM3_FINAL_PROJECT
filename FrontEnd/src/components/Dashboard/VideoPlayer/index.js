@@ -1,2 +1,2 @@
-import { VideoPlayer } from "./VideoPlayer";
-export { VideoPlayer };
+import { VideoPlayerJSX } from "./VideoPlayerJSX";
+export { VideoPlayerJSX };

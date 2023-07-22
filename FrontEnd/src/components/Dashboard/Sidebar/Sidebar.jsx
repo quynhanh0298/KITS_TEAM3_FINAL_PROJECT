@@ -141,7 +141,7 @@ const NavItem = ({ path, text, icon, children }) => {
   return (
     <StyledNavItem
       style={
-        location.pathname === `/mainboard/video-player/${orderId}/${id}`
+        location.pathname === `/mainboard/video-player/${id}`
           ? NavSpecStyled
           : null
       }
@@ -166,7 +166,7 @@ export const Sidebar = () => {
   return (
     <StyledSidebar
       style={
-        location.pathname === `/mainboard/video-player/${orderId}/${id}`
+        location.pathname === `/mainboard/video-player/${id}`
           ? SpecStyled
           : null
       }
@@ -175,7 +175,7 @@ export const Sidebar = () => {
       {isTabletOrMobile && <KitLogo className="KitLogo" height="36px" />}
       <div className="top-sidebar">
         {isDesktopOrLaptop &&
-          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+          location.pathname !== `/mainboard/video-player/${id}` && (
             <>
               <NavItem
                 text="Dashboard"
@@ -213,7 +213,7 @@ export const Sidebar = () => {
           )}
 
         {(isTabletOrMobile ||
-          location.pathname === `/mainboard/video-player/${orderId}/${id}`) && (
+          location.pathname === `/mainboard/video-player/${id}`) && (
           <>
             <NavItem path="/mainboard/dashboard" icon={<DashboardIcon />} />
             <NavItem path="/mainboard/messages" icon={<MessIcon />} />
@@ -227,19 +227,19 @@ export const Sidebar = () => {
         )}
       </div>
       {isDesktopOrLaptop &&
-        location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+        location.pathname !== `/mainboard/video-player/${id}` && (
           <div className="class-text">Classes</div>
         )}
       <div
         className="bottom-sidebar"
         style={
-          location.pathname === `/mainboard/video-player/${orderId}/${id}`
+          location.pathname === `/mainboard/video-player/${id}`
             ? BottomSidebarStyled
             : null
         }
       >
         {isDesktopOrLaptop &&
-          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+          location.pathname !== `/mainboard/video-player/${id}` && (
             <>
               <MyClassesCard
                 name="Design"
@@ -296,7 +296,7 @@ export const Sidebar = () => {
             </>
           )}
         {(isTabletOrMobile ||
-          location.pathname === `/mainboard/video-player/${orderId}/${id}`) && (
+          location.pathname === `/mainboard/video-player/${id}`) && (
           <>
             <MyClassesCard newColor="#FED66F" path="/mainboard/my-classes" />
             <MyClassesCard newColor="#FED66F" path="/mainboard/my-classes" />
@@ -323,7 +323,7 @@ export const Sidebar = () => {
                 onClick={toggleShowMore}
                 style={
                   location.pathname ===
-                  `/mainboard/video-player/${orderId}/${id}`
+                  `/mainboard/video-player/${id}`
                     ? ShowSpecStyled
                     : null
                 }
@@ -332,7 +332,7 @@ export const Sidebar = () => {
 
                 {isDesktopOrLaptop &&
                   location.pathname !==
-                    `/mainboard/video-player/${orderId}/${id}` && (
+                    `/mainboard/video-player/${id}` && (
                     <>Show less</>
                   )}
               </div>
@@ -342,7 +342,7 @@ export const Sidebar = () => {
                 <ArrowPointDown />
                 {isDesktopOrLaptop &&
                   location.pathname !==
-                    `/mainboard/video-player/${orderId}/${id}` && (
+                    `/mainboard/video-player/${id}` && (
                     <>Show more</>
                   )}
               </div>
