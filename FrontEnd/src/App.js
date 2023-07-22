@@ -23,6 +23,14 @@ import MyTutorsPage from "pages/MyTutorsPage";
 import MyClassesPage from "pages/MyClassesPage";
 import CoursesPage from "pages/MyCoursesPage";
 import VideoPlayerPage from "pages/VideoPlayerPage";
+import SignUp from "pages/SignUp";
+import LogInStudent from "pages/student/LogIn";
+import ForgotPasswordStudent from "pages/student/ForgotPassword";
+import ResetPasswordStudent from "pages/student/ResetPassword";
+import LogInTutor from "pages/tutor/LogIn";
+import ForgotPasswordTutor from "pages/tutor/ForgotPassword";
+import ResetPasswordTutor from "pages/tutor/ResetPassword";
+
 
 function App() {
   return (
@@ -42,6 +50,30 @@ function App() {
             <Route path="cart"  element={<Cart />}/>
             <Route path="checkout"  element={<CheckoutPage />}/>
 
+          </Route>
+          <Route path="/">
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="log-in-student" element={<LogInStudent />} />
+            <Route
+              path="forgot-password-student"
+              element={<ForgotPasswordStudent />}
+            />
+            <Route
+              path="reset-password-student"
+              element={<ResetPasswordStudent />}
+            />
+          </Route>
+          <Route path="/">
+            <Route path="sign-up" element={<SignUp />} />
+            <Route path="log-in-tutor" element={<LogInTutor />} />
+            <Route
+              path="forgot-password-tutor"
+              element={<ForgotPasswordTutor />}
+            />
+            <Route
+              path="reset-password-tutor"
+              element={<ResetPasswordTutor />}
+            />
           </Route>
           <Route path="/mainboard" element={<DashboardLayout />}>
             <Route path="dashboard" element={<DashboardPage />} />
