@@ -1,6 +1,6 @@
-import { VideoPlayer } from "components/Dashboard/VideoPlayer";
+import { VideoPlayerJSX } from "components/Dashboard/VideoPlayer";
 
 const VideoPlayerPage = () => {
-  return <VideoPlayer />;
+  return <VideoPlayerJSX />;
 };
 export default VideoPlayerPage;

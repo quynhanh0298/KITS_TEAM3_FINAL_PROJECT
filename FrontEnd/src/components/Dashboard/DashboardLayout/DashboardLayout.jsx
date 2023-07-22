@@ -53,28 +53,46 @@ export const DashboardLayout = () => {
     query: "(min-width: 1620px)",
   });
   return (
-    <Container>
+    <Container
+      style={
+        location.pathname === `/mainboard/video-player/${id}`
+          ? {
+              background: "rgba(0, 0, 0, 0.70)",
+              backdropFilter: "blur(17.5px)",
+            }
+          : null
+      }
+    >
       <StyleLayout>
         {(isTabletOrMobile ||
-          location.pathname === `/mainboard/video-player/${orderId}/${id}`) && (
+          location.pathname === `/mainboard/video-player/${id}`) && (
           <>
             <SideBarStyled style={{ width: "10%", maxWidth: "123px" }}>
               <Sidebar />
             </SideBarStyled>
-            <div className="right" style={{ width: "90%" }}>
-              <DashboardHeader />
+            <div
+              className="right"
+              style={{
+                width: "100%",
+                background: "rgba(0, 0, 0, 0.70)",
+                backdropFilter: "blur(17.5px)",
+              }}
+            >
+              {location.pathname !== `/mainboard/video-player/${id}` && (
+                <DashboardHeader />
+              )}
               <Outlet />
             </div>
           </>
         )}
         {isDesktopOrLaptop &&
-          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+          location.pathname !== `/mainboard/video-player/${id}` && (
             <SideBarStyled>
               <Sidebar />
             </SideBarStyled>
           )}{" "}
         {location.pathname !== "/mainboard/dashboard" &&
-          location.pathname !== `/mainboard/video-player/${orderId}/${id}` && (
+          location.pathname !== `/mainboard/video-player/${id}` && (
             <>
               <div className="right">
                 <DashboardHeader />
