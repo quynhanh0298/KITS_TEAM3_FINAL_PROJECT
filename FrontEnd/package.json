@@ -5,6 +5,7 @@
   "dependencies": {
     "@codesweetly/react-youtube-playlist": "^1.0.11",
     "@fontsource/itim": "^5.0.5",
+    "@fontsource/nunito": "^5.0.5",
     "@fontsource/poppins": "^5.0.4",
     "@paypal/react-paypal-js": "^8.1.0",
     "@reduxjs/toolkit": "^1.9.5",

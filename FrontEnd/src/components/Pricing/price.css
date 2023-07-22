@@ -1,15 +1,15 @@
-.banner {
+.pricing-containter .banner {
     background-image: url("../../assets/images/bannerPriceAndAbout.png");
-    position: absolute;
+    position: relative;
     top: 0;
-    left: 0;
+    left: -200px;
     z-index: -1;
     width: 1728px;
     height: 120px;
-    margin-top: 70px;
+    display: flex;
 }
 
-.banner h1{
+.pricing-containter .banner h1{
     margin-top: 39px;
     margin-left: 140px;
     color:#FFF;
