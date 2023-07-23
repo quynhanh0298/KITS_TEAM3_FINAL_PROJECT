@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  
+
   .banner {
     background-image: url("../../assets/images/bannerPriceAndAbout.png");
     position: relative;
@@ -93,6 +93,11 @@
     padding-top: 24px;
     text-align: start;
     margin-left: 33px;
+    color: #2e2c2c;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 164.5%; /* 21.385px */
   }
 
   .content .why-items p {
@@ -100,5 +105,10 @@
     padding-right: 33px;
     padding-bottom: 24px;
     text-align: start;
+    color: #2e2c2c;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 164.5%;
   }
 }
