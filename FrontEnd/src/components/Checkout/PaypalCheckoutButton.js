@@ -1,16 +1,23 @@
 import { PayPalButtons} from '@paypal/react-paypal-js'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import {  getTotals } from 'features/cartSlice'
+
 
 
 
 const PaypalCheckoutButton = (props) => {
     const liveCart = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
     const navigate = useNavigate();
 
+    useEffect(() => {
+        dispatch(getTotals());
+    }, [liveCart, dispatch]);
 
     let courseAddToDb = ""
 
@@ -105,9 +112,9 @@ const PaypalCheckoutButton = (props) => {
                 return actions.order.create({
                     purchase_units: [
                         {
-                            description: cart.description,
+                            description: "admin",
                             amount: {
-                                value: cart.price
+                                value: liveCart.cartTotalAmount
                             }
                         }
                     ]

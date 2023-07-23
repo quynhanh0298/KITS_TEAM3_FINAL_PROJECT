@@ -1,15 +1,31 @@
 import React from 'react'
 import "../Cart/cart.css"
 
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
 import SubImg from "../../assets/images/courses/course2.svg"
+import { removeFromCart, clearCart, getTotals } from 'features/cartSlice'
 
 
 const CartContent = () => {
     const cart = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getTotals());
+    }, [cart, dispatch]);
+
+    const handleRemoveFromCart = (item) => {
+        dispatch(removeFromCart(item))
+    }
+
+    const handleClearCart = () => {
+        dispatch(clearCart())
+    }
+
   return <>
     <div className='cart-container'>
         <h2>Shopping Cart</h2>
@@ -43,7 +59,7 @@ const CartContent = () => {
                             <div>
                                 <h3>{item.name}</h3>
                                 <p>{item.desciption}</p>
-                                
+                                <button className='cart-item-button' onClick={() => handleRemoveFromCart(item)}>Remove</button>   
                             </div>
                         </div>
                         
@@ -51,14 +67,12 @@ const CartContent = () => {
                             ${item.price}
                         </div>
                         
-                        <div className='cart-item-button'>
-                            <button>Remove</button>    
-                        </div>
+                        
                     </div>
                 ))}
             </div>
             <div className='cart-summary'>
-                <button className='clear-btn'>Clear Cart</button>
+                <button className='clear-btn' onClick={() => handleClearCart()}>Clear Cart</button>
                 <div className='cart-checkout'>
                     <div className='subtotal'>
                         <span>Subtotal</span>

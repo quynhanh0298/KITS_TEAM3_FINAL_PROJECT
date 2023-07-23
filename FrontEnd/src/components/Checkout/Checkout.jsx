@@ -1,17 +1,23 @@
 import CardIcon from "../../assets/images/credit-card.svg";
 import ProductImage from "../../assets/images/product-image.jpg";
 import PaypalCheckoutButton from "./PaypalCheckoutButton";
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import {  getTotals } from 'features/cartSlice'
+
+
 
 import "../Checkout/checkout.css";
 
 const Checkout = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getTotals());
+}, [cart, dispatch]);
 
-    const cart = {
-        description: "Elucidator",
-        price:19
-    };
+    
   return (
     <div className="checkout">
       <h1>PayPal Checkout</h1>
@@ -19,7 +25,7 @@ const Checkout = () => {
       <p className="checkout-description">
         Learn how to build a website with React Hooks
       </p>
-      <h1 className="checkout-price">$19</h1>
+      <h1 className="checkout-price">${cart.cartTotalAmount}</h1>
       <img
         className="checkout-product-image"
         src={ProductImage}
