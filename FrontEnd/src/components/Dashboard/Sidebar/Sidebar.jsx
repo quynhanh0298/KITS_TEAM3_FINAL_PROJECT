@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink, useLocation, useParams } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
 import { ReactComponent as KitLogo } from "../../../assets/images/kits-logo.svg";
@@ -155,6 +155,7 @@ const NavItem = ({ path, text, icon, children }) => {
   );
 };
 export const Sidebar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { id, orderId } = useParams();
   const [isOpen, setOpen] = useState(false);
@@ -171,8 +172,22 @@ export const Sidebar = () => {
           : null
       }
     >
-      {isDesktopOrLaptop && <KitLogo className="KitLogo" height="36px" />}
-      {isTabletOrMobile && <KitLogo className="KitLogo" height="36px" />}
+      {isDesktopOrLaptop && (
+        <KitLogo
+          className="KitLogo"
+          height="36px"
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }}
+        />
+      )}
+      {isTabletOrMobile && (
+        <KitLogo
+          className="KitLogo"
+          height="36px"
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }}
+        />
+      )}
       <div className="top-sidebar">
         {isDesktopOrLaptop &&
           location.pathname !== `/mainboard/video-player/${id}` && (
@@ -322,8 +337,7 @@ export const Sidebar = () => {
                 className="show"
                 onClick={toggleShowMore}
                 style={
-                  location.pathname ===
-                  `/mainboard/video-player/${id}`
+                  location.pathname === `/mainboard/video-player/${id}`
                     ? ShowSpecStyled
                     : null
                 }
@@ -331,8 +345,7 @@ export const Sidebar = () => {
                 <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
 
                 {isDesktopOrLaptop &&
-                  location.pathname !==
-                    `/mainboard/video-player/${id}` && (
+                  location.pathname !== `/mainboard/video-player/${id}` && (
                     <>Show less</>
                   )}
               </div>
@@ -341,8 +354,7 @@ export const Sidebar = () => {
               <div className="show" onClick={toggleShowMore}>
                 <ArrowPointDown />
                 {isDesktopOrLaptop &&
-                  location.pathname !==
-                    `/mainboard/video-player/${id}` && (
+                  location.pathname !== `/mainboard/video-player/${id}` && (
                     <>Show more</>
                   )}
               </div>

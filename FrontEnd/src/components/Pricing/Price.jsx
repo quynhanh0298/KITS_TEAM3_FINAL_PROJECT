@@ -4,7 +4,7 @@ import "../Pricing/price.css"
 import PriceCard from "./PriceCard"
 const Price = () => {
   return (
-    <>
+    <div className='pricing-containter'>
           <section className='banner'>
             <div>
             <h1>Pricing</h1>
@@ -24,7 +24,7 @@ const Price = () => {
           </section>
          
           
-    </>
+    </div>
   )
 }
 

@@ -5,6 +5,7 @@
   "dependencies": {
     "@codesweetly/react-youtube-playlist": "^1.0.11",
     "@fontsource/itim": "^5.0.5",
+    "@fontsource/nunito": "^5.0.5",
     "@fontsource/poppins": "^5.0.4",
     "@paypal/react-paypal-js": "^8.1.0",
     "@reduxjs/toolkit": "^1.9.5",
@@ -20,6 +21,7 @@
     "react-alice-carousel": "^2.7.1",
     "react-calendar": "^4.3.0",
     "react-clock": "^4.3.0",
+    "react-credit-cards-2": "^1.0.1",
     "react-date-picker": "^10.2.0",
     "react-dom": "^18.2.0",
     "react-dropdown-select": "^4.9.4",

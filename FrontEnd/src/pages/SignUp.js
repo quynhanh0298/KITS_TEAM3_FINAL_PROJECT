@@ -3,6 +3,7 @@ import styled from "styled-components";
 import KITSLogo from "../assets/images/kits-logo.svg";
 import SignUpBanner from "../assets/images/sign-up-banner.svg";
 import { Button } from "components/Button/Button";
+import { useNavigate } from "react-router-dom";
 const StyledSignUp = styled.div`
   display: flex;
   flex-direction: row;
@@ -79,6 +80,8 @@ const StyledSignUp = styled.div`
       border-radius: 15px;
       color: rgba(140, 136, 136, 0.5);
       width: 100%;
+      outline: none;
+      height: 49px;
     }
     .selections {
       display: flex;
@@ -90,14 +93,29 @@ const StyledSignUp = styled.div`
       padding-bottom: 10px;
     }
   }
+  @media screen and (max-width: 1275px) {
+    .left {
+      display: none;
+    }
+    .right {
+      padding-bottom: 128px;
+    }
+  }
 `;
 
 const SignUp = () => {
+  const navigate = useNavigate();
   return (
     <StyledSignUp>
       <div className="left">
         <div className="sign-up-logo-info">
-          <img className="sign-up-logo" src={KITSLogo} alt="" />
+          <img
+            className="sign-up-logo"
+            src={KITSLogo}
+            alt=""
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
+          />
           <div className="welcome-to-kits">Welcome to KITS!</div>
           <div className="sign-up-info">
             KITS connects students and their families with qualified tutors for
@@ -113,7 +131,14 @@ const SignUp = () => {
         </div>
         <div className="already-have-account-log-in">
           <span className="already-have-account">Already have an account?</span>
-          <a className="log-in"> Log in</a>
+          <a
+            className="log-in"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/log-in-student")}
+          >
+            {" "}
+            Log in
+          </a>
         </div>
         <form action="" method="post">
           <input className="info" type="text" placeholder="Full name" />
