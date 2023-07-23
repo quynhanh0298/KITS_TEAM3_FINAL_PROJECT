@@ -176,6 +176,9 @@ export const CourseDetailsBanner = () => {
       <div className="banner-title">
         {course.name}
       </div>
+      <div>
+      <img src={course.thumbnail} alt={course.name} />
+      </div>
       <div className="description">
         {course.desciption}{" "}
       </div>

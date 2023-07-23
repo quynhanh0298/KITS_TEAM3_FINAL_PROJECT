@@ -124,7 +124,7 @@ export const MyCoursesContents = () => {
             className="product"
             orderId={orderId}
             id={course.courseId}
-            avatar={avatar1}
+            thumbnail={course.thumbnail}
             tutorName={"Diallo Liam"}
             courseName={course.name}
             rating={course.rating}

@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import courseImage1 from 'assets/images/courses/course1.svg'
 import { useNavigate } from 'react-router-dom';
 
 import './card.css'
@@ -52,7 +51,7 @@ const CardStyled = styled.div`
     }
 `
 
-export const Card = ({ id,orderId,avatar, tutorName, courseName, rating }) => {
+export const Card = ({ id,orderId,avatar,thumbnail, tutorName, courseName, rating }) => {
     const navigate = useNavigate();
 
   const handleClick = () => {
@@ -82,7 +81,7 @@ export const Card = ({ id,orderId,avatar, tutorName, courseName, rating }) => {
     return <CardStyled>
         <div className="img">
         <div className="thumbnail">
-            <img src={courseImage1} />
+            <img src={thumbnail} />
         </div>
             
             <div className="tutorInfo">
