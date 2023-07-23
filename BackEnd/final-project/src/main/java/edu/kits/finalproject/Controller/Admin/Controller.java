@@ -61,14 +61,12 @@ public class Controller {
     }
 
     @PostMapping("/add-course")
-    public ResponseEntity<ResponseDto> addCourse(@RequestParam("file") MultipartFile file, @RequestParam("name") String name){
+    public ResponseEntity<ResponseDto> addCourse( @RequestParam("name") String name){
         String message = "";
         try{
-            courseService.store(name, 10, "new course", file, 0, 0,"hello");
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            courseService.store(name, 10, "new course", "No image", 0, 0,"hello");
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
         }catch (Exception e){
-            message = "Could not upload the file: " + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
         }
     }

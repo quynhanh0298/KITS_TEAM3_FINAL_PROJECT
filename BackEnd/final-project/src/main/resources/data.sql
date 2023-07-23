@@ -6,10 +6,10 @@ INSERT INTO users (name, gender, email, password, phone_number)
 INSERT INTO users (name, gender, email, password, phone_number)
     VALUES  ('Jaca', 'male', 'jaca@gmail.com', '12345', 01234);
 
-INSERT INTO courses (name, price, desciption, rating, enroll, active, list_of_video)
-    VALUES ('Java core',100, 'Everything about java', 4.5, 200, 1,'https://youtu.be/QDKsQQr-1wA,https://youtu.be/KJqFJ3-lTcA,https://youtu.be/VBviWbusHd8');
-INSERT INTO courses (name, price, desciption, rating, enroll,active, list_of_video)
-VALUES ('Spring boot',100, 'Spring boot course', 4.7, 500, 1,'https://youtu.be/QDKsQQr-1wA,https://youtu.be/KJqFJ3-lTcA,https://youtu.be/VBviWbusHd8');
+INSERT INTO courses (name, price, desciption, rating, enroll, active, list_of_video, thumbnail)
+    VALUES ('Java core',100, 'Everything about java', 4.5, 200, 1,'https://youtu.be/QDKsQQr-1wA,https://youtu.be/KJqFJ3-lTcA,https://youtu.be/VBviWbusHd8','https://res.cloudinary.com/dzblifjhf/image/upload/v1690124299/e-learning/course2_ulmbyk.png');
+INSERT INTO courses (name, price, desciption, rating, enroll,active, list_of_video, thumbnail)
+VALUES ('Spring boot',100, 'Spring boot course', 4.7, 500, 1,'https://youtu.be/QDKsQQr-1wA,https://youtu.be/KJqFJ3-lTcA,https://youtu.be/VBviWbusHd8','https://res.cloudinary.com/dzblifjhf/image/upload/v1690124298/e-learning/course1_daopha.jpg');
 
 
 INSERT INTO user_course VALUES (1,1);

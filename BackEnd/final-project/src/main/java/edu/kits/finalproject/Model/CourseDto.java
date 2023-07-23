@@ -18,7 +18,7 @@ public class CourseDto implements Serializable {
     private String name;
     private double price;
     private String desciption;
-    private byte[] thumbnail;
+    private String thumbnail;
     private double rating;
     private int enroll;
     private int active;
@@ -34,7 +34,7 @@ public class CourseDto implements Serializable {
         userDtos.add(userDto);
     }
 
-    public CourseDto(String name, double price, String desciption, byte[] thumbnail, double rating, int enroll) {
+    public CourseDto(String name, double price, String desciption, String thumbnail, double rating, int enroll) {
         this.name = name;
         this.price = price;
         this.desciption = desciption;
