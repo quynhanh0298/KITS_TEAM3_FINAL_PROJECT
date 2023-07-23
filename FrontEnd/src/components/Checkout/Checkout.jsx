@@ -1,34 +1,39 @@
 import CardIcon from "../../assets/images/credit-card.svg";
 import ProductImage from "../../assets/images/product-image.jpg";
 import PaypalCheckoutButton from "./PaypalCheckoutButton";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cards from "react-credit-cards-2";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import {  getTotals } from 'features/cartSlice'
 
 import "../Checkout/checkout.css";
 
 const Checkout = () => {
-  const [state, setState] = useState({
-    number: "",
-    expiry: "",
-    cvc: "",
-    name: "",
-    focus: "",
-  });
+const [state, setState] = useState({
+  number: "",
+  expiry: "",
+  cvc: "",
+  name: "",
+  focus: "",
+});
 
-  const handleInputChange = (evt) => {
-    const { name, value } = evt.target;
-    setState((prev) => ({ ...prev, [name]: value }));
-  };
+const handleInputChange = (evt) => {
+  const { name, value } = evt.target;
+  setState((prev) => ({ ...prev, [name]: value }));
+};
 
-  const handleInputFocus = (evt) => {
-    setState((prev) => ({ ...prev, focus: evt.target.name }));
-  };
-  const cart = {
-    description: "Elucidator",
-    price: 19,
-  };
+const handleInputFocus = (evt) => {
+  setState((prev) => ({ ...prev, focus: evt.target.name }));
+};
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTotals());
+}, [cart, dispatch]);
+
+    
   return (
     <div className="checkout">
       {/* <h1>PayPal Checkout</h1>
@@ -36,7 +41,7 @@ const Checkout = () => {
       <p className="checkout-description">
         Learn how to build a website with React Hooks
       </p>
-      <h1 className="checkout-price">$19</h1>
+      <h1 className="checkout-price">${cart.cartTotalAmount}</h1>
       <img
         className="checkout-product-image"
         src={ProductImage}
