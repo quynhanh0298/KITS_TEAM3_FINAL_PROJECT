@@ -6,7 +6,6 @@ import { useSelector,useDispatch } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
-import SubImg from "../../assets/images/courses/course2.svg"
 import { removeFromCart, clearCart, getTotals } from 'features/cartSlice'
 
 
@@ -55,7 +54,7 @@ const CartContent = () => {
                 {cart.cartItem?.map(item => (
                     <div className='cart-item' key = {item.courseId}>
                         <div className='cart-item-info'>
-                            <img src={SubImg} alt={item.name}/>
+                            <img src={item.thumbnail} alt={item.name}/>
                             <div>
                                 <h3>{item.name}</h3>
                                 <p>{item.desciption}</p>
