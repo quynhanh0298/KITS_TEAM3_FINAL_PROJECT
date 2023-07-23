@@ -39,7 +39,11 @@ const VideoPlayerPage = () => {
 
   return <>
     <div>
-      <input defaultValue={0} type="number" onChange={(event) => { 
+      <input defaultValue={0} type="number" 
+       min="0"       // Minimum value allowed
+       max="5"     // Maximum value allowed
+      
+      onChange={(event) => { 
         console.log(event.target.value);
         console.log(vidLinks);
         setSelectedVid(vidLinks[event.target.value] || vidLinks[0]) 
