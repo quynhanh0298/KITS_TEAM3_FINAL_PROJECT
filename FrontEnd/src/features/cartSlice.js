@@ -4,7 +4,6 @@ const initialState = {
     cartItem: localStorage.getItem("cartItem")
     ? JSON.parse(localStorage.getItem("cartItem"))
     : [],
-    cartTotalQuantity: 0,
     cartTotalAmount : 0,
 };
 
@@ -41,9 +40,48 @@ const cartSlice = createSlice({
             localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
 
         },
+
+        removeFromCart(state, action) {
+            const nextCartItem = state.cartItem.filter(
+                (item) => item.courseId !== action.payload.courseId
+            );
+            
+            state.cartItem = nextCartItem;
+            localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
+
+            toast.error(`${action.payload.name} removed from cart`, {
+                position: "bottom-left",
+            })
+        },
+
+        clearCart(state,action){
+            state.cartItem = [];
+            localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
+
+            toast.error(`Cart Cleared!`, {
+                position: "bottom-left",
+            })
+        },
+
+        getTotals(state, action){
+            let {total} = state.cartItem.reduce(
+                (cartTotal, item) => {
+                    const {price} = item;
+                    const itemTotal = price;
+
+                    cartTotal.total += itemTotal;
+                    return cartTotal;
+                },
+                {
+                total:0
+                }
+            );
+
+            state.cartTotalAmount = total;
+        }
     }
 })
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart,removeFromCart,clearCart,getTotals } = cartSlice.actions;
 
 export default cartSlice.reducer
