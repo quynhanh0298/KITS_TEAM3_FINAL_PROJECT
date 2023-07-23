@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import {  getTotals } from 'features/cartSlice'
+import {  clearCart,getTotals } from 'features/cartSlice'
 
 
 
@@ -87,6 +87,10 @@ const PaypalCheckoutButton = (props) => {
         alert("Error")
     }
 
+    const handleClearCart = () => {
+        dispatch(clearCart())
+    }
+
     return <PayPalButtons 
             style={{
                 color: "silver",
@@ -125,6 +129,7 @@ const PaypalCheckoutButton = (props) => {
                 const order = await actions.order.capture();
                 console.log("order" , order);
                 handleApprove(order.id, order.create_time, cart.price, order.status)
+                handleClearCart()
             }}
 
             onCancel={() => {
