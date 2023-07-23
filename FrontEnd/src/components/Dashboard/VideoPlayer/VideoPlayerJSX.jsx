@@ -28,23 +28,7 @@ const playerStyled = {
   maxHeight: "683.33px",
   height: "auto",
 };
-export const VideoPlayerJSX = () => {
-  const { id } = useParams();
-  const [course, setCourse] = useState([]);
-  const [link, setLink] = useState("");
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/admin/courses/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCourse(data);
-        setLink(data.listOfVideo);
-      });
-  }, [id]);
-  console.log(course.listOfVideo);
-
-  const linkArray = link.split(",");
-
+export const VideoPlayerJSX = ({ vidLink }) => {
   return (
     // <PageStyled>
     //   <h2>{linkArray}</h2>
@@ -73,7 +57,7 @@ export const VideoPlayerJSX = () => {
         <ReactPlayer
           width="99%"
           height="99%"
-          url={linkArray.map((linkCom, index) => linkCom)}
+          url={vidLink}
           controls
         />
       </div>
