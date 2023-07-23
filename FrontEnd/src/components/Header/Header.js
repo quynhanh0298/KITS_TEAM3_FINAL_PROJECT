@@ -1,49 +1,85 @@
 import styled from "styled-components";
-import logo from 'assets/icons/logo192.png'
-import userIcon from 'assets/icons/user-regular.svg'
-import searchIcon from 'assets/icons/magnifying-glass-solid.svg'
-import cartIcon from 'assets/icons/cart-shopping-solid.svg'
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+import logo from "assets/icons/logo192.png";
+import KitsLogo from "assets/images/kits-logo.svg";
+import userIcon from "assets/icons/user-regular.svg";
+import searchIcon from "assets/icons/magnifying-glass-solid.svg";
+import cartIcon from "assets/icons/cart-shopping-solid.svg";
 const HeaderStyled = styled.div`
-    height: 70px;
+  height: 167px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 20px 4px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  p {
+    color: #96989b;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .left-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 20px 4px 12px;
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    .left-header {
-        display: flex;
-        align-items: center;
-        margin-left: 16px;
-    }
-    .logo-text {
-        margin-left: 8px;
-        font-size: 22px;
-        font-weight: 600;
-    }
-    .right-header {
-        display: flex;
-        flex-direction: row;
-        gap: 30px;
-    }
-`
+    margin-left: 16px;
+    cursor: pointer;
+  }
+  .right-header {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+`;
 const Header = () => {
-    return <HeaderStyled>
-        <div className="left-header">
-            <img src={logo} style={{ width: '50px' }} />
-            <p className="logo-text">mahabis</p>
-        </div>
-        <div className="right-header">
-            <p>Men</p>
-            <p>Women</p>
-            <p>Rewards</p>
-            <p>Gifting</p>
-            <p>About us</p>
-            <p>Help</p>
-            <img src={userIcon} style={{ width: '20px' }} />
-            <img src={searchIcon} style={{ width: '20px' }} />
-            <img src={cartIcon} style={{ width: '20px' }} />
-        </div>
+  const navigate = useNavigate();
+  const goHome = () => {
+    navigate("");
+  };
+  const goCart = () => {
+    navigate("/cart");
+  };
+  return (
+    <HeaderStyled>
+      <div className="left-header" onClick={goHome}>
+        <img src={KitsLogo} style={{ width: "153px", height: "56px" }} />
+      </div>
+      <div className="right-header">
+        <p style={{ cursor: "pointer" }} onClick={goHome}>
+          Home
+        </p>
+        <p style={{ cursor: "pointer" }} onClick={() => navigate("/pricing")}>
+          Pricing
+        </p>
+        <p
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/log-in-student")}
+        >
+          Login
+        </p>
+        <p style={{ cursor: "pointer" }} onClick={() => navigate("/sign-up")}>
+          Sign Up
+        </p>
+        <p style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>
+          About us
+        </p>
+        <p style={{ cursor: "pointer" }}>Help</p>
+        <img src={userIcon} style={{ width: "20px", cursor: "pointer" }} />
+        <img src={searchIcon} style={{ width: "20px", cursor: "pointer" }} />
+        <img
+          src={cartIcon}
+          style={{ width: "20px", cursor: "pointer" }}
+          onClick={goCart}
+        />
+      </div>
     </HeaderStyled>
-}
+  );
+};
 export default Header;

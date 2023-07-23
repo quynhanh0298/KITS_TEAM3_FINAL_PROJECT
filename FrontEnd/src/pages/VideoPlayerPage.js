@@ -17,7 +17,7 @@ const VideoPlayerPage = () => {
         setCourse(data);
 
         if (data.listOfVideo) {
-          const listOfVideo = data.listOfVideo.split(',');
+          const listOfVideo = data.listOfVideo.split(",");
           setVidLinks(listOfVideo);
           if (listOfVideo?.length > 0) {
             setSelectedVid(listOfVideo[0]);
@@ -25,31 +25,34 @@ const VideoPlayerPage = () => {
         } else {
           // set error
         }
-        
       });
   }, [id]);
 
   if (loading) {
-    return <div>Loading video links</div>
+    return <div>Loading video links</div>;
   }
 
   if (vidLinks?.length === 0) {
-    return <div>No videos available</div>
+    return <div>No videos available</div>;
   }
 
-  return <>
-    <div>
-      <input defaultValue={0} type="number" 
-       min="0"       // Minimum value allowed
-       max="5"     // Maximum value allowed
-      
-      onChange={(event) => { 
-        console.log(event.target.value);
-        console.log(vidLinks);
-        setSelectedVid(vidLinks[event.target.value] || vidLinks[0]) 
-      }}/>
-    </div>
-    <VideoPlayerJSX vidLink={selectedVid} />
-  </>
+  return (
+    <>
+      <div>
+        <input
+          defaultValue={0}
+          type="number"
+          min="0" // Minimum value allowed
+          max="5" // Maximum value allowed
+          onChange={(event) => {
+            console.log(event.target.value);
+            console.log(vidLinks);
+            setSelectedVid(vidLinks[event.target.value] || vidLinks[0]);
+          }}
+        />
+      </div>
+      <VideoPlayerJSX vidLink={selectedVid} />
+    </>
+  );
 };
 export default VideoPlayerPage;
