@@ -5,6 +5,7 @@ import AsAStudent from "../../assets/images/as-a-student.svg";
 import { Button } from "components/Button/Button";
 import FacebookIcon from "../../assets/icons/facebook-icon.svg";
 import GoogleIcon from "../../assets/icons/google-icon.svg";
+import { useNavigate } from "react-router-dom";
 
 const StyledLogIn = styled.div`
   display: flex;
@@ -61,9 +62,16 @@ const StyledLogIn = styled.div`
 `;
 
 const LogIn = () => {
+  const navigate = useNavigate();
   return (
     <StyledLogIn>
-      <img className="logo" src={KITSLogo} alt="" />
+      <img
+        className="logo"
+        src={KITSLogo}
+        style={{ cursor: "pointer" }}
+        alt=""
+        onClick={() => navigate("/")}
+      />
       <div className="main">
         <img src={AsAStudent} alt="" />
         <div className="as-a-student">As a Student</div>
