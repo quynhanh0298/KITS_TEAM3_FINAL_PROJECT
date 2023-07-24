@@ -64,8 +64,7 @@ export const DashboardLayout = () => {
       }
     >
       <StyleLayout>
-        {(isTabletOrMobile ||
-          location.pathname === `/mainboard/video-player/${id}`) && (
+        {location.pathname === `/mainboard/video-player/${id}` && (
           <>
             <SideBarStyled style={{ width: "10%", maxWidth: "123px" }}>
               <Sidebar />
@@ -85,13 +84,34 @@ export const DashboardLayout = () => {
             </div>
           </>
         )}
+        {isTabletOrMobile &&
+          location.pathname !== "/mainboard/dashboard" &&
+          location.pathname !== `/mainboard/video-player/${id}` && (
+            <>
+              <SideBarStyled style={{ width: "25%" }}>
+                <Sidebar />
+              </SideBarStyled>
+              <div
+                className="right"
+                style={{
+                  width: "75%",
+                }}
+              >
+                {location.pathname !== `/mainboard/video-player/${id}` && (
+                  <DashboardHeader />
+                )}
+                <Outlet />
+              </div>
+            </>
+          )}
         {isDesktopOrLaptop &&
           location.pathname !== `/mainboard/video-player/${id}` && (
             <SideBarStyled>
               <Sidebar />
             </SideBarStyled>
           )}{" "}
-        {location.pathname !== "/mainboard/dashboard" &&
+        {isDesktopOrLaptop &&
+          location.pathname !== "/mainboard/dashboard" &&
           location.pathname !== `/mainboard/video-player/${id}` && (
             <>
               <div className="right">
@@ -112,10 +132,15 @@ export const DashboardLayout = () => {
               </>
             )}
             {isTabletOrMobile && (
-              <div className="right">
-                <DashboardHeader />
-                <Outlet />
-              </div>
+              <>
+                <SideBarStyled style={{ width: "25%" }}>
+                  <Sidebar />
+                </SideBarStyled>{" "}
+                <div className="right">
+                  <DashboardHeader />
+                  <Outlet />
+                </div>
+              </>
             )}
           </>
         )}

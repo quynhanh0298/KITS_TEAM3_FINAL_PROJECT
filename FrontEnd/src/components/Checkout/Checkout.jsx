@@ -47,6 +47,7 @@ const handleInputFocus = (evt) => {
         src={ProductImage}
         alt="Product"
       /> */}
+      <h2>Checking Out</h2>
       <div className="card-contents">
         <Cards
           number={state.number}

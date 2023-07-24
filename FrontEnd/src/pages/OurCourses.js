@@ -30,7 +30,7 @@ const OurCourses = () => {
         <p>Loading ...</p>
       ) : (
         <>
-          <h2>New Arrivals</h2>
+          <h2>Our Courses</h2>
           <div className="products">
             {data?.map((product) => (
               <div key={product.courseId} className="product">
