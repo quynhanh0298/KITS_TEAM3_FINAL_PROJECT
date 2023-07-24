@@ -168,28 +168,10 @@ public class Controller {
     @GetMapping("/courses-tutor")
     @ResponseBody
     public List<UserDto> getAllTutorOwnCourses(){
-        List<CourseDto> courseDtos = courseService.getAllCourses().stream().map(Course -> modelMapper.map(Course, CourseDto.class))
-                .collect(Collectors.toList());
-
-        for(CourseDto courseDto : courseDtos){
-            System.out.println(courseDto.getUserDtos());
-        }
-
-        List<Integer> courseDtos2 = courseService.getAllCourses().stream().map(course -> course.getUsers().size())
-                .collect(Collectors.toList());
-        for(Integer integer : courseDtos2){
-            System.out.println(integer);
-        }
 
         List<UserDto> userDtos = courseService.getAllCourses().stream().map(course -> course.getUsers().get(0))
                 .collect(Collectors.toList()).stream().map(user -> modelMapper.map(user, UserDto.class))
                 .collect(Collectors.toList());
-
-        for(UserDto userDto : userDtos){
-            System.out.println(userDto.getName());
-        }
-//        System.out.println("userDtos: " + userDtos);
-
         return userDtos;
     }
 }
