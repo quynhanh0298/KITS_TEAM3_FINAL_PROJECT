@@ -164,4 +164,14 @@ public class Controller {
 //        return categoryService.getAllCategory().stream().map(Category -> modelMapper.map(Category, CategoryDto.class))
 //                .collect(Collectors.toList());
 //    }
+
+    @GetMapping("/courses-tutor")
+    @ResponseBody
+    public List<UserDto> getAllTutorOwnCourses(){
+
+        List<UserDto> userDtos = courseService.getAllCourses().stream().map(course -> course.getUsers().get(0))
+                .collect(Collectors.toList()).stream().map(user -> modelMapper.map(user, UserDto.class))
+                .collect(Collectors.toList());
+        return userDtos;
+    }
 }
