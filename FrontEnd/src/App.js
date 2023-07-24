@@ -78,7 +78,7 @@ function App() {
                 element={<ResetPasswordTutor />}
               />
             </Route>
-            <Route path="/mainboard" element={<DashboardLayout />}>
+            <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
               <Route path="dashboard" element={<DashboardPage />} />
               <Route path="messages" element={<MessagesPage />} />
               <Route path="sessions" element={<SessionsPage />} />
