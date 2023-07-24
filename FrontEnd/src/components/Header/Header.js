@@ -70,7 +70,6 @@ const Header = () => {
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>
           About us
         </p>
-        <p style={{ cursor: "pointer" }}>Help</p>
         <img src={userIcon} style={{ width: "20px", cursor: "pointer" }} />
         <img src={searchIcon} style={{ width: "20px", cursor: "pointer" }} />
         <img
