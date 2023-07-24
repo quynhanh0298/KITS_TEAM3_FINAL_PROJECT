@@ -14,13 +14,13 @@ const colourStyles = {
   width: "100%",
   height: "52px",
 };
-export const DropdownSelector = ({ options, newPlaceholder }) => {
+export const DropdownSelector = ({ options, onChange, newPlaceholder }) => {
   return (
     <DropdownSelectorStyled>
       <Select
         multi
         options={options}
-        onChange={(values) => this.onChange(values)}
+        onChange={onChange}
         dropdownPosition="auto"
         dropdownHeight="52px"
         placeholder={newPlaceholder}
