@@ -1,14 +1,12 @@
 package edu.kits.finalproject.Controller.Admin;
 
 import edu.kits.finalproject.Domain.Course;
+import edu.kits.finalproject.Domain.OnlineClass;
 import edu.kits.finalproject.Domain.Order;
 import edu.kits.finalproject.Domain.User;
 import edu.kits.finalproject.Model.*;
 import edu.kits.finalproject.Repository.UserRepository;
-import edu.kits.finalproject.Service.CategoryService;
-import edu.kits.finalproject.Service.CourseService;
-import edu.kits.finalproject.Service.OrderService;
-import edu.kits.finalproject.Service.UserService;
+import edu.kits.finalproject.Service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +36,9 @@ public class Controller {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OnlineClassService onlineClassService;
 
     @GetMapping("/courses")
     @ResponseBody
@@ -105,5 +106,30 @@ public class Controller {
     @ResponseBody
     public OrderDto getOrderById(@PathVariable(name = "orderId") String orderId){
         return modelMapper.map(orderService.getOrderById(orderId), OrderDto.class);
+    }
+
+    @GetMapping("/online-class")
+    @ResponseBody
+    public List<OnlineClass> getAllOnlineClass(){
+        return onlineClassService.getAllOnlineClass().stream().collect(Collectors.toList());
+    }
+
+    @GetMapping("/courses-tutor")
+    @ResponseBody
+    public List<CourseDto> getAllTutorOwnCourses(){
+        List<CourseDto> courseDtos = courseService.getAllCourses().stream().map(Course -> modelMapper.map(Course, CourseDto.class))
+                .collect(Collectors.toList());
+
+        for(CourseDto courseDto : courseDtos){
+            System.out.println(courseDto.getUserDtos());
+        }
+
+        List<Integer> courseDtos2 = courseService.getAllCourses().stream().map(course -> course.getUsers().size())
+            .collect(Collectors.toList());
+        for(Integer integer : courseDtos2){
+            System.out.println(integer);
+        }
+
+        return courseDtos;
     }
 }
