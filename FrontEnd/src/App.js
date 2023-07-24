@@ -10,7 +10,7 @@ import AboutPage from "./pages/AboutPage";
 import Contact from "./pages/Contact";
 
 import PricePage from "./pages/PricePage";
-import HelpPage from "./pages/HelpPage";
+import OurCourses from "./pages/OurCourses";
 import CourseDetail from "pages/CourseDetails";
 import Cart from "./pages/Cart";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -31,69 +31,71 @@ import LogInTutor from "pages/tutor/LogIn";
 import ForgotPasswordTutor from "pages/tutor/ForgotPassword";
 import ResetPasswordTutor from "pages/tutor/ResetPassword";
 
-
 function App() {
   return (
-    <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
-    <div className="App">
-      <BrowserRouter>
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="pricing" element={<PricePage />} />
-            <Route path="help" element={<HelpPage />} />
-            <Route path="coursedetails/:id" element={<CourseDetail />} />
-            <Route path="coursedetails/:orderId/:id" element={<CourseDetail />} />
-            <Route path="cart"  element={<Cart />}/>
-            <Route path="checkout"  element={<CheckoutPage />}/>
-
-          </Route>
-          <Route path="/">
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="log-in-student" element={<LogInStudent />} />
-            <Route
-              path="forgot-password-student"
-              element={<ForgotPasswordStudent />}
-            />
-            <Route
-              path="reset-password-student"
-              element={<ResetPasswordStudent />}
-            />
-          </Route>
-          <Route path="/">
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="log-in-tutor" element={<LogInTutor />} />
-            <Route
-              path="forgot-password-tutor"
-              element={<ForgotPasswordTutor />}
-            />
-            <Route
-              path="reset-password-tutor"
-              element={<ResetPasswordTutor />}
-            />
-          </Route>
-          <Route path="/mainboard" element={<DashboardLayout />}>
-            <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="messages" element={<MessagesPage />} />
-            <Route path="sessions" element={<SessionsPage />} />
-            <Route path="my-courses/:orderId" element={<CoursesPage />} />
-            <Route
-              path="hour-purchase-history"
-              element={<HourOfPurchaseHistoryPage />}
-            />
-            <Route path="my-tutors" element={<MyTutorsPage />} />
-            <Route path="my-classes" element={<MyClassesPage />} />
-            <Route path="video-player/:id" element={<VideoPlayerPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <PayPalScriptProvider
+      options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}
+    >
+      <div className="App">
+        <BrowserRouter>
+          <ToastContainer />
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="pricing" element={<PricePage />} />
+              <Route path="our-courses" element={<OurCourses />} />
+              <Route path="coursedetails/:id" element={<CourseDetail />} />
+              <Route
+                path="coursedetails/:orderId/:id"
+                element={<CourseDetail />}
+              />
+              <Route path="cart" element={<Cart />} />
+              <Route path="checkout" element={<CheckoutPage />} />
+            </Route>
+            <Route path="/">
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="log-in-student" element={<LogInStudent />} />
+              <Route
+                path="forgot-password-student"
+                element={<ForgotPasswordStudent />}
+              />
+              <Route
+                path="reset-password-student"
+                element={<ResetPasswordStudent />}
+              />
+            </Route>
+            <Route path="/">
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="log-in-tutor" element={<LogInTutor />} />
+              <Route
+                path="forgot-password-tutor"
+                element={<ForgotPasswordTutor />}
+              />
+              <Route
+                path="reset-password-tutor"
+                element={<ResetPasswordTutor />}
+              />
+            </Route>
+            <Route path="/mainboard" element={<DashboardLayout />}>
+              <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="messages" element={<MessagesPage />} />
+              <Route path="sessions" element={<SessionsPage />} />
+              <Route path="my-courses/:orderId" element={<CoursesPage />} />
+              <Route
+                path="hour-purchase-history"
+                element={<HourOfPurchaseHistoryPage />}
+              />
+              <Route path="my-tutors" element={<MyTutorsPage />} />
+              <Route path="my-classes" element={<MyClassesPage />} />
+              <Route path="video-player/:id" element={<VideoPlayerPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </PayPalScriptProvider>
   );
 }
 
 export default App;
-
