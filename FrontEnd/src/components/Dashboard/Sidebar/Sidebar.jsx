@@ -157,17 +157,17 @@ const NavItem = ({ path, text, icon, children }) => {
 export const Sidebar = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = useParams();
+  const { id, orderId } = useParams();
   const [isOpen, setOpen] = useState(false);
   const toggleShowMore = () => setOpen(!isOpen);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
-  const { orderId } = props;
+  //const { orderId } = props;
   const url = `/mainboard/${orderId}/my-courses/${orderId}`;
   const videoPlayerUrl = `/mainboard/${orderId}/video-player/${id}`;
-  const mainboardUrl = `/mainboard/${orderId}`
-  const myClassesUrl = `/mainboard/${orderId}/my-classes`
-  const allClassesUrl = `/mainboard/${orderId}/all-classes/${orderId}`
+  const mainboardUrl = `/mainboard/${orderId}`;
+  const myClassesUrl = `/mainboard/${orderId}/my-classes/${orderId}`;
+  const allClassesUrl = `/mainboard/${orderId}/all-classes/${orderId}`;
 
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
@@ -202,25 +202,25 @@ export const Sidebar = (props) => {
             />
             <NavItem
               text="Messages"
-              path="/mainboard/messages"
+              path={`/mainboard/${orderId}/messages/${orderId}`}
               icon={<MessIcon />}
             >
               <div className="noti" />
             </NavItem>
             <NavItem
               text="Sessions"
-              path="/mainboard/sessions"
+              path={`/mainboard/${orderId}/sessions/${orderId}`}
               icon={<SessionsIcon />}
             />
             <NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
             <NavItem
               text="Hour purchase history"
-              path="/mainboard/hour-purchase-history"
+              path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
               icon={<PurchaseIcon />}
             />
             <NavItem
               text="My tutors"
-              path="/mainboard/my-tutors"
+              path={`/mainboard/${orderId}/my-tutors/${orderId}`}
               icon={<MyTutorsIcon />}
             />
             <NavItem
@@ -234,13 +234,23 @@ export const Sidebar = (props) => {
         {(isTabletOrMobile || location.pathname === videoPlayerUrl) && (
           <>
             <NavItem path={mainboardUrl} icon={<DashboardIcon />} />
-            <NavItem path="/mainboard/messages" icon={<MessIcon />} />
-            <NavItem path="/mainboard/sessions" icon={<SessionsIcon />} />
             <NavItem
-              path="/mainboard/hour-purchase-history"
+              path={`/mainboard/${orderId}/messages/${orderId}`}
+              icon={<MessIcon />}
+            />
+            <NavItem
+              path={`/mainboard/${orderId}/sessions/${orderId}`}
+              icon={<SessionsIcon />}
+            />
+            <NavItem path={url} icon={<SessionsIcon />} />
+            <NavItem
+              path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
               icon={<PurchaseIcon />}
             />
-            <NavItem path="/mainboard/my-tutors" icon={<MyTutorsIcon />} />
+            <NavItem
+              path={`/mainboard/${orderId}/my-tutors/${orderId}`}
+              icon={<MyTutorsIcon />}
+            />
           </>
         )}
       </div>
@@ -316,18 +326,9 @@ export const Sidebar = (props) => {
             <MyClassesCard newColor="#FED66F" path={myClassesUrl} />
             {isOpen && (
               <>
-                <MyClassesCard
-                  newColor="#FED66F"
-                  path={myClassesUrl}
-                />
-                <MyClassesCard
-                  newColor="#FED66F"
-                  path={myClassesUrl}
-                />
-                <MyClassesCard
-                  newColor="#FED66F"
-                  path={myClassesUrl}
-                />
+                <MyClassesCard newColor="#FED66F" path={myClassesUrl} />
+                <MyClassesCard newColor="#FED66F" path={myClassesUrl} />
+                <MyClassesCard newColor="#FED66F" path={myClassesUrl} />
               </>
             )}
             {isOpen && (

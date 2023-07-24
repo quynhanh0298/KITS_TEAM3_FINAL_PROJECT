@@ -81,15 +81,15 @@ function App() {
             </Route>
             <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
               <Route path="" element={<DashboardPage />} />
-              <Route path="messages" element={<MessagesPage />} />
-              <Route path="sessions" element={<SessionsPage />} />
+              <Route path="messages/:orderId" element={<MessagesPage />} />
+              <Route path="sessions/:orderId" element={<SessionsPage />} />
               <Route path="my-courses/:orderId" element={<CoursesPage />} />
               <Route
-                path="hour-purchase-history"
+                path="hour-purchase-history/:orderId"
                 element={<HourOfPurchaseHistoryPage />}
               />
-              <Route path="my-tutors" element={<MyTutorsPage />} />
-              <Route path="my-classes" element={<MyClassesPage />} />
+              <Route path="my-tutors/:orderId" element={<MyTutorsPage />} />
+              <Route path="my-classes/:orderId" element={<MyClassesPage />} />
               <Route path="video-player/:id" element={<VideoPlayerPage />} />
               <Route path="all-classes/:orderId" element={<AllClasses />} />
             </Route>
