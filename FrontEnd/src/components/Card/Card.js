@@ -51,7 +51,7 @@ const CardStyled = styled.div`
     }
 `
 
-export const Card = ({ id,orderId,avatar,thumbnail, tutorName, courseName, rating }) => {
+export const Card = ({ id,orderId,avatar,thumbnail, tutorName, courseName, rating, desciption }) => {
     const navigate = useNavigate();
 
   const handleClick = () => {
@@ -93,6 +93,8 @@ export const Card = ({ id,orderId,avatar,thumbnail, tutorName, courseName, ratin
                 onMouseLeave={handleMouseLeave}
             >
                 <p onClick={handleClick} className="courseName">{courseName}</p>
+                <p className="courseName">{desciption}</p>
+
             </div>
             <div className="rating">
                 <p>{rating}<span className="rating5">/5.0</span></p>

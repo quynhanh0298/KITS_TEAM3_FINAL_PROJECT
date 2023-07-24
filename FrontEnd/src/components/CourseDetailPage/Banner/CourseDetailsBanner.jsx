@@ -213,7 +213,7 @@ export const CourseDetailsBanner = () => {
           height="81px"
           borderRadius="55px"
           fontSize="22px"
-          onClick={() => navi(`/mainboard/video-player/${id}`)}
+          onClick={() => navi(`/mainboard/${orderId}/video-player/${id}`)}
         >
            Learning
         </Button>
