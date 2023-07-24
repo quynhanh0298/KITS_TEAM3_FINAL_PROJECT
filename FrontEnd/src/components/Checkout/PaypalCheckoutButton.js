@@ -69,7 +69,7 @@ const PaypalCheckoutButton = (props) => {
         //if response is error
         //alert("Your payment was processed successfully. However, we are unable to fulfill your purchase. Please contact us for assistance")
             
-        const url = `/mainboard/my-courses/${orderID}`;
+        const url = `/mainboard/${orderID}`;
 
         // Navigate to the new page
         navigate(url);

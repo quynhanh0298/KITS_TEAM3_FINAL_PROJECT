@@ -21,9 +21,9 @@ const CartContent = () => {
         dispatch(removeFromCart(item))
     }
 
-    const handleClearCart = () => {
-        dispatch(clearCart())
-    }
+        const handleClearCart = () => {
+            dispatch(clearCart())
+        }
 
   return <>
     <div className='cart-container'>

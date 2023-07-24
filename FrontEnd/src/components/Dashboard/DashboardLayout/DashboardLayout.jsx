@@ -47,7 +47,7 @@ const SideBarStyled = styled.div`
 `;
 export const DashboardLayout = () => {
   const location = useLocation();
-  const { id, orderId } = useParams();
+  const {  id, orderId } = useParams();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1620px)" });
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1620px)",
@@ -107,7 +107,7 @@ export const DashboardLayout = () => {
         {isDesktopOrLaptop &&
           location.pathname !== `/mainboard/video-player/${id}` && (
             <SideBarStyled>
-              <Sidebar />
+              <Sidebar orderId={orderId} />
             </SideBarStyled>
           )}{" "}
         {isDesktopOrLaptop &&

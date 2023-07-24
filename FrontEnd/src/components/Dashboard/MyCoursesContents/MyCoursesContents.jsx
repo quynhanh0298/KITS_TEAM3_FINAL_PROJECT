@@ -128,6 +128,7 @@ export const MyCoursesContents = () => {
             tutorName={"Diallo Liam"}
             courseName={course.name}
             rating={course.rating}
+            desciption={course.desciption}
           />
         ))}
       </div>
