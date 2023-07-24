@@ -25,17 +25,17 @@ const OurCourses = () => {
 
         // </>
 
-        <div className="home-container">
-            {isLoading ? (
-                <p>Loading ...</p>
-            ) : (
-                <>
-                    <h2>New Arrivals</h2>
-                    <div className="products">
-                        {data?.map((product) => (
-                            <div key={product.courseId} className="product">
-                                <h3>{product.name}</h3>
-                                <img src={product.thumbnail} alt={product.name} />
+    <div className="home-container">
+      {isLoading ? (
+        <p>Loading ...</p>
+      ) : (
+        <>
+          <h2>Our Courses</h2>
+          <div className="products">
+            {data?.map((product) => (
+              <div key={product.courseId} className="product">
+                <h3>{product.name}</h3>
+                <img src={product.thumbnail} alt={product.name} />
 
                                 <p>{product.desciption}</p>
                                 <h5 className="price">${product.price}</h5>

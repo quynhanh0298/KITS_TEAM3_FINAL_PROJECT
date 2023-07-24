@@ -1,7 +1,15 @@
 .checkout {
   padding-top: 10px;
 }
-
+h2 {
+  color: #504e4e;
+  font-family: Poppins;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-align: center;
+}
 .checkout-title {
   font-style: normal;
   font-weight: 600;

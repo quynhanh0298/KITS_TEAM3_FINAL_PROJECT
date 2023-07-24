@@ -30,6 +30,7 @@ import ResetPasswordStudent from "pages/student/ResetPassword";
 import LogInTutor from "pages/tutor/LogIn";
 import ForgotPasswordTutor from "pages/tutor/ForgotPassword";
 import ResetPasswordTutor from "pages/tutor/ResetPassword";
+import AllClasses from "pages/AllClassesPage";
 
 function App() {
   return (
@@ -79,7 +80,7 @@ function App() {
               />
             </Route>
             <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
-              <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="" element={<DashboardPage />} />
               <Route path="messages" element={<MessagesPage />} />
               <Route path="sessions" element={<SessionsPage />} />
               <Route path="my-courses/:orderId" element={<CoursesPage />} />
@@ -90,6 +91,7 @@ function App() {
               <Route path="my-tutors" element={<MyTutorsPage />} />
               <Route path="my-classes" element={<MyClassesPage />} />
               <Route path="video-player/:id" element={<VideoPlayerPage />} />
+              <Route path="all-classes/:orderId" element={<AllClasses />} />
             </Route>
           </Routes>
         </BrowserRouter>
