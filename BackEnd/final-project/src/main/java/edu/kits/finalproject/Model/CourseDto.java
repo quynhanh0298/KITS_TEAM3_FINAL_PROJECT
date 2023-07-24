@@ -1,6 +1,5 @@
 package edu.kits.finalproject.Model;
 
-import edu.kits.finalproject.Domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

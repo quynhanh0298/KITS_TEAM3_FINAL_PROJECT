@@ -1,6 +1,6 @@
 package edu.kits.finalproject.Repository;
 
-import edu.kits.finalproject.Domain.Product;
+import edu.kits.finalproject.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

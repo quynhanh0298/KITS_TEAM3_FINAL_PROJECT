@@ -1,8 +1,8 @@
 package edu.kits.finalproject.Controller.Admin;
 
-import edu.kits.finalproject.Domain.Course;
-import edu.kits.finalproject.Domain.Order;
-import edu.kits.finalproject.Domain.User;
+import edu.kits.finalproject.entity.Course;
+import edu.kits.finalproject.entity.Order;
+import edu.kits.finalproject.entity.User;
 import edu.kits.finalproject.Model.*;
 import edu.kits.finalproject.Repository.UserRepository;
 import edu.kits.finalproject.Service.CategoryService;
@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,19 +45,72 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
+    //Get Course detail
     @GetMapping("/courses/{id}")
     @ResponseBody
     public CourseDto getCourseById(@PathVariable(name = "id") Long id){
         return modelMapper.map(courseService.getCourseById(id), CourseDto.class);
     }
 
+//    ResponseEntity<ResponseObject> findById(@PathVariable Long id) {
+//        Optional<Course> foundCourse = courseService.findById(id);
+//        if (foundCourse.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.OK).body(
+//                    new ResponseObject(200, "Query course successfully", foundCourse)
+//            );
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+//                    new ResponseObject(404, "Can not find course with id = " + id, "")
+//            );
+//        }
+//    }
 
-    @GetMapping("/categoties")
-    @ResponseBody
-    public List<CategoryDto> getAllCategory(){
-        return categoryService.getAllCategory().stream().map(Category -> modelMapper.map(Category, CategoryDto.class))
-                .collect(Collectors.toList());
-    }
+//    //Insert new course with POST method: This is when tutor add new course
+//    @PostMapping("/insert")
+//    ResponseEntity<ResponseObject> insertCourse(@RequestBody Course course) {
+//        return ResponseEntity.status(HttpStatus.OK).body(
+//                new ResponseObject(200, "Insert Course successfully", courseService.save(course))
+//        );
+//    }
+
+//    //Get course by category_id:
+//    @GetMapping("/course-by-category-id/{category_id}")
+//    ResponseEntity<ResponseObject> getCourseByCategoryId(@PathVariable Long category_id) {
+//        Optional<Course> foundCourse = courseService.findByCategoryId(category_id);
+//        if (foundCourse.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.OK).body(
+//                    new ResponseObject(200, "Query course successfully", foundCourse)
+//            );
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+//                    new ResponseObject(404, "Can not find course with id = " + category_id, "")
+//            );
+//        }
+//    }
+
+
+//    //Update course
+//    @PutMapping("/{id}")
+//    ResponseEntity<ResponseObject> updateCourse(@PathVariable("id") Long id, @RequestBody Course newCourse) {
+//        Optional<Course> updatedCourse = courseService.findById(id)
+//                .map(course -> {
+//                    course.setName(newCourse.getName());
+//                    course.setDescription(newCourse.getDescription());
+//                    course.setPrice(newCourse.getPrice());
+//                    return courseService.save(course);
+//                });
+//        return updatedCourse.isPresent() ?
+//                ResponseEntity.status(HttpStatus.OK).body(
+//                        new ResponseObject(200, "Update course successfully", updatedCourse)
+//                )
+//                :
+//                ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+//                        new ResponseObject(404, "Can not find course with id = " + id, "")
+//                );
+//    }
+
+
+
 
     @PostMapping("/add-course")
     public ResponseEntity<ResponseDto> addCourse( @RequestParam("name") String name){
@@ -80,9 +132,7 @@ public class Controller {
         return modelMapper.map(user, UserDto.class);
     }
 
-//    @PostMapping(path = "/add-order",
-//        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-//        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/add-order",
@@ -106,4 +156,12 @@ public class Controller {
     public OrderDto getOrderById(@PathVariable(name = "orderId") String orderId){
         return modelMapper.map(orderService.getOrderById(orderId), OrderDto.class);
     }
+
+
+//    @GetMapping("/categoties")
+//    @ResponseBody
+//    public List<CategoryDto> getAllCategory(){
+//        return categoryService.getAllCategory().stream().map(Category -> modelMapper.map(Category, CategoryDto.class))
+//                .collect(Collectors.toList());
+//    }
 }

@@ -1,13 +1,12 @@
 package edu.kits.finalproject.Service.impl;
 
-import edu.kits.finalproject.Domain.Course;
-import edu.kits.finalproject.Domain.User;
+import edu.kits.finalproject.entity.Course;
+import edu.kits.finalproject.entity.User;
 import edu.kits.finalproject.Repository.CourseRepository;
 import edu.kits.finalproject.Repository.UserRepository;
 import edu.kits.finalproject.Service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,19 +42,28 @@ public class CourseServiceImpl implements CourseService {
         return coursePepository.save(course);
     }
 
-    @Override
-    public User getTutor(Long id) {
-        System.out.println("=========getTutor===========");
-        Optional<Course> tempCourse = coursePepository.findById(id);
-        List<User> users = tempCourse.get().getUsers();
-        for(User user : users)
-            if(user.getRole().getRoleId() == 1)
-                return user;
-        return new User();
-    }
+//    @Override
+//    public User getTutor(Long id) {
+//        System.out.println("=========getTutor===========");
+//        Optional<Course> tempCourse = coursePepository.findById(id);
+//        List<User> users = tempCourse.get().getUsers();
+//        for(User user : users)
+//            if(user.getRole().getRoleId() == 1)
+//                return user;
+//        return new User();
+//    }
 
 //    @Override
 //    public Collection<Object> getAllCategory() {
 //        return coursePepository.findAll();
 //    }
+
+    @Override
+    public Course save(Course course) {
+        return coursePepository.save(course);
+    }
+    @Override
+    public Optional<Course> findByCategoryId(Long categoryId) {
+        return coursePepository.findByCategoryId(categoryId);
+    }
 }
