@@ -137,7 +137,7 @@ const BottomSidebarStyled = {
 };
 const NavItem = ({ path, text, icon, children }) => {
   const location = useLocation();
-  const { id, orderId } = useParams();
+  const { id } = useParams();
   return (
     <StyledNavItem
       style={
@@ -154,13 +154,17 @@ const NavItem = ({ path, text, icon, children }) => {
     </StyledNavItem>
   );
 };
-export const Sidebar = () => {
+export const Sidebar = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id, orderId } = useParams();
+  const { id } = useParams();
   const [isOpen, setOpen] = useState(false);
   const toggleShowMore = () => setOpen(!isOpen);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
+  const {orderId} = props;
+  const url = `/mainboard/${orderId}/my-courses/${orderId}`
+
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
   });
@@ -211,7 +215,7 @@ export const Sidebar = () => {
               />
               <NavItem
                 text="My Courses"
-                path="/mainboard/my-courses"
+                path={url}
                 icon={<SessionsIcon />}
               />
               <NavItem
