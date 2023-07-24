@@ -1,6 +1,6 @@
 package edu.kits.finalproject.Service.impl;
 
-import edu.kits.finalproject.Domain.Product;
+import edu.kits.finalproject.entity.Product;
 import edu.kits.finalproject.Repository.ProductRepository;
 import edu.kits.finalproject.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

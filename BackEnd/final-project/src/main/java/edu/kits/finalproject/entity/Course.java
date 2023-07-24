@@ -1,6 +1,5 @@
-package edu.kits.finalproject.Domain;
+package edu.kits.finalproject.entity;
 
-import com.mysql.cj.protocol.ColumnDefinition;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +7,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +17,9 @@ import java.util.List;
 @Entity
 @Table(name = "Courses")
 public class Course implements Serializable {
+
+    //Course: id, name, desc, rating,listOfVideo,thumbnail, reviews, enrollCount, user_id, content_id,
+    // 1 course has 1 tutor, 1 tutor can have many course, 1 student can join many course,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long courseId;
@@ -53,13 +55,14 @@ public class Course implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date created_at;
 
-//    @ManyToOne
-//    @JoinColumn(name = "tutorId")
-//    private Tutor tutor;
+
+    @OneToMany(mappedBy = "course")
+    Set<CourseDetail> courseDetails;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "category_id")
     private Category category;
+
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -71,9 +74,7 @@ public class Course implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private List<User> users;
 
-//    @ManyToOne
-//    @JoinColumn(name = "orderId")
-//    private Order order;
+
 
     public Course(String name, double price, String desciption, String thumbnail, double rating, int enroll, String listOfVideo) {
         this.name = name;

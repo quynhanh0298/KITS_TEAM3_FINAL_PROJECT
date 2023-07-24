@@ -75,32 +75,32 @@ const Categories = () => {
     // }
 
 
-    async function getCalegories() {
-        try {
-            const response = await
-                fetch('http://localhost:8080/admin/categoties', {
-                    // fetch('https://jsonplaceholder.typicode.com/users', {
-                    method: 'GET',
-                    headers: {
-                        accept: '*/*'
-                    },
-                });
+    // async function getCalegories() {
+    //     try {
+    //         const response = await
+    //             fetch('http://localhost:8080/admin/categoties', {
+    //                 // fetch('https://jsonplaceholder.typicode.com/users', {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     accept: '*/*'
+    //                 },
+    //             });
 
-            if (!response.ok) {
-                throw new Error(`Error! status: ${response.status}`)
-            }
+    //         if (!response.ok) {
+    //             throw new Error(`Error! status: ${response.status}`)
+    //         }
 
-            const result = await response.json();
-            console.log(result)
-            setCategories(result);
+    //         const result = await response.json();
+    //         console.log(result)
+    //         setCategories(result);
 
-        } catch (err) {
-            console.log(err)
-        }
-    }
-    useEffect(() => {
-        getCalegories();
-    }, [])
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
+    // useEffect(() => {
+    //     getCalegories();
+    // }, [])
 
 
 
@@ -108,11 +108,11 @@ const Categories = () => {
         <p className="sub-title">Popular Categories</p>
         <p className="title">Explore the most popular categories</p>
         <div className="categories">
-            <ul className='ul-categories'>
+            {/* <ul className='ul-categories'>
                 {categories.map(categoty => (
                     <li><Categoty>{categoty.name}</Categoty></li>
                 ))}
-            </ul>
+            </ul> */}
         </div>
 
         <div className='courses'>

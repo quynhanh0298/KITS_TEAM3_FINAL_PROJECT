@@ -1,10 +1,13 @@
 package edu.kits.finalproject.Service;
 
-import edu.kits.finalproject.Domain.Category;
+import edu.kits.finalproject.entity.Category;
 
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> getAllCategory();
+
+    Object save(Category category);
+
+    List<Category> getLatestCategories();
 }
 
