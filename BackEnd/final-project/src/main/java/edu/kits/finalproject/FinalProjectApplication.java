@@ -1,9 +1,5 @@
 package edu.kits.finalproject;
 
-import edu.kits.finalproject.Domain.Course;
-import edu.kits.finalproject.Domain.User;
-import edu.kits.finalproject.Model.CourseDto;
-import edu.kits.finalproject.Model.UserDto;
 import edu.kits.finalproject.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +24,6 @@ public class FinalProjectApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/admin/courses").allowedOrigins("http://localhost:3000");
-                registry.addMapping("/admin/categoties").allowedOrigins("http://localhost:3000");
                 registry.addMapping("/admin/courses/{id}").allowedOrigins("http://localhost:3000");
                 registry.addMapping("/admin/get-tutor-from-course/{id}").allowedOrigins("http://localhost:3000");
                 //registry.addMapping("/admin/add-order").allowedOrigins("http://localhost:3000");

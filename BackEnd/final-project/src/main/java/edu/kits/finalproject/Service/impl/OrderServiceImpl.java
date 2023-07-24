@@ -1,7 +1,6 @@
 package edu.kits.finalproject.Service.impl;
 
-import edu.kits.finalproject.Domain.Course;
-import edu.kits.finalproject.Domain.Order;
+import edu.kits.finalproject.entity.Order;
 import edu.kits.finalproject.Repository.OrderRepository;
 import edu.kits.finalproject.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

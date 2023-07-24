@@ -1,7 +1,5 @@
 package edu.kits.finalproject.Controller.Admin;
 
-import edu.kits.finalproject.Domain.Course;
-import edu.kits.finalproject.Model.CourseDto;
 import edu.kits.finalproject.Model.ProductDto;
 import edu.kits.finalproject.Model.ResponseDto;
 import edu.kits.finalproject.Service.CourseService;
@@ -13,8 +11,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("admin/products")
