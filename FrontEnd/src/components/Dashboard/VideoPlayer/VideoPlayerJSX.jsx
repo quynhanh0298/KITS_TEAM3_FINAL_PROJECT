@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import React, { useEffect, useState } from "react";
-
-import { useNavigate, useParams } from "react-router-dom";
-
-import YouTubeEmbed from "react-youtube-embed";
+import React from "react";
+import { ReactComponent as ResoursesIcon } from "../../../assets/icons/dashboardicon/resourses-icon.svg";
+import { ReactComponent as DownloadIcon } from "../../../assets/icons/dashboardicon/Download-Icon.svg";
 import ReactPlayer from "react-player";
 
 const PageStyled = styled.div`
@@ -11,6 +9,9 @@ const PageStyled = styled.div`
   height: 1043px;
   margin: 52px 0px 0px 72px;
   border-radius: 4px;
+  gap: 31px;
+  display: flex;
+  flex-direction: row;
   .player-container {
     width: 75%;
     height: 683.372px;
@@ -22,12 +23,49 @@ const PageStyled = styled.div`
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(17.5px);
   }
+  .resourse-bar {
+    width: 20%;
+    height: 683.372px;
+    background-color: transparent;
+    color: #fff;
+    font-family: Poppins;
+    font-style: normal;
+    line-height: normal;
+  }
+  .resourse-bar .resourse {
+    padding-bottom: 40px;
+    padding-top: 30px;
+    box-shadow: 0 1px 0 0 rgba(0, 171, 189, 0.36);
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .resourse-bar .pdf {
+    box-shadow: 0 1px 0 0 rgba(0, 171, 189, 0.36);
+    padding: 28px 0px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5px;
+  }
+  .resourse-bar .pdf .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
 `;
-const playerStyled = {
-  width: "75%",
-  maxHeight: "683.33px",
-  height: "auto",
-};
+
 export const VideoPlayerJSX = ({ vidLink }) => {
   return (
     // <PageStyled>
@@ -57,9 +95,30 @@ export const VideoPlayerJSX = ({ vidLink }) => {
         <ReactPlayer
           width="99%"
           height="99%"
+          style={{ borderRadius: "15px" }}
           url={vidLink}
           controls
         />
+      </div>
+      <div className="resourse-bar">
+        <div className="resourse">
+          <ResoursesIcon />
+          Resources
+        </div>
+        <div className="pdf">
+          <div className="left">
+            <ResoursesIcon />
+            Intro to UX.pdf
+          </div>
+          <DownloadIcon />
+        </div>
+        <div className="pdf">
+          <div className="left">
+            <ResoursesIcon />
+            Intro to UX.pdf
+          </div>
+          <DownloadIcon />
+        </div>
       </div>
     </PageStyled>
   );

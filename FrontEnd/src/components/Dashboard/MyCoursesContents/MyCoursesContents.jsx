@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 
 import { Card } from "../../Card/Card";
 
-import avatar1 from "assets/images/avatars/avatar1.svg";
 
 import axios from "axios";
 
@@ -54,11 +53,12 @@ const PageStyled = styled.div`
       0px -4px 34px 0px rgba(0, 0, 0, 0.05);
   }
   .cards-wrapper {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 6px;
   }
 `;
 export const MyCoursesContents = () => {
@@ -114,9 +114,9 @@ export const MyCoursesContents = () => {
           Filter
         </Button>
       </div>
-      <div>
+      {/* <div>
         <h3>ORDER ID: {orderId}</h3>
-      </div>
+      </div> */}
       <div></div>
       <div className="cards-wrapper">
         {selectedCourses.map((course) => (

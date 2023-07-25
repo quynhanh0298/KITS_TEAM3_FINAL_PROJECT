@@ -10,7 +10,7 @@ const CardStyled = styled.div`
   box-shadow:
     0px 4px 34px 0px rgba(0, 0, 0, 0.05),
     0px -4px 34px 0px rgba(0, 0, 0, 0.05);
-  margin-right: 30px;
+  margin-right: 2px;
   margin-bottom: 33px;
   .thumbnail img {
     width: 100%;
@@ -79,17 +79,17 @@ export const Card = ({
     }
   };
 
-  const handleMouseEnter = () => {
-    // Update the cursor style when the mouse enters the element
-    document.body.style.cursor = "pointer";
-  };
+  // const handleMouseEnter = () => {
+  //   // Update the cursor style when the mouse enters the element
+  //   document.body.style.cursor = "pointer";
+  // };
 
-  const handleMouseLeave = () => {
-    // Reset the cursor style when the mouse leaves the element
-    document.body.style.cursor = "auto";
-  };
+  // const handleMouseLeave = () => {
+  //   // Reset the cursor style when the mouse leaves the element
+  //   document.body.style.cursor = "auto";
+  // };
   return (
-    <CardStyled>
+    <CardStyled onClick={handleClick} style={{ cursor: "pointer" }}>
       <div className="img">
         <div className="thumbnail">
           <img src={thumbnail} />
@@ -99,7 +99,7 @@ export const Card = ({
           <img src={avatar} />
           <p className="tutorName">{tutorName}</p>
         </div>
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div style={{ cursor: "pointer" }}>
           <p onClick={handleClick} className="courseName">
             {courseName}
           </p>
