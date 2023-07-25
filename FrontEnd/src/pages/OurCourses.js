@@ -28,13 +28,13 @@ const OurCourses = () => {
     const { data, error, isLoading } = useGetAllProductsQuery();
     const [tutor, setTutor] = useState([]);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product));
-        navigate("/cart");
-    };
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    navigate("/cart");
+  };
 
     // console.log(data);
 
@@ -71,7 +71,7 @@ const OurCourses = () => {
 
                                     <div className="tutorInfo">
                                         <div>
-                                            <img src={avatar1} />
+                                            <img src={avatar1} alt=""/>
                                         </div>
                                         <p className="tutorName">{tutor[index].name}</p>
                                     </div>

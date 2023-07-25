@@ -59,7 +59,6 @@ const ProductList = () => {
           ))}
         </div>
       </Carousel>
-      ;
     </>
   );
 };
