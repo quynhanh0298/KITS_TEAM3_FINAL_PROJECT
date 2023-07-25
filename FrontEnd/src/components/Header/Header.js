@@ -46,6 +46,18 @@ const Header = () => {
   const goCart = () => {
     navigate("/cart");
   };
+
+  const logout = () => {
+    // Clear the token from local storage to log out the user
+    localStorage.removeItem('token');
+    // Optionally, you can redirect the user to the login page or any other page
+    // window.location.href = '/login';
+  };
+
+  const handleLogout = () => {
+    logout(); // Call the logout function to log out the user
+    navigate("/login-page")
+  };
   return (
     <HeaderStyled>
       <div className="left-header" onClick={goHome}>
@@ -58,14 +70,9 @@ const Header = () => {
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/pricing")}>
           Pricing
         </p>
-        <p
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/log-in-student")}
-        >
-          Login
-        </p>
-        <p style={{ cursor: "pointer" }} onClick={() => navigate("/sign-up")}>
-          Sign Up
+        
+        <p style={{ cursor: "pointer" }} onClick={handleLogout}>
+          LogOut
         </p>
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>
           About us
