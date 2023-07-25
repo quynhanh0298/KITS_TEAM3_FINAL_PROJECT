@@ -30,6 +30,7 @@ public class SecurityConfiguration {
                 .requestMatchers(
                         "/api/v1/auth/**",
                         "/api/v1/Categories/**",
+                                "/admin/courses",
                         "/admin/courses/{id}",
                         "/admin/order/{orderId}",
                         "/admin/add-order",

@@ -3,7 +3,6 @@ import Help from "../components/Help/Help";
 import { useNavigate } from "react-router-dom";
 import avatar1 from "assets/images/avatars/avatar1.svg"
 
-import { useGetAllProductsQuery } from "../features/productsApi";
 import "../pages/OurCourse.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "features/cartSlice";
@@ -25,8 +24,8 @@ const OurCoursesStyled = styled.div`
 
 
 const OurCourses = () => {
-    const { data, error, isLoading } = useGetAllProductsQuery();
     const [tutor, setTutor] = useState([]);
+    const [courses, setCourses] = useState([]);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,15 +38,14 @@ const OurCourses = () => {
     // console.log(data);
 
     useEffect(() => {
-        const fetchTutor = async () => {
-            const response = await fetch("http://localhost:8080/admin/courses-tutor")
-                .then(res => {
-                    return res.json()
-                })
-            setTutor(response);
-        }
-        fetchTutor();
-    }, [])
+        fetch("http://localhost:8080/admin/courses")
+          .then((res) => res.json())
+          .then((data) => {
+            setCourses(data);
+          });
+      }, []);
+
+
 
     const navi = useNavigate();
     return (
@@ -56,13 +54,11 @@ const OurCourses = () => {
         // </>
 
         <div className="home-container">
-            {(isLoading || tutor.length == 0) ? (
-                <p>Loading ...</p>
-            ) : (
+            
                 <OurCoursesStyled>
                     <h2>New Arrivals</h2>
                     <div className="products">
-                        {data?.map((product, index) => {
+                        {courses?.map((product, index) => {
                             console.log(product)
                             return (
                                 <div key={product.courseId} className="product">
@@ -73,7 +69,6 @@ const OurCourses = () => {
                                         <div>
                                             <img src={avatar1} />
                                         </div>
-                                        <p className="tutorName">{tutor[index].name}</p>
                                     </div>
                                     <p>{product.desciption}</p>
                                     <h5 className="price">${product.price}</h5>
@@ -87,8 +82,7 @@ const OurCourses = () => {
                         )}
                     </div>
                 </OurCoursesStyled>
-            )
-            }
+           
         </div>
     );
 };

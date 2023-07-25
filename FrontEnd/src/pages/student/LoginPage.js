@@ -13,7 +13,6 @@ const LoginPage = () => {
 
   const handleAddToAuth = (user,token) => {
     dispatch(setCredentials(user,token));
-    navigate("/our-course");
 };
 
   
@@ -27,16 +26,21 @@ const LoginPage = () => {
           "Content-Type":"application/json",
       },
         body: JSON.stringify({
-                mail: mail,
+                email: mail,
                 password: password,
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
         throw new Error('Login failed: Invalid credentials');
       }
+
+      navigate("/our-courses");
+
+
+      const data = await response.json();
+
+      
 
       // Save the JWT token to local storage or a cookie
       localStorage.setItem('token', data.token);
@@ -56,7 +60,7 @@ const LoginPage = () => {
       <h2>Login</h2>
       <input type="text" placeholder="mail" value={mail} onChange={ (e) => setMail(e.target.value) }/>
             <br/>
-            <input type="text" placeholder="password" value={password} onChange={ (e) => setPassword(e.target.value) }/>
+            <input type="password" placeholder="password" value={password} onChange={ (e) => setPassword(e.target.value) }/>
             <br/>
             <button id="submit_button" onClick={ (e) => handleLoginSubmit(e) }>Sign up</button>
         </div>
