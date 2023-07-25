@@ -2,6 +2,7 @@ import Popup from "reactjs-popup";
 import styled from "styled-components";
 import { ClassCard } from "../DashboardCard";
 import "reactjs-popup/dist/index.css";
+import { Button } from "components/Button/Button";
 
 const PopupStyled = styled(Popup)`
   &-overlay {
@@ -37,6 +38,7 @@ const PopupStyled = styled(Popup)`
       flex-direction: column;
       align-items: flex-start;
       text-align: justify;
+      justify-content: space-between;
     }
     .modal > .actions {
       width: 100%;
@@ -95,6 +97,14 @@ export const PopupDetails = ({
               <div>By {tutorName}</div>
               <div>Total hours: {totalHours}</div>
               {detail}
+              <Button
+                width="165px"
+                height="52px"
+                bgColor="#0C4CA3"
+                fontSize="20px"
+              >
+                Join Class
+              </Button>
             </div>
           </div>
         </div>
