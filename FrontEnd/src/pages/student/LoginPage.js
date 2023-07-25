@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { selectCurrentTokenr, setCredentials } from "features/auth/authSlice"
 import { useSelector,useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,13 @@ const LoginPage = () => {
 
 
   const handleAddToAuth = (user,token) => {
-    dispatch(setCredentials(user,token));
+    const credent = {
+      user: user,
+      accessToken: token
+    }
+    dispatch(setCredentials(credent));
+    navigate("/our-courses");
+
 };
 
   
@@ -35,7 +42,6 @@ const LoginPage = () => {
         throw new Error('Login failed: Invalid credentials');
       }
 
-      navigate("/our-courses");
 
 
       const data = await response.json();
@@ -63,6 +69,10 @@ const LoginPage = () => {
             <input type="password" placeholder="password" value={password} onChange={ (e) => setPassword(e.target.value) }/>
             <br/>
             <button id="submit_button" onClick={ (e) => handleLoginSubmit(e) }>Sign up</button>
+            <br/>
+            <Link to="/register">
+            <button id="register-button" >Register</button>
+            </Link>
         </div>
   );
 };

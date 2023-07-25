@@ -24,7 +24,7 @@ import MyClassesPage from "pages/MyClassesPage";
 import CoursesPage from "pages/MyCoursesPage";
 import VideoPlayerPage from "pages/VideoPlayerPage";
 import SignUp from "pages/SignUp";
-import LogInStudent from "pages/student/LogIn";
+import LogInStudent from "pages/student/Register";
 import ForgotPasswordStudent from "pages/student/ForgotPassword";
 import ResetPasswordStudent from "pages/student/ResetPassword";
 import LogInTutor from "pages/tutor/LogIn";
@@ -33,7 +33,7 @@ import ResetPasswordTutor from "pages/tutor/ResetPassword";
 import AllClasses from "pages/AllClassesPage";
 
 import Welcome from "pages/student/Welcome";
-import LogIn from "pages/student/LogIn";
+import Register from "pages/student/Register";
 import RequireAuth from "pages/student/RequireAuth";
 import LoginPage from "pages/student/LoginPage";
 
@@ -48,15 +48,13 @@ function App() {
           <Routes>
             {/* public routes */}
             
-            <Route path="/" element={<Layout />}>
-              <Route path="/login" element={<LogIn />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/login-page" element={<LoginPage />} />
 
-            </Route>
             {/* protected routes */}
             <Route element={<RequireAuth />}>
               <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
+                <Route path="home" element={<Home />} />
                 <Route path="about" element={<AboutPage />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="pricing" element={<PricePage />} />
@@ -69,30 +67,7 @@ function App() {
                 <Route path="cart" element={<Cart />} />
                 <Route path="checkout" element={<CheckoutPage />} />
               </Route>
-              <Route path="/">
-                <Route path="sign-up" element={<SignUp />} />
-                <Route path="log-in-student" element={<LogInStudent />} />
-                <Route
-                  path="forgot-password-student"
-                  element={<ForgotPasswordStudent />}
-                />
-                <Route
-                  path="reset-password-student"
-                  element={<ResetPasswordStudent />}
-                />
-              </Route>
-              <Route path="/">
-                <Route path="sign-up" element={<SignUp />} />
-                <Route path="log-in-tutor" element={<LogInTutor />} />
-                <Route
-                  path="forgot-password-tutor"
-                  element={<ForgotPasswordTutor />}
-                />
-                <Route
-                  path="reset-password-tutor"
-                  element={<ResetPasswordTutor />}
-                />
-              </Route>
+              
               <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
                 <Route path="" element={<DashboardPage />} />
                 <Route path="messages/:orderId" element={<MessagesPage />} />

@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from "features/auth/authSlice";
 import { useLoginMutation } from "features/auth/authApiSlice";
 
+import { Link } from 'react-router-dom';
 
 const StyledLogIn = styled.div`
   display: flex;
@@ -66,7 +67,7 @@ const StyledLogIn = styled.div`
   }
 `;
 
-const LogIn = () => {
+const Register = () => {
   const navigate = useNavigate();
 
 
@@ -135,9 +136,13 @@ const LogIn = () => {
           onChange={handleInputChange}
         />
         <button type="submit">Register</button>
+        <Link to="/login-page">
+            <button id="login-link" >Move to Login Page</button>
+            </Link>
       </form>
+      
     </div>
   );
 };
 
-export default LogIn;
+export default Register;
