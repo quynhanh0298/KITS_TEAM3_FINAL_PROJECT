@@ -31,6 +31,7 @@ import LogInTutor from "pages/tutor/LogIn";
 import ForgotPasswordTutor from "pages/tutor/ForgotPassword";
 import ResetPasswordTutor from "pages/tutor/ResetPassword";
 import AllClasses from "pages/AllClassesPage";
+import VideoCallPage from "pages/VideoCallPage";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
               <Route path="my-classes/:orderId" element={<MyClassesPage />} />
               <Route path="video-player/:id" element={<VideoPlayerPage />} />
               <Route path="all-classes/:orderId" element={<AllClasses />} />
+              <Route path="video-call" element={<VideoCallPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

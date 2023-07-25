@@ -55,7 +55,8 @@ export const DashboardLayout = () => {
   return (
     <Container
       style={
-        location.pathname === `/mainboard/${orderId}/video-player/${id}`
+        location.pathname === `/mainboard/${orderId}/video-player/${id}` ||
+        location.pathname === `/mainboard/${orderId}/video-call`
           ? {
               background: "rgba(0, 0, 0, 0.70)",
               backdropFilter: "blur(17.5px)",
@@ -64,7 +65,8 @@ export const DashboardLayout = () => {
       }
     >
       <StyleLayout>
-        {location.pathname === `/mainboard/${orderId}/video-player/${id}` && (
+        {(location.pathname === `/mainboard/${orderId}/video-player/${id}` ||
+          location.pathname === `/mainboard/${orderId}/video-call`) && (
           <>
             <SideBarStyled style={{ width: "10%", maxWidth: "123px" }}>
               <Sidebar />
@@ -78,16 +80,18 @@ export const DashboardLayout = () => {
               }}
             >
               {location.pathname !==
-                `/mainboard/${orderId}/video-player/${id}` && (
-                <DashboardHeader />
-              )}
+                `/mainboard/${orderId}/video-player/${id}` &&
+                location.pathname !== `/mainboard/${orderId}/video-call` && (
+                  <DashboardHeader />
+                )}
               <Outlet />
             </div>
           </>
         )}
         {isTabletOrMobile &&
           location.pathname !== `/mainboard/${orderId}` &&
-          location.pathname !== `/mainboard/${orderId}/video-player/${id}` && (
+          location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
+          location.pathname !== `/mainboard/${orderId}/video-call` && (
             <>
               <SideBarStyled style={{ width: "25%" }}>
                 <Sidebar />
@@ -99,22 +103,25 @@ export const DashboardLayout = () => {
                 }}
               >
                 {location.pathname !==
-                  `/mainboard/${orderId}/video-player/${id}` && (
-                  <DashboardHeader />
-                )}
+                  `/mainboard/${orderId}/video-player/${id}` &&
+                  location.pathname !== `/mainboard/${orderId}/video-call` && (
+                    <DashboardHeader />
+                  )}
                 <Outlet />
               </div>
             </>
           )}
         {isDesktopOrLaptop &&
-          location.pathname !== `/mainboard/${orderId}/video-player/${id}` && (
+          location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
+          location.pathname !== `/mainboard/${orderId}/video-call` && (
             <SideBarStyled>
               <Sidebar orderId={orderId} />
             </SideBarStyled>
           )}{" "}
         {isDesktopOrLaptop &&
           location.pathname !== `/mainboard/${orderId}` &&
-          location.pathname !== `/mainboard/${orderId}/video-player/${id}` && (
+          location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
+          location.pathname !== `/mainboard/${orderId}/video-call` && (
             <>
               <div className="right">
                 <DashboardHeader />
@@ -122,30 +129,31 @@ export const DashboardLayout = () => {
               </div>
             </>
           )}
-        {location.pathname === `/mainboard/${orderId}` && (
-          <>
-            {isDesktopOrLaptop && (
-              <>
-                <div className="right" style={{ width: "50%" }}>
-                  <DashboardHeader />
-                  <Outlet />
-                </div>
-                <ProfileColumn />
-              </>
-            )}
-            {isTabletOrMobile && (
-              <>
-                <SideBarStyled style={{ width: "25%" }}>
-                  <Sidebar />
-                </SideBarStyled>{" "}
-                <div className="right">
-                  <DashboardHeader />
-                  <Outlet />
-                </div>
-              </>
-            )}
-          </>
-        )}
+        {location.pathname === `/mainboard/${orderId}` &&
+          location.pathname === `/mainboard/${orderId}/video-call` && (
+            <>
+              {isDesktopOrLaptop && (
+                <>
+                  <div className="right" style={{ width: "50%" }}>
+                    <DashboardHeader />
+                    <Outlet />
+                  </div>
+                  <ProfileColumn />
+                </>
+              )}
+              {isTabletOrMobile && (
+                <>
+                  <SideBarStyled style={{ width: "25%" }}>
+                    <Sidebar />
+                  </SideBarStyled>{" "}
+                  <div className="right">
+                    <DashboardHeader />
+                    <Outlet />
+                  </div>
+                </>
+              )}
+            </>
+          )}
       </StyleLayout>
     </Container>
   );

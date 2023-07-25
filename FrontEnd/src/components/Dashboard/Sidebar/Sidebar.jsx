@@ -141,7 +141,8 @@ const NavItem = ({ path, text, icon, children }) => {
   return (
     <StyledNavItem
       style={
-        location.pathname === `/mainboard/${orderId}/video-player/${id}`
+        location.pathname === `/mainboard/${orderId}/video-player/${id}` ||
+        location.pathname === `/mainboard/${orderId}/video-call`
           ? NavSpecStyled
           : null
       }
@@ -174,7 +175,12 @@ export const Sidebar = (props) => {
   });
   return (
     <StyledSidebar
-      style={location.pathname === videoPlayerUrl ? SpecStyled : null}
+      style={
+        location.pathname === videoPlayerUrl ||
+        location.pathname === `/mainboard/${orderId}/video-call`
+          ? SpecStyled
+          : null
+      }
     >
       {isDesktopOrLaptop && (
         <KitLogo
@@ -193,45 +199,49 @@ export const Sidebar = (props) => {
         />
       )}
       <div className="top-sidebar">
-        {isDesktopOrLaptop && location.pathname !== videoPlayerUrl && (
-          <>
-            <NavItem
-              text="Dashboard"
-              path={mainboardUrl}
-              icon={<DashboardIcon />}
-            />
-            <NavItem
-              text="Messages"
-              path={`/mainboard/${orderId}/messages/${orderId}`}
-              icon={<MessIcon />}
-            >
-              <div className="noti" />
-            </NavItem>
-            <NavItem
-              text="Sessions"
-              path={`/mainboard/${orderId}/sessions/${orderId}`}
-              icon={<SessionsIcon />}
-            />
-            <NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
-            <NavItem
-              text="Hour purchase history"
-              path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
-              icon={<PurchaseIcon />}
-            />
-            <NavItem
-              text="My tutors"
-              path={`/mainboard/${orderId}/my-tutors/${orderId}`}
-              icon={<MyTutorsIcon />}
-            />
-            <NavItem
-              text="All classes"
-              path={allClassesUrl}
-              icon={<MyTutorsIcon />}
-            />
-          </>
-        )}
+        {isDesktopOrLaptop &&
+          location.pathname !== videoPlayerUrl &&
+          location.pathname !== `/mainboard/${orderId}/video-call` && (
+            <>
+              <NavItem
+                text="Dashboard"
+                path={mainboardUrl}
+                icon={<DashboardIcon />}
+              />
+              <NavItem
+                text="Messages"
+                path={`/mainboard/${orderId}/messages/${orderId}`}
+                icon={<MessIcon />}
+              >
+                <div className="noti" />
+              </NavItem>
+              <NavItem
+                text="Sessions"
+                path={`/mainboard/${orderId}/sessions/${orderId}`}
+                icon={<SessionsIcon />}
+              />
+              <NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
+              <NavItem
+                text="Hour purchase history"
+                path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
+                icon={<PurchaseIcon />}
+              />
+              <NavItem
+                text="My tutors"
+                path={`/mainboard/${orderId}/my-tutors/${orderId}`}
+                icon={<MyTutorsIcon />}
+              />
+              <NavItem
+                text="All classes"
+                path={allClassesUrl}
+                icon={<MyTutorsIcon />}
+              />
+            </>
+          )}
 
-        {(isTabletOrMobile || location.pathname === videoPlayerUrl) && (
+        {(isTabletOrMobile ||
+          location.pathname === videoPlayerUrl ||
+          location.pathname === `/mainboard/${orderId}/video-call`) && (
           <>
             <NavItem path={mainboardUrl} icon={<DashboardIcon />} />
             <NavItem
@@ -254,72 +264,81 @@ export const Sidebar = (props) => {
           </>
         )}
       </div>
-      {isDesktopOrLaptop && location.pathname !== videoPlayerUrl && (
-        <div className="class-text">Classes</div>
-      )}
+      {isDesktopOrLaptop &&
+        location.pathname !== videoPlayerUrl &&
+        location.pathname !== `/mainboard/${orderId}/video-call` && (
+          <div className="class-text">Classes</div>
+        )}
       <div
         className="bottom-sidebar"
         style={
-          location.pathname === videoPlayerUrl ? BottomSidebarStyled : null
+          location.pathname === videoPlayerUrl ||
+          location.pathname === `/mainboard/${orderId}/video-call`
+            ? BottomSidebarStyled
+            : null
         }
       >
-        {isDesktopOrLaptop && location.pathname !== videoPlayerUrl && (
-          <>
-            <MyClassesCard
-              name="Design"
-              quantity={5}
-              newColor="#FED66F"
-              path={myClassesUrl}
-            />
-            <MyClassesCard
-              name="Development"
-              quantity={5}
-              newColor="#77ADFF"
-              path={myClassesUrl}
-            />
-            <MyClassesCard
-              name="Illustrations"
-              quantity={5}
-              newColor="#F66E6E"
-              path={myClassesUrl}
-            />
-            {isOpen && (
-              <>
-                <MyClassesCard
-                  name="Design"
-                  quantity={5}
-                  newColor="#FED66F"
-                  path={myClassesUrl}
-                />
-                <MyClassesCard
-                  name="Development"
-                  quantity={5}
-                  newColor="#77ADFF"
-                  path={myClassesUrl}
-                />
-                <MyClassesCard
-                  name="Illustrations"
-                  quantity={5}
-                  newColor="#F66E6E"
-                  path={myClassesUrl}
-                />
-              </>
-            )}
-            {isOpen && (
-              <div className="show" onClick={toggleShowMore}>
-                <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
-                Show less
-              </div>
-            )}
-            {!isOpen && (
-              <div className="show" onClick={toggleShowMore}>
-                <ArrowPointDown />
-                Show more
-              </div>
-            )}
-          </>
-        )}
-        {(isTabletOrMobile || location.pathname === videoPlayerUrl) && (
+        {isDesktopOrLaptop &&
+          location.pathname !== videoPlayerUrl &&
+          location.pathname !== `/mainboard/${orderId}/video-call` && (
+            <>
+              <MyClassesCard
+                name="Design"
+                quantity={5}
+                newColor="#FED66F"
+                path={myClassesUrl}
+              />
+              <MyClassesCard
+                name="Development"
+                quantity={5}
+                newColor="#77ADFF"
+                path={myClassesUrl}
+              />
+              <MyClassesCard
+                name="Illustrations"
+                quantity={5}
+                newColor="#F66E6E"
+                path={myClassesUrl}
+              />
+              {isOpen && (
+                <>
+                  <MyClassesCard
+                    name="Design"
+                    quantity={5}
+                    newColor="#FED66F"
+                    path={myClassesUrl}
+                  />
+                  <MyClassesCard
+                    name="Development"
+                    quantity={5}
+                    newColor="#77ADFF"
+                    path={myClassesUrl}
+                  />
+                  <MyClassesCard
+                    name="Illustrations"
+                    quantity={5}
+                    newColor="#F66E6E"
+                    path={myClassesUrl}
+                  />
+                </>
+              )}
+              {isOpen && (
+                <div className="show" onClick={toggleShowMore}>
+                  <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
+                  Show less
+                </div>
+              )}
+              {!isOpen && (
+                <div className="show" onClick={toggleShowMore}>
+                  <ArrowPointDown />
+                  Show more
+                </div>
+              )}
+            </>
+          )}
+        {(isTabletOrMobile ||
+          location.pathname === videoPlayerUrl ||
+          location.pathname === `/mainboard/${orderId}/video-call`) && (
           <>
             <MyClassesCard newColor="#FED66F" path={myClassesUrl} />
             <MyClassesCard newColor="#FED66F" path={myClassesUrl} />
@@ -336,22 +355,29 @@ export const Sidebar = (props) => {
                 className="show"
                 onClick={toggleShowMore}
                 style={
-                  location.pathname === videoPlayerUrl ? ShowSpecStyled : null
+                  location.pathname === videoPlayerUrl ||
+                  location.pathname === `/mainboard/${orderId}/video-call`
+                    ? ShowSpecStyled
+                    : null
                 }
               >
                 <ArrowPointDown style={{ transform: "rotate(180deg)" }} />
 
-                {isDesktopOrLaptop && location.pathname !== videoPlayerUrl && (
-                  <>Show less</>
-                )}
+                {isDesktopOrLaptop &&
+                  location.pathname !== videoPlayerUrl &&
+                  location.pathname !== `/mainboard/${orderId}/video-call` && (
+                    <>Show less</>
+                  )}
               </div>
             )}
             {!isOpen && (
               <div className="show" onClick={toggleShowMore}>
                 <ArrowPointDown />
-                {isDesktopOrLaptop && location.pathname !== videoPlayerUrl && (
-                  <>Show more</>
-                )}
+                {isDesktopOrLaptop &&
+                  location.pathname !== videoPlayerUrl &&
+                  location.pathname !== `/mainboard/${orderId}/video-call` && (
+                    <>Show more</>
+                  )}
               </div>
             )}
           </>
