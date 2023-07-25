@@ -1,2 +1,3 @@
 import { AllClassesContents } from "./AllClassesContents";
-export { AllClassesContents };
+import { PopupDetails } from "./PopupDetails";
+export { AllClassesContents, PopupDetails };

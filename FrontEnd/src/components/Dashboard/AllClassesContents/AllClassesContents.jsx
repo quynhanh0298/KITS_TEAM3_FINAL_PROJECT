@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import React, { useState } from "react";
 import { DropdownSelector } from "../Selector";
 import { CalenderSelector } from "../Selector";
 import { Button } from "components/Button/Button";
-import fakeData from "../../../MOCK_DATA.json";
+import fakeData from "../../../LIST_CLASS_MOCK_DATA.json";
+import { ClassCard } from "../DashboardCard";
+import { PopupDetails } from "./PopupDetails";
 
 const MyClassPageContentsStyled = styled.div`
   height: 1273px;
@@ -26,6 +29,7 @@ const MyClassPageContentsStyled = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 140px;
   }
   .filter-button {
     text-align: center;
@@ -49,6 +53,12 @@ const MyClassPageContentsStyled = styled.div`
     font-weight: 300;
     line-height: normal;
   }
+  .class-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
   @media screen and (max-width: 1212px) {
     .filter-group {
       flex-direction: column;
@@ -62,12 +72,28 @@ const MyClassPageContentsStyled = styled.div`
 `;
 
 export const AllClassesContents = () => {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedClass, setSelectedClass] = useState([]);
+  const handleCategoryChange = (event) => {
+    const selectedCategories = event.target.value;
+    setSelectedCategories(selectedCategories);
+  };
+
+  const handleClassChange = (event) => {
+    const selectedClass = event.target.value;
+    setSelectedClass(selectedClass);
+  };
   return (
     <MyClassPageContentsStyled>
       <div className="filter-group">
-        <DropdownSelector newPlaceholder="Select Class" />
-        <DropdownSelector newPlaceholder="Select Subject" />
-        <CalenderSelector />
+        <DropdownSelector
+          newPlaceholder="Select Category"
+          onChange={handleCategoryChange}
+        />
+        <DropdownSelector
+          newPlaceholder="Select Class"
+          onChange={handleClassChange}
+        />
         <Button
           width="165px"
           height="52px"
@@ -76,6 +102,19 @@ export const AllClassesContents = () => {
         >
           Filter
         </Button>
+      </div>
+      <div className="class-wrapper">
+        {fakeData.map((course) => (
+          <PopupDetails
+            avatar={course.avatar}
+            thumbnail={course.thumbnail}
+            tutorName={course.tutorName}
+            courseName={course.courseName}
+            rating={course.rating}
+            detail={course.detail}
+            totalHours={course.totalHours}
+          />
+        ))}
       </div>
     </MyClassPageContentsStyled>
   );
