@@ -6,6 +6,11 @@ import { Button } from "components/Button/Button";
 import FacebookIcon from "../../assets/icons/facebook-icon.svg";
 import GoogleIcon from "../../assets/icons/google-icon.svg";
 import { useNavigate } from "react-router-dom";
+import { useRef, useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from "features/auth/authSlice";
+import { useLoginMutation } from "features/auth/authApiSlice";
+
 
 const StyledLogIn = styled.div`
   display: flex;
@@ -63,62 +68,75 @@ const StyledLogIn = styled.div`
 
 const LogIn = () => {
   const navigate = useNavigate();
+
+
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    role: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/api/v1/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      // Save the JWT token to local storage or a cookie
+      console.log(data.token);
+      // Redirect or show success message
+      navigate("/login-page")
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
+  };
+
   return (
-    <StyledLogIn>
-      <img
-        className="logo"
-        src={KITSLogo}
-        style={{ cursor: "pointer" }}
-        alt=""
-        onClick={() => navigate("/")}
-      />
-      <div className="main">
-        <img src={AsAStudent} alt="" />
-        <div className="as-a-student">As a Student</div>
-        <input className="info" type="text" placeholder="Full name" />
-        <input className="info" type="text" placeholder="Password" />
-        <div className="remember-me-forgot-password">
-          <div>
-            <input type="checkbox" name="" id="" /> Remember me
-          </div>
-          <div>
-            <a href="">Forgot Password</a>
-          </div>
-        </div>
-        <Button
-          width={"218px"}
-          height={"69px"}
-          borderRadius={"31px"}
-          bgColor={"#0C4CA3"}
-        >
-          Sign In
-        </Button>
-        <div className="or-sign-in">Or Sign In</div>
-        <div className="login-with-other-method">
-          <Button
-            width={"218px"}
-            height={"60px"}
-            borderRadius={"39px"}
-            bgColor={"#FFF"}
-            textColor={"#898686"}
-            fontSize={"16px"}
-          >
-            <img src={GoogleIcon} alt="" /> with Google
-          </Button>
-          <Button
-            width={"218px"}
-            height={"60px"}
-            borderRadius={"39px"}
-            boderColor={"#34BCAD"}
-            bgColor={"rgba(255, 255, 255, 0.2)"}
-            textColor={"#898686"}
-            fontSize={"16px"}
-          >
-            <img src={FacebookIcon} alt="" /> with Facebook
-          </Button>
-        </div>
-      </div>
-    </StyledLogIn>
+    <div>
+      <h2>Register</h2>
+      <form onSubmit={handleRegisterSubmit}>
+        <input
+          type="text"
+          name="fullName"
+          placeholder="FullName"
+          value={formData.fullName}
+          onChange={handleInputChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleInputChange}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleInputChange}
+        />
+        <input
+          type="role"
+          name="role"
+          placeholder="Role"
+          value={formData.role}
+          onChange={handleInputChange}
+        />
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 };
 

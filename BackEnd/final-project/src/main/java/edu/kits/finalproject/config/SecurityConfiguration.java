@@ -22,13 +22,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors()
+                .and()
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers(
                         "/api/v1/auth/**",
                         "/api/v1/Categories/**",
-                        "/admin/courses",
                         "/admin/courses/{id}",
                         "/admin/order/{orderId}",
                         "/admin/add-order",

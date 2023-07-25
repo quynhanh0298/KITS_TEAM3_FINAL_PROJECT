@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import avatar1 from "assets/images/avatars/avatar1.svg"
 
 import { useGetAllProductsQuery } from "../features/productsApi";
-import "../pages/HelpPage.css";
+import "../pages/OurCourse.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "features/cartSlice";
 import styled from "styled-components";
