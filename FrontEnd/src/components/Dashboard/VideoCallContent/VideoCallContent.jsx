@@ -172,11 +172,11 @@ export const VideoCallContent = () => {
         <div className="video-right"></div>
       </div>
       <div className="button-group">
-        <ShareScreenIcon />
+        <ShareScreenIcon cursor="pointer"/>
         <div className="middle-group">
-          <MuteIcon />
-          <ChangeCamIcon />
-          <EndCallIcon />
+          <MuteIcon cursor="pointer"/>
+          <ChangeCamIcon cursor="pointer"/>
+          <EndCallIcon cursor="pointer"/>
         </div>
       </div>
       <div className="bottom-contents">
