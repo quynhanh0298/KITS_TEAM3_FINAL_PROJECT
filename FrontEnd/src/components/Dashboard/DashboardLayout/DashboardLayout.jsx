@@ -74,7 +74,7 @@ export const DashboardLayout = () => {
             <div
               className="right"
               style={{
-                width: "100%",
+                width: "94%",
                 background: "rgba(0, 0, 0, 0.70)",
                 backdropFilter: "blur(17.5px)",
               }}

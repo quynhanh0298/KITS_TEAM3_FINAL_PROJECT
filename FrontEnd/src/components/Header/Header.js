@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import {
-  Navigate,
-  useLocation,
   useNavigate,
-  useParams,
 } from "react-router-dom";
-import logo from "assets/icons/logo192.png";
 import KitsLogo from "assets/images/kits-logo.svg";
 import userIcon from "assets/icons/user-regular.svg";
 import searchIcon from "assets/icons/magnifying-glass-solid.svg";
@@ -41,7 +37,7 @@ const HeaderStyled = styled.div`
 const Header = () => {
   const navigate = useNavigate();
   const goHome = () => {
-    navigate("");
+    navigate("/home");
   };
   const goCart = () => {
     navigate("/cart");
@@ -61,7 +57,7 @@ const Header = () => {
   return (
     <HeaderStyled>
       <div className="left-header" onClick={goHome}>
-        <img src={KitsLogo} style={{ width: "153px", height: "56px" }} />
+        <img src={KitsLogo} alt="" style={{ width: "153px", height: "56px" }} />
       </div>
       <div className="right-header">
         <p style={{ cursor: "pointer" }} onClick={goHome}>
@@ -77,10 +73,11 @@ const Header = () => {
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>
           About us
         </p>
-        <img src={userIcon} style={{ width: "20px", cursor: "pointer" }} />
-        <img src={searchIcon} style={{ width: "20px", cursor: "pointer" }} />
+        <img src={userIcon} alt="" style={{ width: "20px", cursor: "pointer" }} />
+        <img src={searchIcon} alt="" style={{ width: "20px", cursor: "pointer" }} />
         <img
           src={cartIcon}
+          alt=""
           style={{ width: "20px", cursor: "pointer" }}
           onClick={goCart}
         />

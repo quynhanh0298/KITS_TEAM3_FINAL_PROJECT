@@ -186,7 +186,7 @@ export const Sidebar = (props) => {
         <KitLogo
           className="KitLogo"
           height="36px"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/home")}
           style={{ cursor: "pointer" }}
         />
       )}
@@ -194,7 +194,7 @@ export const Sidebar = (props) => {
         <KitLogo
           className="KitLogo"
           height="36px"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/home")}
           style={{ cursor: "pointer" }}
         />
       )}

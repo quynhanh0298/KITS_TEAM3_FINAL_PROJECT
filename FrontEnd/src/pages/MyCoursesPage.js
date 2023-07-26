@@ -2,7 +2,7 @@ import { MyCoursesContents } from "components/Dashboard/MyCoursesContents/MyCour
 import styled from "styled-components";
 
 const CoursesPageStyled = styled.div`
-  margin: 52px 84px 0px 68px;
+  margin: 52px 70px 0px 68px;
   background: "rgba(255, 255, 255, 0.7)";
   backdrop-filter: blur(62px);
   h1 {
