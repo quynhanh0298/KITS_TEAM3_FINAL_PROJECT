@@ -42,6 +42,8 @@ public class Course implements Serializable {
     @Column(columnDefinition = "nvarchar(500)")
     private String listOfVideo;
 
+
+
     @Column
     private double rating;
 

@@ -114,7 +114,7 @@ export const MyCoursesContents = () => {
         >
           Filter
         </Button>
-        <AddCourse/>
+        {/* <AddCourse/> */}
       </div>
       {/* <div>
         <h3>ORDER ID: {orderId}</h3>

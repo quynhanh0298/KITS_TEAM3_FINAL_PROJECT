@@ -1,4 +1,6 @@
 import { useState } from "react";
+import React from 'react'
+import * as ReactDOM from 'react-dom'
 
 class FormBuilder extends React.PureComponent {
     render() {
@@ -30,6 +32,97 @@ class FormBuilder extends React.PureComponent {
                 Delete Video
             </button>
         </div>
+    }
+}
+
+class UploadContainer extends React.Component {
+    render() {
+        let store = this.props.store
+        let formSchema = [
+            { type: 'text', label: 'title' },
+            { type: 'text', label: 'description' },
+            { type: 'file', label: 'video', className: "form-control-file" }
+        ]
+
+        let uploads = []
+        for (let index in this.props.uploads) {
+            if (!this.props.uploads.hasOwnProperty(index)) {
+                continue
+            }
+
+            let upload = this.props.uploads[index]
+
+            formSchema.map(data => {
+                switch (data.label) {
+                    case 'title':
+                        data.value = upload.title
+                        break
+
+                    case 'description':
+                        data.value = upload.description
+                        break
+                }
+
+                return data
+            })
+
+
+            uploads.push(<div key={index}>
+                <h3>Video {index}</h3>
+                <FormBuilder
+                    formSchema={formSchema}
+                    deleteVideo={() => store.dispatch({
+                        type: 'deleteVideo',
+                        payload: index
+                    })
+                    }
+                    index={index}
+                    store={store} />
+            </div>)
+        }
+
+        return <div>
+            <div>
+                <label>
+                    Book Title
+                </label>
+                <br />
+                <select className="form-control"
+                    value={this.props.selectedBook}
+                    onChange={(e) => store.dispatch({
+                        type: 'updateSelectedBook',
+                        payload: e.target.value
+                    })}>
+                    {this.props.books.map(book => {
+                        return <option value={book.bookId} key={book.title}>
+                            {book.title}
+                        </option>
+                    })}
+                </select>
+            </div>
+            <div>{uploads}</div>
+            <br />
+            <div>
+                <button
+                    className="btn btn-success"
+                    onClick={() => store.dispatch({ type: 'addVideo' })}>
+                    Add Video +
+                </button>
+            </div>
+        </div>
+    }
+}
+
+class App extends React.Component {
+    render() {
+        let state = this.props.store.getState()
+
+        return <UploadContainer
+            books={state.books}
+            uploads={state.uploads}
+            selectedBook={state.selectedBook}
+            dispatch={this.props.store.dispatch}
+            store={this.props.store} />
     }
 }
 
@@ -143,113 +236,27 @@ const AddForm = () => {
         }
     }
 
-    
-
-    class UploadContainer extends React.Component {
-        render() {
-            let store = this.props.store
-            let formSchema = [
-                { type: 'text', label: 'title' },
-                { type: 'text', label: 'description' },
-                { type: 'file', label: 'video', className: "form-control-file" }
-            ]
-
-            let uploads = []
-            for (let index in this.props.uploads) {
-                if (!this.props.uploads.hasOwnProperty(index)) {
-                    continue
-                }
-
-                let upload = this.props.uploads[index]
-
-                formSchema.map(data => {
-                    switch (data.label) {
-                        case 'title':
-                            data.value = upload.title
-                            break
-
-                        case 'description':
-                            data.value = upload.description
-                            break
-                    }
-
-                    return data
-                })
 
 
-                uploads.push(<div key={index}>
-                    <h3>Video {index}</h3>
-                    <FormBuilder
-                        formSchema={formSchema}
-                        deleteVideo={() => store.dispatch({
-                            type: 'deleteVideo',
-                            payload: index
-                        })
-                        }
-                        index={index}
-                        store={store} />
-                </div>)
-            }
 
-            return <div>
-                <div>
-                    <label>
-                        Book Title
-                    </label>
-                    <br />
-                    <select className="form-control"
-                        value={this.props.selectedBook}
-                        onChange={(e) => store.dispatch({
-                            type: 'updateSelectedBook',
-                            payload: e.target.value
-                        })}>
-                        {this.props.books.map(book => {
-                            return <option value={book.bookId} key={book.title}>
-                                {book.title}
-                            </option>
-                        })}
-                    </select>
-                </div>
-                <div>{uploads}</div>
-                <br />
-                <div>
-                    <button
-                        className="btn btn-success"
-                        onClick={() => store.dispatch({ type: 'addVideo' })}>
-                        Add Video +
-                    </button>
-                </div>
-            </div>
-        }
-    }
 
-    class App extends React.Component {
-        render() {
-            let state = this.props.store.getState()
 
-            return <UploadContainer
-                books={state.books}
-                uploads={state.uploads}
-                selectedBook={state.selectedBook}
-                dispatch={this.props.store.dispatch}
-                store={this.props.store} />
-        }
-    }
 
     let store = createStore(reducer)
-    store.dispatch({
-        type: 'updateBooks',
-        payload: BOOKS
-    })
+    console.log(store);
+    // store.dispatch({
+    //     type: 'updateBooks',
+    //     payload: BOOKS
+    // })
 
-    const render = () => ReactDOM.render(
-        <App store={store} />,
-        document.getElementById('container')
-    )
+    // const render = () => ReactDOM.render(
+    //     <App store={store} />,
+    //     document.getElementById('container')
+    // )
 
-    store.subscribe(render)
+    // store.subscribe(render)
 
-    render()
+    // render()
     // codepen
 
     return <>

@@ -3,6 +3,7 @@ import { Button } from "components/Button/Button"
 import {Button as ButtonBs} from "react-bootstrap"
 import { Modal } from "react-bootstrap"
 import AddForm from "./AddForm"
+import VideoUploader from "./VideoUploader"
 
 const AddCourseStyled = styled.div`
     .add-course{
@@ -51,7 +52,8 @@ export const AddCourse = () => {
         <div className="add-course">
             <p>Add Course</p>
             <AddForm/>
-            {/* {addCourseForm} */}
+
+            <VideoUploader/>
         </div>
 
     </AddCourseStyled>
