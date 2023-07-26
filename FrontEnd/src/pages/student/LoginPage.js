@@ -13,6 +13,7 @@ import GoogleIcon from "../../assets/icons/google-icon.svg";
 
 const StyledLogIn = styled.div`
   display: flex;
+  height: 1117px;
   flex-direction: column;
   align-items: center;
   background: #def2f3;
@@ -24,6 +25,7 @@ const StyledLogIn = styled.div`
     .as-a-student {
       padding-bottom: 41px;
     }
+    padding: 0px 151px 57px 151px;
     padding-left: 151px;
     padding-right: 151px;
     display: flex;
