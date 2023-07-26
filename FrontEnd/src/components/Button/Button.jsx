@@ -22,7 +22,7 @@ const ButtonStyled = styled.button`
     }
 `
 
-export const Button = ({ width, height, textColor, bgColor, boderColor, borderRadius, fontSize, children, onClick }) => {
+export const Button = ({ width, height, textColor, bgColor, boderColor, borderRadius, fontSize, children, onClick, type }) => {
     return <ButtonStyled
         width={width}
         height={height}
@@ -32,6 +32,7 @@ export const Button = ({ width, height, textColor, bgColor, boderColor, borderRa
         fontSize={fontSize}
         boderColor={boderColor}
         onClick={onClick}
+        type={type}
     >
         <div>
             {children}
