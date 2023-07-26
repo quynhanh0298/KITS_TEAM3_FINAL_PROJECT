@@ -12,12 +12,19 @@ import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
+
+    Optional<Course> findCourseByCourseId(Long id);
     List<Course> findByNameContaining(String name);
     Page<Course> findByNameContaining(String name, Pageable pageable);
 
     //Haven't join tables yet
     @Query(value = "select * from Course c where c.category_id = ?1", nativeQuery = true)
+
     Optional<Course> findByCategoryId(Long categoryId);
+
+//    Optional<Course>
+
+
 
 
 }

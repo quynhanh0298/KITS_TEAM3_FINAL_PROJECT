@@ -26,11 +26,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course getCourseById(Long id) {
-        Optional<Course> result = coursePepository.findById(id);
-        if(result.isPresent())
-            return result.get();
-        return new Course();
+    public Optional<Course> getCourseById(Long id) {
+        return coursePepository.findCourseByCourseId(id);
+//        if(result.isPresent())
+//            return result.get();
+//        return new Course();
     }
 
 
@@ -65,5 +65,16 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Optional<Course> findByCategoryId(Long categoryId) {
         return coursePepository.findByCategoryId(categoryId);
+    }
+
+    @Override
+    public Course update(Long id, Course course) {
+        Course coursefromDB = coursePepository.findCourseByCourseId(id).get();
+        System.out.println("coursefromDB: " + coursefromDB);
+        System.out.println("course.getUserMails(): " + course.getUserMails());
+        if (coursefromDB == null)
+            return null;
+        coursefromDB.setUserMails(course.getUserMails());
+        return coursePepository.save(coursefromDB);
     }
 }
