@@ -261,6 +261,7 @@ export const Sidebar = (props) => {
               path={`/mainboard/${orderId}/my-tutors/${orderId}`}
               icon={<MyTutorsIcon />}
             />
+            <NavItem path={allClassesUrl} icon={<MyTutorsIcon />} />
           </>
         )}
       </div>
