@@ -13,7 +13,7 @@ const Home = () => {
       <Slider />
       <Brand />
       <Categories />
-      <GoodDesign />
+      {/* <GoodDesign /> */}
       <Discover />
     </PageStyled>
   );
