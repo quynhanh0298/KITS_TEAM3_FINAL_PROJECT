@@ -141,7 +141,7 @@ public class Controller {
     public ResponseEntity<ResponseDto> addOrder(@RequestBody Order order){
         String message = "";
         try{
-            orderService.store(order.getOrderId(), order.getOrderDate(), order.getAmount(), order.getStatus(), order.getCourses());
+            orderService.store(order.getOrderId(), order.getOrderDate(), order.getAmount(), order.getStatus(), order.getCourses(), order.getUser().getEmail());
             message = "Uploaded order successfully: ";
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
         }catch (Exception e){

@@ -5,11 +5,13 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import {  clearCart,getTotals } from 'features/cartSlice'
+import { selectCurrentUser } from "features/auth/authSlice";
 
 
 
 
 const PaypalCheckoutButton = (props) => {
+    const user = useSelector(selectCurrentUser)
     const liveCart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
@@ -41,7 +43,8 @@ const PaypalCheckoutButton = (props) => {
              orderDate: time,
              amount:  amount,
              status: status,
-             courses: courseAddToDb
+             courses: courseAddToDb,
+             userMail: user
 
           };
           console.log(orderSendToDb)

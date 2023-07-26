@@ -1,5 +1,6 @@
 package edu.kits.finalproject.Service.impl;
 
+import edu.kits.finalproject.Repository.OrderRepository;
 import edu.kits.finalproject.entity.User;
 import edu.kits.finalproject.Repository.UserRepository;
 import edu.kits.finalproject.Service.UserService;
@@ -13,7 +14,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private OrderRepository orderRepository;
     @Override
     public List<User> getAllUsers() {
         return null;

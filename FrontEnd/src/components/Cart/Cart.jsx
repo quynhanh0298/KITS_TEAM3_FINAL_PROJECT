@@ -11,6 +11,8 @@ import { removeFromCart, clearCart, getTotals } from 'features/cartSlice'
 
 const CartContent = () => {
     const cart = useSelector((state) => state.cart);
+    
+
     const dispatch = useDispatch();
 
     useEffect(() => {
