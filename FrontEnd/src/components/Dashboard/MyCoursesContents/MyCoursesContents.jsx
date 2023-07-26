@@ -8,6 +8,7 @@ import { Card } from "../../Card/Card";
 
 
 import axios from "axios";
+import { AddCourse } from "../AddCourse/AddCourse";
 
 const PageStyled = styled.div`
   h3 {
@@ -113,6 +114,7 @@ export const MyCoursesContents = () => {
         >
           Filter
         </Button>
+        <AddCourse/>
       </div>
       {/* <div>
         <h3>ORDER ID: {orderId}</h3>
