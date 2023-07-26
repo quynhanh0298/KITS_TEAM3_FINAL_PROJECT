@@ -174,4 +174,14 @@ public class Controller {
                 .collect(Collectors.toList());
         return userDtos;
     }
+
+    @GetMapping("/user/{email}")
+    @ResponseBody
+    public UserDto getUserByEmail(@PathVariable(name = "email") String email){
+        System.out.println(userService.getUserByEmail(email));
+        return modelMapper.map(userService.getUserByEmail(email).get(), UserDto.class);
+
+    }
+
+
 }
