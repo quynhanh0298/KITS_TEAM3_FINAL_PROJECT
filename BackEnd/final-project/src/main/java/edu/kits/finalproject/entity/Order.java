@@ -34,9 +34,8 @@ public class Order implements Serializable {
     @Column
     private String courses;
 
-    @ManyToOne
-    @JoinColumn(name = "user_email", referencedColumnName = "email")
-    private User user;
+    @Column(columnDefinition = "nvarchar(100) not null")
+    private String userMail;
 
 
 

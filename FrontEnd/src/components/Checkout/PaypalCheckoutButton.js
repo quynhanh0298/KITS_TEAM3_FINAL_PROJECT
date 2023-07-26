@@ -37,7 +37,7 @@ const PaypalCheckoutButton = (props) => {
       
       
 
-    const handleApprove = (orderID, time, amount, status) =>{
+    const handleApprove = (orderID, time, amount, status,user) =>{
         const orderSendToDb = {
              orderId : orderID,
              orderDate: time,
@@ -131,7 +131,7 @@ const PaypalCheckoutButton = (props) => {
             onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log("order" , order);
-                handleApprove(order.id, order.create_time, cart.price, order.status)
+                handleApprove(order.id, order.create_time, cart.price, order.status, user)
                 handleClearCart()
             }}
 

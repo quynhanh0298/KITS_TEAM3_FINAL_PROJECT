@@ -141,7 +141,7 @@ public class Controller {
     public ResponseEntity<ResponseDto> addOrder(@RequestBody Order order){
         String message = "";
         try{
-            orderService.store(order.getOrderId(), order.getOrderDate(), order.getAmount(), order.getStatus(), order.getCourses(), order.getUser().getEmail());
+            orderService.store(order.getOrderId(), order.getOrderDate(), order.getAmount(), order.getStatus(), order.getCourses(), order.getUserMail());
             message = "Uploaded order successfully: ";
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
         }catch (Exception e){
@@ -174,4 +174,14 @@ public class Controller {
                 .collect(Collectors.toList());
         return userDtos;
     }
+
+    @GetMapping("/user/{email}")
+    @ResponseBody
+    public UserDto getUserByEmail(@PathVariable(name = "email") String email){
+        System.out.println(userService.getUserByEmail(email));
+        return modelMapper.map(userService.getUserByEmail(email).get(), UserDto.class);
+
+    }
+
+
 }
