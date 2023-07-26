@@ -64,8 +64,9 @@ export const MyClassesCard = ({ newColor, name, quantity, path }) => {
     <NavLink
       to={path}
       style={
-        location.pathname === `/mainboard/${orderId}/video-player/${id}`
-          ? { justifyContent: 'center' }
+        location.pathname === `/mainboard/${orderId}/video-player/${id}` ||
+        location.pathname === `/mainboard/${orderId}/video-call`
+          ? { justifyContent: "center" }
           : null
       }
     >
@@ -73,11 +74,14 @@ export const MyClassesCard = ({ newColor, name, quantity, path }) => {
         <div className="left">
           <CircleIcon fill={newColor} />
           {!isTabletOrMobile &&
-            location.pathname !==
-            `/mainboard/${orderId}/video-player/${id}` && <>{name}</>}
+            location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
+            location.pathname !== `/mainboard/${orderId}/video-call` && (
+              <>{name}</>
+            )}
         </div>
         {!isTabletOrMobile &&
-          location.pathname !== `/mainboard/${orderId}/video-player/${id}` && (
+          location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
+          location.pathname !== `/mainboard/${orderId}/video-call` && (
             <div className="right-card">{quantity}</div>
           )}
       </DivStyled>

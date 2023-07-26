@@ -10,6 +10,8 @@ import KitsLogo from "assets/images/kits-logo.svg";
 import userIcon from "assets/icons/user-regular.svg";
 import searchIcon from "assets/icons/magnifying-glass-solid.svg";
 import cartIcon from "assets/icons/cart-shopping-solid.svg";
+import { useSelector } from "react-redux"
+import { selectCurrentUser } from "features/auth/authSlice";
 const HeaderStyled = styled.div`
   height: 167px;
   display: flex;
@@ -40,43 +42,85 @@ const HeaderStyled = styled.div`
 `;
 const Header = () => {
   const navigate = useNavigate();
+  const user = useSelector(selectCurrentUser)
+  const token = localStorage.getItem('token')
+  const cart = useSelector((state) => state.cart);
+
+  const cartData = JSON.parse(localStorage.getItem('cartItem')) || [];
+  const numberOfItemsInCart = cartData.length;
+
   const goHome = () => {
-    navigate("");
+    navigate("/home");
   };
   const goCart = () => {
     navigate("/cart");
   };
+  const goCourse = () => {
+    navigate("/our-courses");
+  }
+
+  const logout = () => {
+    // Clear the token from local storage to log out the user
+    localStorage.removeItem('token');
+    // Optionally, you can redirect the user to the login page or any other page
+    // window.location.href = '/login';
+  };
+
+  const handleLogout = () => {
+    logout(); // Call the logout function to log out the user
+    window.location.reload();
+  };
+
+  const handleLogin = () => {
+    navigate("/login-page")
+
+  }
   return (
     <HeaderStyled>
       <div className="left-header" onClick={goHome}>
         <img src={KitsLogo} style={{ width: "153px", height: "56px" }} />
+        { token ?
+        (<p style={{ cursor: "pointer" }} >
+          Welcome, {user}
+        </p>) : (
+          <></>
+        )
+        }
       </div>
       <div className="right-header">
         <p style={{ cursor: "pointer" }} onClick={goHome}>
           Home
         </p>
+        <p style={{ cursor: "pointer" }} onClick={goCourse}>
+          Course
+        </p>
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/pricing")}>
           Pricing
-        </p>
-        <p
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/log-in-student")}
-        >
-          Login
-        </p>
-        <p style={{ cursor: "pointer" }} onClick={() => navigate("/sign-up")}>
-          Sign Up
         </p>
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>
           About us
         </p>
+        { token ?
+        (<p style={{ cursor: "pointer" }} onClick={handleLogout}>
+          LogOut
+        </p>) :
+        (
+          <p style={{ cursor: "pointer" }} onClick={handleLogin}>
+          Login
+        </p>
+        )
+        } 
+        
         <img src={userIcon} style={{ width: "20px", cursor: "pointer" }} />
         <img src={searchIcon} style={{ width: "20px", cursor: "pointer" }} />
+        <div>
         <img
           src={cartIcon}
           style={{ width: "20px", cursor: "pointer" }}
           onClick={goCart}
         />
+        <span>{numberOfItemsInCart}</span>
+        </div>
       </div>
     </HeaderStyled>
   );
