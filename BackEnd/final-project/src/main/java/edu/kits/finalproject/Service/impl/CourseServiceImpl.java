@@ -66,4 +66,15 @@ public class CourseServiceImpl implements CourseService {
     public Optional<Course> findByCategoryId(Long categoryId) {
         return coursePepository.findByCategoryId(categoryId);
     }
+
+    @Override
+    public Course update(Long id, Course course) {
+        Course coursefromDB = coursePepository.findCourseByCourseId(id).get();
+        System.out.println("coursefromDB: " + coursefromDB);
+        System.out.println("course.getUserMails(): " + course.getUserMails());
+        if (coursefromDB == null)
+            return null;
+        coursefromDB.setUserMails(course.getUserMails());
+        return coursePepository.save(coursefromDB);
+    }
 }

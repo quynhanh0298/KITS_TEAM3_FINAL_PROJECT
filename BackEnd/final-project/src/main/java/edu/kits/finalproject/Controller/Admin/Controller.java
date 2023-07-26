@@ -1,14 +1,12 @@
 package edu.kits.finalproject.Controller.Admin;
 
+import edu.kits.finalproject.Service.*;
 import edu.kits.finalproject.entity.Course;
 import edu.kits.finalproject.entity.Order;
 import edu.kits.finalproject.entity.User;
 import edu.kits.finalproject.Model.*;
 import edu.kits.finalproject.Repository.UserRepository;
-import edu.kits.finalproject.Service.CategoryService;
-import edu.kits.finalproject.Service.CourseService;
-import edu.kits.finalproject.Service.OrderService;
-import edu.kits.finalproject.Service.UserService;
+import edu.kits.finalproject.entity.UserMail;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +35,9 @@ public class Controller {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private UserMailService userMailService;
 
     @GetMapping("/courses")
     @ResponseBody
@@ -183,16 +184,19 @@ public class Controller {
     }
 
     @PostMapping("/courses/{id}/{email}")
-    @ResponseBody
-    public UserDto AddUserMailToCourse(@PathVariable("id") String id, @PathVariable("email") String email){
+    public ResponseEntity<ResponseDto> AddUserMailToCourse(@PathVariable("id") String id, @PathVariable("email") String email){
+        long courseId = Long.parseLong(id);
         System.out.println(email);
-        System.out.println(Long.parseLong(id));
-        System.out.println(courseService.getCourseById(Long.parseLong(id)));
-//        CourseDto courseDto = modelMapper.map(courseService.getCourseById(Long.parseLong(id)).get(), CourseDto.class);
-//        System.out.println(courseDto);
-        return modelMapper.map(userService.getUserByEmail(email).get(), UserDto.class);
+        System.out.println(courseId);
+
+        try{
+            Course course = courseService.getCourseById(Long.parseLong(id)).get();
+            UserMail userMail = userMailService.store(email, course);
+//        courseService.update(courseId, course);
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("success"));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto("fail"));
+        }
     }
-
-
 
 }

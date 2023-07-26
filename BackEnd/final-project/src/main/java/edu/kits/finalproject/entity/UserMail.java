@@ -19,7 +19,15 @@ public class UserMail {
     private String mail;
 
     @ManyToOne
-    @MapsId("courseId")
     @JoinColumn(name = "course_id")
-    Course course;
+    private Course course;
+
+    public UserMail(String mail) {
+        this.mail = mail;
+    }
+
+    public UserMail(String mail, Course course) {
+        this.mail = mail;
+        this.course = course;
+    }
 }

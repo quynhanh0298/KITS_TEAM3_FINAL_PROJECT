@@ -22,4 +22,6 @@ public interface CourseService{
     Course save(Course course);
 
     Optional<Course> findByCategoryId(Long categoryId);
+
+    Course update(Long id, Course course);
 }
