@@ -37,14 +37,15 @@ const PaypalCheckoutButton = (props) => {
       
       
 
-    const handleApprove = (orderID, time, amount, status) =>{
+    const handleApprove = (orderID, time, amount, status,mail) =>{
+        console.log("Mail to db : " + mail);
         const orderSendToDb = {
              orderId : orderID,
              orderDate: time,
              amount:  amount,
              status: status,
              courses: courseAddToDb,
-             userMail: user
+             user: mail
 
           };
           console.log(orderSendToDb)
@@ -131,7 +132,7 @@ const PaypalCheckoutButton = (props) => {
             onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log("order" , order);
-                handleApprove(order.id, order.create_time, cart.price, order.status)
+                handleApprove(order.id, order.create_time, cart.price, order.status,user)
                 handleClearCart()
             }}
 
