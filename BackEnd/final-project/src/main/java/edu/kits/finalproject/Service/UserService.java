@@ -9,6 +9,8 @@ public interface UserService {
     User getUserById(Long id);
 
     Optional<User> findById(Long id);
+    Optional<User> findByUserMail(String mail);
+
 
     User save(User user);
 }
