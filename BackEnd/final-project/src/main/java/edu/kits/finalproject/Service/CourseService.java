@@ -11,7 +11,7 @@ public interface CourseService{
 
     List<Course> getAllCourses();
 
-    Course getCourseById(Long id);
+    Optional<Course> getCourseById(Long id);
 
 
     Course store(String name, double price, String description, String thumbnail, double rating, int enroll, String listOfVideo) throws IOException;

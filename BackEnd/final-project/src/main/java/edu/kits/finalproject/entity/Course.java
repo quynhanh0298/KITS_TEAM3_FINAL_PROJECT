@@ -36,9 +36,6 @@ public class Course implements Serializable {
     @Column(columnDefinition = "nvarchar(500)")
     private String thumbnail;
 
-
-
-
     @Column(columnDefinition = "nvarchar(500)")
     private String listOfVideo;
 
@@ -58,6 +55,9 @@ public class Course implements Serializable {
 
     @OneToMany(mappedBy = "course")
     Set<CourseDetail> courseDetails;
+
+    @OneToMany(mappedBy = "course")
+    Set<UserMail> userMails;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

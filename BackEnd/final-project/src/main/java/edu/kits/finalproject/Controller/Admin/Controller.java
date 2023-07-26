@@ -123,14 +123,14 @@ public class Controller {
         }
     }
 
-    @GetMapping("/get-tutor-from-course/{id}")
-    @ResponseBody
-    public UserDto getUserOwnTheCourse(@PathVariable(name = "id") Long id) {
-        Course course = courseService.getCourseById(id);
-        List<User> users = course.getUsers();
-        User user = users.get(0);
-        return modelMapper.map(user, UserDto.class);
-    }
+//    @GetMapping("/get-tutor-from-course/{id}")
+//    @ResponseBody
+//    public UserDto getUserOwnTheCourse(@PathVariable(name = "id") Long id) {
+//        Course course = courseService.getCourseById(id);
+//        List<User> users = course.getUsers();
+//        User user = users.get(0);
+//        return modelMapper.map(user, UserDto.class);
+//    }
 
 
 
@@ -180,8 +180,19 @@ public class Controller {
     public UserDto getUserByEmail(@PathVariable(name = "email") String email){
         System.out.println(userService.getUserByEmail(email));
         return modelMapper.map(userService.getUserByEmail(email).get(), UserDto.class);
-
     }
+
+    @PostMapping("/courses/{id}/{email}")
+    @ResponseBody
+    public UserDto AddUserMailToCourse(@PathVariable("id") String id, @PathVariable("email") String email){
+        System.out.println(email);
+        System.out.println(Long.parseLong(id));
+        System.out.println(courseService.getCourseById(Long.parseLong(id)));
+//        CourseDto courseDto = modelMapper.map(courseService.getCourseById(Long.parseLong(id)).get(), CourseDto.class);
+//        System.out.println(courseDto);
+        return modelMapper.map(userService.getUserByEmail(email).get(), UserDto.class);
+    }
+
 
 
 }
