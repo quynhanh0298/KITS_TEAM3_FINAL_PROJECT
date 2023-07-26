@@ -48,45 +48,43 @@ function App() {
           <ToastContainer />
           <Routes>
             {/* public routes */}
-            
-              <Route path="/register" element={<Register />} />
-              <Route path="/login-page" element={<LoginPage />} />
+
+            <Route path="/register" element={<Register />} />
+            <Route path="/login-page" element={<LoginPage />} />
 
             {/* protected routes */}
-              <Route path="/" element={<Layout />}>
-                <Route path="home" element={<Home />} />
-                <Route path="about" element={<AboutPage />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="pricing" element={<PricePage />} />
-                <Route path="our-courses" element={<OurCourses />} />
-                <Route path="coursedetails/:id" element={<CourseDetail />} />
-                <Route
-                  path="coursedetails/:orderId/:id"
-                  element={<CourseDetail />}
-                />
-                  <Route path="cart" element={<Cart />} />
-                <Route element={<RequireAuth />}>
-
-                  <Route path="checkout" element={<CheckoutPage />} />
-                </Route>
-              </Route>
+            <Route path="/" element={<Layout />}>
+              <Route path="home" element={<Home />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="pricing" element={<PricePage />} />
+              <Route path="our-courses" element={<OurCourses />} />
+              <Route path="coursedetails/:id" element={<CourseDetail />} />
+              <Route
+                path="coursedetails/:orderId/:id"
+                element={<CourseDetail />}
+              />
+              <Route path="cart" element={<Cart />} />
               <Route element={<RequireAuth />}>
-
-                <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
-                  <Route path="" element={<DashboardPage />} />
-                  <Route path="messages/:orderId" element={<MessagesPage />} />
-                  <Route path="sessions/:orderId" element={<SessionsPage />} />
-                  <Route path="my-courses/:orderId" element={<CoursesPage />} />
-                  <Route
-                    path="hour-purchase-history/:orderId"
-                    element={<HourOfPurchaseHistoryPage />}
-                  />
-                  <Route path="my-tutors/:orderId" element={<MyTutorsPage />} />
-                  <Route path="my-classes/:orderId" element={<MyClassesPage />} />
-                  <Route path="video-player/:id" element={<VideoPlayerPage />} />
-                  <Route path="all-classes/:orderId" element={<AllClasses />} />
-                  <Route path="video-call" element={<VideoCallPage />} />
-                </Route>
+                <Route path="checkout" element={<CheckoutPage />} />
+              </Route>
+            </Route>
+            <Route element={<RequireAuth />}>
+              <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
+                <Route path="" element={<DashboardPage />} />
+                <Route path="messages/:orderId" element={<MessagesPage />} />
+                <Route path="sessions/:orderId" element={<SessionsPage />} />
+                <Route path="my-courses/:orderId" element={<CoursesPage />} />
+                <Route
+                  path="hour-purchase-history/:orderId"
+                  element={<HourOfPurchaseHistoryPage />}
+                />
+                <Route path="my-tutors/:orderId" element={<MyTutorsPage />} />
+                <Route path="my-classes/:orderId" element={<MyClassesPage />} />
+                <Route path="video-player/:id" element={<VideoPlayerPage />} />
+                <Route path="all-classes/:orderId" element={<AllClasses />} />
+                <Route path="video-call" element={<VideoCallPage />} />
+              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

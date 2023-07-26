@@ -52,6 +52,7 @@ export const DashboardLayout = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1620px)",
   });
+  const mainboardUrl = `/mainboard/${orderId}`;
   return (
     <Container
       style={
@@ -89,7 +90,7 @@ export const DashboardLayout = () => {
           </>
         )}
         {isTabletOrMobile &&
-          location.pathname !== `/mainboard/${orderId}` &&
+          location.pathname !== mainboardUrl &&
           location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
           location.pathname !== `/mainboard/${orderId}/video-call` && (
             <>
@@ -119,7 +120,7 @@ export const DashboardLayout = () => {
             </SideBarStyled>
           )}{" "}
         {isDesktopOrLaptop &&
-          location.pathname !== `/mainboard/${orderId}` &&
+          location.pathname !== mainboardUrl &&
           location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
           location.pathname !== `/mainboard/${orderId}/video-call` && (
             <>
@@ -129,31 +130,30 @@ export const DashboardLayout = () => {
               </div>
             </>
           )}
-        {location.pathname === `/mainboard/${orderId}` &&
-          location.pathname === `/mainboard/${orderId}/video-call` && (
-            <>
-              {isDesktopOrLaptop && (
-                <>
-                  <div className="right" style={{ width: "50%" }}>
-                    <DashboardHeader />
-                    <Outlet />
-                  </div>
-                  <ProfileColumn />
-                </>
-              )}
-              {isTabletOrMobile && (
-                <>
-                  <SideBarStyled style={{ width: "25%" }}>
-                    <Sidebar />
-                  </SideBarStyled>{" "}
-                  <div className="right">
-                    <DashboardHeader />
-                    <Outlet />
-                  </div>
-                </>
-              )}
-            </>
-          )}
+        {location.pathname === `/mainboard/${orderId}` && (
+          <>
+            {isDesktopOrLaptop && (
+              <>
+                <div className="right" style={{ width: "50%" }}>
+                  <DashboardHeader />
+                  <Outlet />
+                </div>
+                <ProfileColumn />
+              </>
+            )}
+            {isTabletOrMobile && (
+              <>
+                <SideBarStyled style={{ width: "25%" }}>
+                  <Sidebar />
+                </SideBarStyled>{" "}
+                <div className="right">
+                  <DashboardHeader />
+                  <Outlet />
+                </div>
+              </>
+            )}
+          </>
+        )}
       </StyleLayout>
     </Container>
   );
