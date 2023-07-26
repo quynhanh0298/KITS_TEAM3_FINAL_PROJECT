@@ -85,6 +85,15 @@ export const MyCoursesContents = () => {
       .then((result) => {
         setCourses(result);
       });
+    axios
+      .get(`http://localhost:8080/admin/user/${orderId}`)
+      .then((response) => {
+        setOrders(response.data);
+        setCharAray(response.data.courses.replace(/,/g, ""));
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   const selectedCourses = courses.filter((course) =>
@@ -114,9 +123,9 @@ export const MyCoursesContents = () => {
           Filter
         </Button>
       </div>
-      {/* <div>
-        <h3>ORDER ID: {orderId}</h3>
-      </div> */}
+      <div>
+        <h3>User ID: {orderId}</h3>
+      </div>
       <div></div>
       <div className="cards-wrapper">
         {selectedCourses.map((course) => (

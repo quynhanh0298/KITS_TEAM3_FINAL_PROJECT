@@ -17,13 +17,24 @@ const PaypalCheckoutButton = (props) => {
 
     const navigate = useNavigate();
 
+    const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/admin/courses")
+      .then((res) => res.json())
+      .then((result) => {
+        setCourses(result);
+      });
+  }, []);
+
     useEffect(() => {
         dispatch(getTotals());
     }, [liveCart, dispatch]);
 
     let courseAddToDb = ""
-
+    let listCourseToAddEmail = []
     liveCart.cartItem?.map(item => {
+        listCourseToAddEmail.push(item.courseId)
         courseAddToDb += item.courseId
         courseAddToDb += ","
 
@@ -34,7 +45,16 @@ const PaypalCheckoutButton = (props) => {
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
     
-      
+    const addEmailToCourse = async (email) => {
+        for(let i=0 ; i<listCourseToAddEmail.length;i++){
+        try {
+          const response = await axios.post(`/courses/${listCourseToAddEmail[i]}/add-email`, email);
+          return response.data;
+        } catch (error) {
+          console.error('Error adding email to course:', error);
+          throw error;
+        }
+      }};
       
 
     const handleApprove = (orderID, time, amount, status,user) =>{
@@ -72,7 +92,7 @@ const PaypalCheckoutButton = (props) => {
         //if response is error
         //alert("Your payment was processed successfully. However, we are unable to fulfill your purchase. Please contact us for assistance")
             
-        const url = `/mainboard/${orderID}`;
+        const url = "/home";
 
         // Navigate to the new page
         navigate(url);
@@ -133,6 +153,7 @@ const PaypalCheckoutButton = (props) => {
                 console.log("order" , order);
                 handleApprove(order.id, order.create_time, cart.price, order.status, user)
                 handleClearCart()
+                addEmailToCourse(user)
             }}
 
             onCancel={() => {

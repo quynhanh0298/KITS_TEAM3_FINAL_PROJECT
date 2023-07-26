@@ -12,6 +12,8 @@ import searchIcon from "assets/icons/magnifying-glass-solid.svg";
 import cartIcon from "assets/icons/cart-shopping-solid.svg";
 import { useSelector } from "react-redux"
 import { selectCurrentUser } from "features/auth/authSlice";
+import { useEffect, useState } from "react";
+
 const HeaderStyled = styled.div`
   height: 167px;
   display: flex;
@@ -46,8 +48,12 @@ const Header = () => {
   const token = localStorage.getItem('token')
   const cart = useSelector((state) => state.cart);
 
+  const [userObject, setUserObject] = useState([]);
+
+
   const cartData = JSON.parse(localStorage.getItem('cartItem')) || [];
   const numberOfItemsInCart = cartData.length;
+  
 
   const goHome = () => {
     navigate("/home");
@@ -75,6 +81,14 @@ const Header = () => {
     navigate("/login-page")
 
   }
+
+  const handleDashBoard = (user) => {
+    const orderId = user
+    console.log(user)
+    console.log(orderId)
+    navigate(`/mainboard/${orderId}`)
+
+  }
   return (
     <HeaderStyled>
       <div className="left-header" onClick={goHome}>
@@ -91,6 +105,15 @@ const Header = () => {
         <p style={{ cursor: "pointer" }} onClick={goHome}>
           Home
         </p>
+        { token ?
+        (
+        <p style={{ cursor: "pointer" }} onClick={() => handleDashBoard(user)}>
+          DashBoard
+        </p>) :
+        (<></>
+        )
+        } 
+
         <p style={{ cursor: "pointer" }} onClick={goCourse}>
           Course
         </p>
@@ -101,7 +124,8 @@ const Header = () => {
           About us
         </p>
         { token ?
-        (<p style={{ cursor: "pointer" }} onClick={handleLogout}>
+        (
+        <p style={{ cursor: "pointer" }} onClick={handleLogout}>
           LogOut
         </p>) :
         (
