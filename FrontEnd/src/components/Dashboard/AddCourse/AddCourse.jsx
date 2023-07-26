@@ -53,25 +53,6 @@ export const AddCourse = () => {
             <AddForm/>
             {/* {addCourseForm} */}
         </div>
-        <div
-            // className="modal show"
-            // style={{ display: 'block', position: 'initial' }}
-        >
-            <Modal.Dialog>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
-                </Modal.Header>
-
-                <Modal.Body>
-                    <p>Modal body text goes here.</p>
-                </Modal.Body>
-
-                <Modal.Footer>
-                    <ButtonBs variant="secondary">Close</ButtonBs>
-                    <ButtonBs variant="primary">Save changes</ButtonBs>
-                </Modal.Footer>
-            </Modal.Dialog>
-        </div>
 
     </AddCourseStyled>
 }
