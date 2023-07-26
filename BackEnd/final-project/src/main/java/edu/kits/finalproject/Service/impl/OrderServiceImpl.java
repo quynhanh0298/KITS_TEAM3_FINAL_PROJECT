@@ -22,9 +22,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order store(String orderId, Date orderDate, double amount, String status, String courses, String userMail) throws IOException {
-        User user = userRepository.findByEmail(userMail).orElse(null);
 
-        Order order = new Order(orderId, orderDate, amount, status, courses, user);
+        Order order = new Order(orderId, orderDate, amount, status, courses, userMail);
         return orderRepository.save(order);
     }
 
