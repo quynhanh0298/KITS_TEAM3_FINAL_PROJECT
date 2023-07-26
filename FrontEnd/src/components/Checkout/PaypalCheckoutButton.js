@@ -5,11 +5,13 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import {  clearCart,getTotals } from 'features/cartSlice'
+import { selectCurrentUser } from "features/auth/authSlice";
 
 
 
 
 const PaypalCheckoutButton = (props) => {
+    const user = useSelector(selectCurrentUser)
     const liveCart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
@@ -35,13 +37,14 @@ const PaypalCheckoutButton = (props) => {
       
       
 
-    const handleApprove = (orderID, time, amount, status) =>{
+    const handleApprove = (orderID, time, amount, status,user) =>{
         const orderSendToDb = {
              orderId : orderID,
              orderDate: time,
              amount:  amount,
              status: status,
-             courses: courseAddToDb
+             courses: courseAddToDb,
+             userMail: user
 
           };
           console.log(orderSendToDb)
@@ -128,7 +131,7 @@ const PaypalCheckoutButton = (props) => {
             onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log("order" , order);
-                handleApprove(order.id, order.create_time, cart.price, order.status)
+                handleApprove(order.id, order.create_time, cart.price, order.status, user)
                 handleClearCart()
             }}
 

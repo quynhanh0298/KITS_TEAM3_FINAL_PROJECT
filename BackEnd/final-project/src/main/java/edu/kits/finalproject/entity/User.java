@@ -37,6 +37,9 @@ public class User implements Serializable, UserDetails {
     @OneToMany(mappedBy = "user")
     Set<CourseDetail> courseDetails;
 
+//    @OneToMany(mappedBy = "user")
+//    private List<Order> orders;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();

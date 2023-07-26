@@ -9,8 +9,14 @@ import { Link } from "react-router-dom";
 import { removeFromCart, clearCart, getTotals } from "features/cartSlice";
 
 const CartContent = () => {
-  const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart);
+    
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getTotals());
+    }, [cart, dispatch]);
 
   useEffect(() => {
     dispatch(getTotals());

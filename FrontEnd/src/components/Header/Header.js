@@ -6,6 +6,8 @@ import KitsLogo from "assets/images/kits-logo.svg";
 import userIcon from "assets/icons/user-regular.svg";
 import searchIcon from "assets/icons/magnifying-glass-solid.svg";
 import cartIcon from "assets/icons/cart-shopping-solid.svg";
+import { useSelector } from "react-redux"
+import { selectCurrentUser } from "features/auth/authSlice";
 const HeaderStyled = styled.div`
   height: 167px;
   display: flex;
@@ -36,12 +38,22 @@ const HeaderStyled = styled.div`
 `;
 const Header = () => {
   const navigate = useNavigate();
+  const user = useSelector(selectCurrentUser)
+  const token = localStorage.getItem('token')
+  const cart = useSelector((state) => state.cart);
+
+  const cartData = JSON.parse(localStorage.getItem('cartItem')) || [];
+  const numberOfItemsInCart = cartData.length;
+
   const goHome = () => {
     navigate("/home");
   };
   const goCart = () => {
     navigate("/cart");
   };
+  const goCourse = () => {
+    navigate("/our-courses");
+  }
 
   const logout = () => {
     // Clear the token from local storage to log out the user
@@ -52,35 +64,60 @@ const Header = () => {
 
   const handleLogout = () => {
     logout(); // Call the logout function to log out the user
-    navigate("/login-page")
+    window.location.reload();
   };
+
+  const handleLogin = () => {
+    navigate("/login-page")
+
+  }
   return (
     <HeaderStyled>
       <div className="left-header" onClick={goHome}>
-        <img src={KitsLogo} alt="" style={{ width: "153px", height: "56px" }} />
+        <img src={KitsLogo} style={{ width: "153px", height: "56px" }} />
+        { token ?
+        (<p style={{ cursor: "pointer" }} >
+          Welcome, {user}
+        </p>) : (
+          <></>
+        )
+        }
       </div>
       <div className="right-header">
         <p style={{ cursor: "pointer" }} onClick={goHome}>
           Home
         </p>
+        <p style={{ cursor: "pointer" }} onClick={goCourse}>
+          Course
+        </p>
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/pricing")}>
           Pricing
-        </p>
-        
-        <p style={{ cursor: "pointer" }} onClick={handleLogout}>
-          LogOut
         </p>
         <p style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>
           About us
         </p>
-        <img src={userIcon} alt="" style={{ width: "20px", cursor: "pointer" }} />
-        <img src={searchIcon} alt="" style={{ width: "20px", cursor: "pointer" }} />
+        { token ?
+        (<p style={{ cursor: "pointer" }} onClick={handleLogout}>
+          LogOut
+        </p>) :
+        (
+          <p style={{ cursor: "pointer" }} onClick={handleLogin}>
+          Login
+        </p>
+        )
+        } 
+        
+        <img src={userIcon} style={{ width: "20px", cursor: "pointer" }} />
+        <img src={searchIcon} style={{ width: "20px", cursor: "pointer" }} />
+        <div>
         <img
           src={cartIcon}
           alt=""
           style={{ width: "20px", cursor: "pointer" }}
           onClick={goCart}
         />
+        <span>{numberOfItemsInCart}</span>
+        </div>
       </div>
     </HeaderStyled>
   );

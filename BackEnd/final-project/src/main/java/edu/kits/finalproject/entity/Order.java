@@ -17,6 +17,8 @@ public class Order implements Serializable {
     @Id
     private String orderId;
 
+
+
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
@@ -31,6 +33,11 @@ public class Order implements Serializable {
 //    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @Column
     private String courses;
+
+    @Column(columnDefinition = "nvarchar(100) not null")
+    private String userMail;
+
+
 
     //    @ManyToOne
 //    @JoinColumn(name = "customerId")
