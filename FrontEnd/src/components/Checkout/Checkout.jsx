@@ -57,9 +57,9 @@ const Checkout = () => {
               <div className="cart-item" key={item.courseId}>
                 <div className="cart-item-info">
                   <img src={item.thumbnail} alt={item.name} />
-                  <div>
+                  <div className="descrip">
                     <h3>{item.name}</h3>
-                    <p>{item.desciption}</p>
+                    <p className="desciption" >{item.desciption}</p>
 
                     <div
                       className="remove-button"
