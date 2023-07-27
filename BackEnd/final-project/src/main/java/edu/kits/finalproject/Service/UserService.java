@@ -13,4 +13,6 @@ public interface UserService {
     Optional<User> findById(Long id);
 
     User save(User user);
+
+    List<User> getAllTutor();
 }
