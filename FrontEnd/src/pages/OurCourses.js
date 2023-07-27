@@ -29,9 +29,6 @@ const OurCourses = () => {
   const [currentUser, setCurrentUser] = useState([]);
   const [userCourses, setUserCourses] = useState([]);
 
-  const user = localStorage.getItem("user");
-  console.log(user);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -61,13 +58,16 @@ const OurCourses = () => {
   //       });
   //   }, []);
 
-  useEffect(() => {
-    fetch("http://localhost:8080/admin/courses")
-      .then((res) => res.json())
-      .then((data) => {
-        setCourses(data);
-      });
-  }, []);
+  //   useEffect(() => {
+  //     console.log(user)
+  //     axios.get(`http://localhost:8080/admin/user/${user}`)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setCurrentUser(data);
+  //         setUserCourses(data.courses);
+
+  //       });
+  //   }, []);
 
   const navi = useNavigate();
 
@@ -98,7 +98,7 @@ const OurCourses = () => {
 
                 <div className="tutorInfo">
                   <div>
-                    <img src={avatar1} alt="" />
+                    <span>Tutor: {product.tutor}</span>
                   </div>
                 </div>
                 <p>{product.desciption}</p>

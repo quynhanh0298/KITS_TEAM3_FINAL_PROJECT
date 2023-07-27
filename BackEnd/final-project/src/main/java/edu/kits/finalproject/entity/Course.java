@@ -42,6 +42,10 @@ public class Course implements Serializable {
     @Column(columnDefinition = "nvarchar(500)")
     private String listOfVideo;
 
+    @Column(columnDefinition = "nvarchar(500)")
+    private String tutor;
+
+
     @ElementCollection
     @CollectionTable(name = "course_userMail", joinColumns = @JoinColumn(name = "course_id"))
     @Column(name = "userMail")
