@@ -28,6 +28,7 @@ public class CourseDto implements Serializable {
     private String listOfVideo;
     private List<String> userMail;
     private List<User> users ;
+    private String tutor;
 
 
     public void addUserDto(UserDto userDto){

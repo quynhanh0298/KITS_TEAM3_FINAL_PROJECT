@@ -1,7 +1,7 @@
 import React from "react";
 import Help from "../components/Help/Help";
 import { useNavigate } from "react-router-dom";
-import avatar1 from "assets/images/avatars/avatar1.svg";
+import avatar1 from "assets/images/avatars/avatar1.svg"
 
 import "../pages/OurCourse.css";
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,16 +13,17 @@ import { selectCurrentUser } from "features/auth/authSlice";
 
 
 const OurCoursesStyled = styled.div`
-  .product {
-  }
-  .tutorInfo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 8px;
-    margin-left: 18px;
-  }
-`;
+    .product{
+    }
+    .tutorInfo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 8px;
+        margin-left: 18px;
+    }
+`
+
 
 const OurCourses = () => {
     const [tutor, setTutor] = useState([]);
@@ -35,7 +36,6 @@ const OurCourses = () => {
     console.log(user)
 
 
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,7 +43,6 @@ const OurCourses = () => {
     dispatch(addToCart(product));
     navigate("/cart");
   };
-
 
     // console.log(data);
 
@@ -71,15 +70,6 @@ const OurCourses = () => {
 
 
 
-  useEffect(() => {
-    fetch("http://localhost:8080/admin/courses")
-      .then((res) => res.json())
-      .then((data) => {
-        setCourses(data);
-      });
-  }, []);
-
-
     const navi = useNavigate();
 
     // const userCourseIds = userCourses.map(course => course.courseId);
@@ -104,7 +94,7 @@ const OurCourses = () => {
 
                                     <div className="tutorInfo">
                                         <div>
-                                            <img src={avatar1} alt=""/>
+                                            <span>Tutor: {product.tutor}</span>
                                         </div>
                                     </div>
                                     <p>{product.desciption}</p>
@@ -127,9 +117,7 @@ const OurCourses = () => {
                 </OurCoursesStyled>
            
         </div>
-      </OurCoursesStyled>
-    </div>
-  );
+    );
 };
 
 export default OurCourses;
