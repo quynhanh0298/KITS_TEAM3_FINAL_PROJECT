@@ -10,6 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,9 +38,6 @@ public class Course implements Serializable {
 
     @Column(columnDefinition = "nvarchar(500)")
     private String thumbnail;
-
-
-
 
     @Column(columnDefinition = "nvarchar(500)")
     private String listOfVideo;
@@ -72,6 +70,9 @@ public class Course implements Serializable {
     @OneToMany(mappedBy = "course")
     Set<CourseDetail> courseDetails;
 
+    @OneToMany(mappedBy = "course")
+    Set<UserMail> userMails;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -93,5 +94,21 @@ public class Course implements Serializable {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public void addUserMail(UserMail tempUserMail){
+        if(userMails == null){
+            userMails = new HashSet<>();
+        }
+        userMails.add(tempUserMail);
+    }
+
+    public Set<UserMail> getUserMails() {
+        return userMails;
+    }
+
+    public void setUserMails(Set<UserMail> userMails) {
+        this.userMails = new HashSet<>(userMails);
+        System.out.println("setUserMails: " + userMails);
     }
 }
