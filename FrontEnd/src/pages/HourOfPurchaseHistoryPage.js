@@ -1,4 +1,4 @@
 const HourOfPurchaseHistoryPage = () => {
-  return <h1>HourOfPurchaseHistoryPage</h1>;
+  return <h1>Comming Soon...</h1>;
 };
 export default HourOfPurchaseHistoryPage;

@@ -220,6 +220,11 @@ export const Sidebar = (props) => {
                 path={`/mainboard/${orderId}/sessions/${orderId}`}
                 icon={<SessionsIcon />}
               />
+              <NavItem
+                text="All Courses"
+                path={`/mainboard/${orderId}/all-courses/${orderId}`}
+                icon={<SessionsIcon />}
+              />
               <NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
               <NavItem
                 text="Hour purchase history"
@@ -229,6 +234,11 @@ export const Sidebar = (props) => {
               <NavItem
                 text="My tutors"
                 path={`/mainboard/${orderId}/my-tutors/${orderId}`}
+                icon={<MyTutorsIcon />}
+              />
+              <NavItem
+                text="Recent tutors"
+                path={`/mainboard/${orderId}/recent-tutors/${orderId}`}
                 icon={<MyTutorsIcon />}
               />
               <NavItem
