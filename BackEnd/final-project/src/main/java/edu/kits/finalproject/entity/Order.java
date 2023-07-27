@@ -38,6 +38,21 @@ public class Order implements Serializable {
     private String userMail;
 
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Order(String orderId, Date orderDate, double amount, String status, String courses, String userMail) {
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+        this.amount = amount;
+        this.status = status;
+        this.courses = courses;
+        this.userMail = userMail;
+
+
+    }
+
 
     //    @ManyToOne
 //    @JoinColumn(name = "customerId")

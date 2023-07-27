@@ -45,16 +45,16 @@ const PaypalCheckoutButton = (props) => {
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
     
-    const addEmailToCourse = async (email) => {
-        for(let i=0 ; i<listCourseToAddEmail.length;i++){
-        try {
-          const response = await axios.post(`/courses/${listCourseToAddEmail[i]}/add-email`, email);
-          return response.data;
-        } catch (error) {
-          console.error('Error adding email to course:', error);
-          throw error;
-        }
-      }};
+    // const addEmailToCourse = async (email) => {
+    //     for(let i=0 ; i<listCourseToAddEmail.length;i++){
+    //     try {
+    //       const response = await axios.post(`/courses/${listCourseToAddEmail[i]}/add-email`, email);
+    //       return response.data;
+    //     } catch (error) {
+    //       console.error('Error adding email to course:', error);
+    //       throw error;
+    //     }
+    //   }};
       
 
     const handleApprove = (orderID, time, amount, status,user) =>{
@@ -83,6 +83,8 @@ const PaypalCheckoutButton = (props) => {
                 console.log(orderSendToDb)
             })
             .catch(error => console.log(error))
+
+            
           
         
         //if response is success
@@ -153,7 +155,7 @@ const PaypalCheckoutButton = (props) => {
                 console.log("order" , order);
                 handleApprove(order.id, order.create_time, cart.price, order.status, user)
                 handleClearCart()
-                addEmailToCourse(user)
+                // addEmailToCourse(user)
             }}
 
             onCancel={() => {

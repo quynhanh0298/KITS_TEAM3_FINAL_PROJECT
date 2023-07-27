@@ -1,5 +1,6 @@
 package edu.kits.finalproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -33,12 +35,28 @@ public class User implements Serializable, UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-
     @OneToMany(mappedBy = "user")
     Set<CourseDetail> courseDetails;
 
+
+
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "user_course",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses ;
+
 //    @OneToMany(mappedBy = "user")
 //    private List<Order> orders;
+
+    public List<Course> getCourses() {
+        return courses;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -68,6 +68,8 @@ const Header = () => {
   const logout = () => {
     // Clear the token from local storage to log out the user
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
     // Optionally, you can redirect the user to the login page or any other page
     // window.location.href = '/login';
   };
