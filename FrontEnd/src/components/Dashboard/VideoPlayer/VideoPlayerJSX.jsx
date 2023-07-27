@@ -6,7 +6,7 @@ import ReactPlayer from "react-player";
 
 const PageStyled = styled.div`
   width: 90%;
-  height: 1043px;
+  height: 700px;
   margin: 52px 0px 0px 72px;
   border-radius: 4px;
   gap: 31px;

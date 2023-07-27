@@ -12,9 +12,10 @@ import appStore from "assets/images/download_on_appstore.svg";
 import googlePlay from "assets/images/google-play-1.png";
 const FooterStyled = styled.div`
   background: #0c4ca3;
-  height: 520px;
+  height: fit-content;
   width: calc(100vw - var(--scrollbar-width));
   margin-left: calc(50% - 50vw);
+  padding: 0px 0px 100px 0px;
   .media {
     display: flex;
     gap: 14px;
@@ -71,6 +72,11 @@ const FooterStyled = styled.div`
     left: -56px;
     top: 6px;
   }
+  @media screen and (max-width: 970px) {
+  .left-right-footer{
+    flex-direction: column;
+  }
+}
 `;
 const Footer = () => {
   return (

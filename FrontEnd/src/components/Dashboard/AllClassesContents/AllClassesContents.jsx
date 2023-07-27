@@ -56,8 +56,9 @@ const MyClassPageContentsStyled = styled.div`
   .class-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    gap: 5px;
   }
   @media screen and (max-width: 1212px) {
     .filter-group {

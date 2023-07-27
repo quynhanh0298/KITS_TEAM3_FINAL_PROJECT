@@ -2,7 +2,7 @@ import { AllClassesContents } from "components/Dashboard/AllClassesContents";
 import styled from "styled-components";
 
 const PageStyled = styled.div`
-  margin: 52px 99px 0px 68px;
+  margin: 52px 70px 0px 68px;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(62px);
   h1 {

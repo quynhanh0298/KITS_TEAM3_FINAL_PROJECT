@@ -4,10 +4,16 @@ import { Card } from "../Card/Card";
 
 import avatar1 from "assets/images/avatars/avatar1.svg";
 
+import AliceCarousel from "react-alice-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const ProductList = () => {
+  const responsiveAlice = {
+    0: { items: 1 },
+    568: { items: 2 },
+    1024: { items: 3 },
+  };
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -44,8 +50,17 @@ const ProductList = () => {
 
   return (
     <>
-      <Carousel responsive={responsive}>
-        <div className="product-container">
+      <div className="product-container">
+        <AliceCarousel
+          mouseTracking
+          responsive={responsiveAlice}
+          controlsStrategy="alternate"
+          disableDotsControls={true}
+          autoPlay
+          autoPlayInterval={5000}
+          animationDuration={1000}
+          infinite
+        >
           {courses.map((course) => (
             <Card
               className="product"
@@ -57,8 +72,8 @@ const ProductList = () => {
               thumbnail={course.thumbnail}
             />
           ))}
-        </div>
-      </Carousel>
+        </AliceCarousel>
+      </div>
     </>
   );
 };

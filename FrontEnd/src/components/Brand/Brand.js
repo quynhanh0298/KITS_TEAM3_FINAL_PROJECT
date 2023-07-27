@@ -20,12 +20,12 @@ const BrandStyled = styled.div`
 const Brand = () => {
     return <BrandStyled>
         <div className="listBrand">
-            <img src={brand1}/>
-            <img src={brand2}/>
-            <img src={brand3}/>
-            <img src={brand4}/>
-            <img src={brand5}/>
-            <img src={brand6}/>
+            <img src={brand1} alt=""/>
+            <img src={brand2} alt=""/>
+            <img src={brand3} alt=""/>
+            <img src={brand4} alt=""/>
+            <img src={brand5} alt=""/>
+            <img src={brand6} alt=""/>
 
         </div>
     </BrandStyled>

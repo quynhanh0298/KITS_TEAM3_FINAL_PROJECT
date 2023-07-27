@@ -33,9 +33,9 @@
 
 .cart-item,
 .cart-container .titles {
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: 3fr 1fr 1fr 1fr;
+  justify-content: space-between;
 }
 
 .cart-items .cart-item .cart-item-info {
@@ -118,6 +118,10 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+.remove-button {
+  cursor: pointer;
+  color: #0c4ca3;
 }
 .continue-shopping,
 .start-shopping {

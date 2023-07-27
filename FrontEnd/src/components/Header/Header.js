@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import {
-  Navigate,
-  useLocation,
   useNavigate,
-  useParams,
 } from "react-router-dom";
-import logo from "assets/icons/logo192.png";
 import KitsLogo from "assets/images/kits-logo.svg";
 import userIcon from "assets/icons/user-regular.svg";
 import searchIcon from "assets/icons/magnifying-glass-solid.svg";
@@ -142,6 +138,7 @@ const Header = () => {
         <div>
         <img
           src={cartIcon}
+          alt=""
           style={{ width: "20px", cursor: "pointer" }}
           onClick={goCart}
         />

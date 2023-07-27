@@ -94,8 +94,10 @@ export const DashboardLayout = () => {
         )}
         {isTabletOrMobile &&
           location.pathname !== mainboardUrl &&
+
           location.pathname !== `/mainboard/${user}/video-player/${id}` &&
           location.pathname !== `/mainboard/${user}/video-call` && (
+
             <>
               <SideBarStyled style={{ width: "25%" }}>
                 <Sidebar />
@@ -124,8 +126,10 @@ export const DashboardLayout = () => {
           )}{" "}
         {isDesktopOrLaptop &&
           location.pathname !== mainboardUrl &&
+
           location.pathname !== `/mainboard/${user}/video-player/${id}` &&
           location.pathname !== `/mainboard/${user}/video-call` && (
+
             <>
               <div className="right">
                 <DashboardHeader />
@@ -133,6 +137,7 @@ export const DashboardLayout = () => {
               </div>
             </>
           )}
+
         {location.pathname === mainboardUrl &&
             (
             <>
@@ -158,6 +163,7 @@ export const DashboardLayout = () => {
               )}
             </>
           )}
+
       </StyleLayout>
     </Container>
   );
