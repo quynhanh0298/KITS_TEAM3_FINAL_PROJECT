@@ -19,7 +19,7 @@ const SessionsPageStyled = styled.div`
 const SessionsPage = () => {
   return (
     <SessionsPageStyled>
-      <h1>Sessions</h1>
+      <h1>Session{"(Comming Soon...)"}</h1>
       <SessionsContents />
     </SessionsPageStyled>
   );

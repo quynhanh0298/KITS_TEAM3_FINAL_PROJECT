@@ -37,6 +37,9 @@ import Welcome from "pages/student/Welcome";
 import Register from "pages/student/Register";
 import RequireAuth from "pages/student/RequireAuth";
 import LoginPage from "pages/student/LoginPage";
+import AllCoursesPage from "pages/AllCoursesPage";
+import { RecentTutors } from "components/Dashboard/RecentTutors";
+import RecentTutorsPage from "pages/RecentTutorsPage";
 
 function App() {
   return (
@@ -74,6 +77,10 @@ function App() {
                 <Route path="" element={<DashboardPage />} />
                 <Route path="messages/:orderId" element={<MessagesPage />} />
                 <Route path="sessions/:orderId" element={<SessionsPage />} />
+                <Route
+                  path="all-courses/:orderId"
+                  element={<AllCoursesPage />}
+                />
                 <Route path="my-courses/:orderId" element={<CoursesPage />} />
                 <Route
                   path="hour-purchase-history/:orderId"
@@ -81,6 +88,10 @@ function App() {
                 />
                 <Route path="my-tutors/:orderId" element={<MyTutorsPage />} />
                 <Route path="my-classes/:orderId" element={<MyClassesPage />} />
+                <Route
+                  path="recent-tutors/:orderId"
+                  element={<RecentTutorsPage />}
+                />
                 <Route path="video-player/:id" element={<VideoPlayerPage />} />
                 <Route path="all-classes/:orderId" element={<AllClasses />} />
                 <Route path="video-call" element={<VideoCallPage />} />
