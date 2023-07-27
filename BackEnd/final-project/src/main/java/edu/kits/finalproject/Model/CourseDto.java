@@ -1,5 +1,6 @@
 package edu.kits.finalproject.Model;
 
+import edu.kits.finalproject.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,9 @@ public class CourseDto implements Serializable {
     private CategoryDto categoryDto;
     private List<UserDto> userDtos;
     private String listOfVideo;
+    private List<String> userMail;
+    private List<User> users ;
+
 
     public void addUserDto(UserDto userDto){
         if(userDtos == null){

@@ -116,6 +116,8 @@ const LoginPage = () => {
 
       // Save the JWT token to local storage or a cookie
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", mail);
+
       console.log(data.token);
 
       handleAddToAuth(mail, data.token);

@@ -47,17 +47,20 @@ const SideBarStyled = styled.div`
 `;
 export const DashboardLayout = () => {
   const location = useLocation();
+  const user = localStorage.getItem('user')
+  const token = localStorage.getItem('token')
+
   const { id, orderId } = useParams();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1620px)" });
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1620px)",
   });
-  const mainboardUrl = `/mainboard/${orderId}`;
+  const mainboardUrl = `/mainboard/${user}`;
   return (
     <Container
       style={
-        location.pathname === `/mainboard/${orderId}/video-player/${id}` ||
-        location.pathname === `/mainboard/${orderId}/video-call`
+        location.pathname === `/mainboard/${user}/video-player/${id}` ||
+        location.pathname === `/mainboard/${user}/video-call`
           ? {
               background: "rgba(0, 0, 0, 0.70)",
               backdropFilter: "blur(17.5px)",
@@ -66,8 +69,8 @@ export const DashboardLayout = () => {
       }
     >
       <StyleLayout>
-        {(location.pathname === `/mainboard/${orderId}/video-player/${id}` ||
-          location.pathname === `/mainboard/${orderId}/video-call`) && (
+        {(location.pathname === `/mainboard/${user}/video-player/${id}` ||
+          location.pathname === `/mainboard/${user}/video-call`) && (
           <>
             <SideBarStyled style={{ width: "10%", maxWidth: "123px" }}>
               <Sidebar />
@@ -81,8 +84,8 @@ export const DashboardLayout = () => {
               }}
             >
               {location.pathname !==
-                `/mainboard/${orderId}/video-player/${id}` &&
-                location.pathname !== `/mainboard/${orderId}/video-call` && (
+                `/mainboard/${user}/video-player/${id}` &&
+                location.pathname !== `/mainboard/${user}/video-call` && (
                   <DashboardHeader />
                 )}
               <Outlet />
@@ -91,8 +94,10 @@ export const DashboardLayout = () => {
         )}
         {isTabletOrMobile &&
           location.pathname !== mainboardUrl &&
-          location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
-          location.pathname !== `/mainboard/${orderId}/video-call` && (
+
+          location.pathname !== `/mainboard/${user}/video-player/${id}` &&
+          location.pathname !== `/mainboard/${user}/video-call` && (
+
             <>
               <SideBarStyled style={{ width: "25%" }}>
                 <Sidebar />
@@ -104,8 +109,8 @@ export const DashboardLayout = () => {
                 }}
               >
                 {location.pathname !==
-                  `/mainboard/${orderId}/video-player/${id}` &&
-                  location.pathname !== `/mainboard/${orderId}/video-call` && (
+                  `/mainboard/${user}/video-player/${id}` &&
+                  location.pathname !== `/mainboard/${user}/video-call` && (
                     <DashboardHeader />
                   )}
                 <Outlet />
@@ -113,16 +118,18 @@ export const DashboardLayout = () => {
             </>
           )}
         {isDesktopOrLaptop &&
-          location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
-          location.pathname !== `/mainboard/${orderId}/video-call` && (
+          location.pathname !== `/mainboard/${user}/video-player/${id}` &&
+          location.pathname !== `/mainboard/${user}/video-call` && (
             <SideBarStyled>
-              <Sidebar orderId={orderId} />
+              <Sidebar user={user} />
             </SideBarStyled>
           )}{" "}
         {isDesktopOrLaptop &&
           location.pathname !== mainboardUrl &&
-          location.pathname !== `/mainboard/${orderId}/video-player/${id}` &&
-          location.pathname !== `/mainboard/${orderId}/video-call` && (
+
+          location.pathname !== `/mainboard/${user}/video-player/${id}` &&
+          location.pathname !== `/mainboard/${user}/video-call` && (
+
             <>
               <div className="right">
                 <DashboardHeader />
@@ -130,30 +137,33 @@ export const DashboardLayout = () => {
               </div>
             </>
           )}
-        {location.pathname === `/mainboard/${orderId}` && (
-          <>
-            {isDesktopOrLaptop && (
-              <>
-                <div className="right" style={{ width: "50%" }}>
-                  <DashboardHeader />
-                  <Outlet />
-                </div>
-                <ProfileColumn />
-              </>
-            )}
-            {isTabletOrMobile && (
-              <>
-                <SideBarStyled style={{ width: "25%" }}>
-                  <Sidebar />
-                </SideBarStyled>{" "}
-                <div className="right">
-                  <DashboardHeader />
-                  <Outlet />
-                </div>
-              </>
-            )}
-          </>
-        )}
+
+        {location.pathname === mainboardUrl &&
+            (
+            <>
+              {isDesktopOrLaptop && (
+                <>
+                  <div className="right" style={{ width: "50%" }}>
+                    <DashboardHeader />
+                    <Outlet />
+                  </div>
+                  <ProfileColumn />
+                </>
+              )}
+              {isTabletOrMobile && (
+                <>
+                  <SideBarStyled style={{ width: "25%" }}>
+                    <Sidebar />
+                  </SideBarStyled>{" "}
+                  <div className="right">
+                    <DashboardHeader />
+                    <Outlet />
+                  </div>
+                </>
+              )}
+            </>
+          )}
+
       </StyleLayout>
     </Container>
   );
