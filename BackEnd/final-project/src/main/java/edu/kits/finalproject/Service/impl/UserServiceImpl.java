@@ -40,4 +40,10 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         return null;
     }
+
+    @Override
+    public List<User> getAllTutor() {
+        return userRepository.findAllTutor();
+
+    }
 }
