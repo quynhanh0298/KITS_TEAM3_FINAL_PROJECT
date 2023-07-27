@@ -23,12 +23,35 @@ const HeaderStyled = styled.div`
 `;
 export const DashboardHeader = () => {
   const isSmallScreen = useMediaQuery({ query: "(max-width: 612px)" });
+  const user = localStorage.getItem('user')
+  const token = localStorage.getItem('token')
+
+  const logout = () => {
+    // Clear the token from local storage to log out the user
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    // Optionally, you can redirect the user to the login page or any other page
+    // window.location.href = '/login';
+  };
+
+  const handleLogout = () => {
+    logout(); // Call the logout function to log out the user
+    window.location.reload();
+  };
   return (
     <HeaderStyled>
       {!isSmallScreen && (
         <>
           <SearchBar setPlaceholder="Search tutor" />
           <div className="header-right">
+          { token ?
+        (
+        <p style={{ cursor: "pointer" }} onClick={handleLogout}>
+          LogOut
+        </p>) :
+        (<></>)
+        }
             <BellIcon cursor="pointer" />
             <SettingIcon cursor="pointer" />
             <AvtHeadIcon cursor="pointer" />
@@ -38,6 +61,13 @@ export const DashboardHeader = () => {
       {isSmallScreen && (
         <>
           <div className="header-right">
+          { token ?
+        (
+        <p style={{ cursor: "pointer" }} onClick={handleLogout}>
+          LogOut
+        </p>) :
+        (<></>)
+        }
             <BellIcon cursor="pointer" />
             <SettingIcon cursor="pointer" />
             <AvtHeadIcon cursor="pointer" />

@@ -3,9 +3,12 @@ import { DropdownSelector } from "../Selector";
 import { Button } from "components/Button/Button";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+
 
 import { Card } from "../../Card/Card";
 
+import { selectCurrentUser } from "features/auth/authSlice";
 
 import axios from "axios";
 
@@ -63,32 +66,51 @@ const PageStyled = styled.div`
 `;
 export const MyCoursesContents = () => {
   const { orderId } = useParams();
+  const user = localStorage.getItem('user')
 
   const [courses, setCourses] = useState([]);
+  const [userFetch, setUserFetch] = useState([]);
 
   const [orders, setOrders] = useState([]);
   const [charArray, setCharAray] = useState("");
+  const [userCourses, setUserCourses] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/admin/order/${orderId}`)
-      .then((response) => {
-        setOrders(response.data);
-        setCharAray(response.data.courses.replace(/,/g, ""));
+        
+    fetch("http://localhost:8080/admin/courses")
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data);
+      });
+
+    
+  }, []);
+
+
+  useEffect(() => {
+    console.log(user)
+    const url = `http://localhost:8080/admin/user/${user}`
+    console.log(url)
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserFetch(data)
+        setUserCourses(data.courses);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-
-    fetch("http://localhost:8080/admin/courses")
-      .then((res) => res.json())
-      .then((result) => {
-        setCourses(result);
-      });
+   
   }, []);
+  console.log(courses)
+
+  console.log(userFetch)
+  console.log(userCourses)
+  const userCourseIds = userCourses.map(course => course.courseId);
+
 
   const selectedCourses = courses.filter((course) =>
-    charArray.includes(course.courseId)
+  userCourseIds.includes(course.courseId)
   );
   console.log(selectedCourses);
   // const numbers = text.replace(/,/g, '');
@@ -114,9 +136,9 @@ export const MyCoursesContents = () => {
           Filter
         </Button>
       </div>
-      {/* <div>
-        <h3>ORDER ID: {orderId}</h3>
-      </div> */}
+      <div>
+        <h3>User ID: {orderId}</h3>
+      </div>
       <div></div>
       <div className="cards-wrapper">
         {selectedCourses.map((course) => (

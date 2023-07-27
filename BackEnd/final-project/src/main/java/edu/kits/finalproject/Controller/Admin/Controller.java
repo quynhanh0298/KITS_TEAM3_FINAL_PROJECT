@@ -1,9 +1,11 @@
 package edu.kits.finalproject.Controller.Admin;
 
+import edu.kits.finalproject.Repository.CourseRepository;
 import edu.kits.finalproject.Service.*;
 import edu.kits.finalproject.entity.Course;
 import edu.kits.finalproject.entity.Order;
 import edu.kits.finalproject.entity.User;
+
 import edu.kits.finalproject.Model.*;
 import edu.kits.finalproject.Repository.UserRepository;
 import edu.kits.finalproject.entity.UserMail;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Controller
@@ -32,6 +35,9 @@ public class Controller {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Autowired
     private OrderService orderService;
@@ -52,6 +58,15 @@ public class Controller {
     public CourseDto getCourseById(@PathVariable(name = "id") Long id){
         return modelMapper.map(courseService.getCourseById(id), CourseDto.class);
     }
+
+//    @PostMapping("/{id}/add-email")
+//    public CourseDto addEmailToCourse(@PathVariable Long id, @RequestBody String email) {
+//        CourseDto couseDto =  modelMapper.map(courseService.getCourseById(id), CourseDto.class);
+//        if (couseDto != null) {
+//            couseDto.getUserMail().add(email);
+//            couseDto = courseService.save(couseDto);
+//
+//    }
 
 //    ResponseEntity<ResponseObject> findById(@PathVariable Long id) {
 //        Optional<Course> foundCourse = courseService.findById(id);
@@ -113,16 +128,16 @@ public class Controller {
 
 
 
-    @PostMapping("/add-course")
-    public ResponseEntity<ResponseDto> addCourse( @RequestParam("name") String name){
-        String message = "";
-        try{
-            courseService.store(name, 10, "new course", "No image", 0, 0,"hello");
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
-        }
-    }
+//    @PostMapping("/add-course")
+//    public ResponseEntity<ResponseDto> addCourse( @RequestParam("name") String name){
+//        String message = "";
+//        try{
+//            courseService.store(name, 10, "new course", "No image", 0, 0,"hello");
+//            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
+//        }catch (Exception e){
+//            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
+//        }
+//    }
 
 //    @GetMapping("/get-tutor-from-course/{id}")
 //    @ResponseBody
@@ -142,6 +157,43 @@ public class Controller {
     public ResponseEntity<ResponseDto> addOrder(@RequestBody Order order){
         String message = "";
         try{
+            Optional<User> userOptional = userService.getUserByEmail(order.getUserMail());
+
+            if (userOptional.isPresent()) {
+                System.out.println("+++++++++++++++++++++++++++Go inside loop!!!");
+
+                User user = userOptional.get();
+
+                List<Course> userCourses = user.getCourses();
+
+                String[] orderCourseArray = order.getCourses().split(",");
+
+                // Loop through the list of courses
+                for (String courseIdString : orderCourseArray) {
+                    Long courseId = Long.parseLong(courseIdString);
+
+                        Optional<Course> foundOrderCourseOptional = courseRepository.findById(courseId);
+                    Course foundOrderCourse = foundOrderCourseOptional.get();
+                    boolean  foundCourseId = false;
+
+                    System.out.println("Loop through course : " + courseIdString);
+
+
+                    for (Course userCourse : userCourses){
+                        if(foundOrderCourse.getCourseId().equals(userCourse.getCourseId())){
+                            foundCourseId = true;
+                            break;
+                        }
+                    }
+                    if(!foundCourseId){
+                        foundOrderCourse.getUsers().add(user);
+                        courseRepository.save(foundOrderCourse);
+                        user.getCourses().add(foundOrderCourse);
+                        userRepository.save(user);
+                    }
+                }
+            }
+
             orderService.store(order.getOrderId(), order.getOrderDate(), order.getAmount(), order.getStatus(), order.getCourses(), order.getUserMail());
             message = "Uploaded order successfully: ";
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(message));
@@ -179,7 +231,6 @@ public class Controller {
     @GetMapping("/user/{email}")
     @ResponseBody
     public UserDto getUserByEmail(@PathVariable(name = "email") String email){
-        System.out.println(userService.getUserByEmail(email));
         return modelMapper.map(userService.getUserByEmail(email).get(), UserDto.class);
     }
 

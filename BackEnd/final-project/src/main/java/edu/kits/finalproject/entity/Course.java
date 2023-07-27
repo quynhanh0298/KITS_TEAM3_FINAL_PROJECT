@@ -1,5 +1,6 @@
 package edu.kits.finalproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +42,17 @@ public class Course implements Serializable {
     @Column(columnDefinition = "nvarchar(500)")
     private String listOfVideo;
 
+    @ElementCollection
+    @CollectionTable(name = "course_userMail", joinColumns = @JoinColumn(name = "course_id"))
+    @Column(name = "userMail")
+    private List<String> userMail;
+
+
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
+    private List<User> users ;
+
+
     @Column
     private double rating;
 
@@ -65,15 +78,7 @@ public class Course implements Serializable {
     private Category category;
 
 
-    @ManyToMany(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE,
-                    CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(
-            name = "user_course",
-            joinColumns = @JoinColumn(name = "courseId"),
-            inverseJoinColumns = @JoinColumn(name = "userId"))
-    private List<User> users;
+
 
 
 
