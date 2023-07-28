@@ -65,47 +65,70 @@ const CardStyled = styled.div`
   }
 `;
 
-export const Card = ({
-  id,
-  orderId,
-  avatar,
-  thumbnail,
-  tutorName,
-  courseName,
-  rating,
-  desciption,
-}) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    if (!orderId) {
-      const url = `/coursedetails/${id}`;
-
-      // Navigate to the new page
-      navigate(url);
-    } else {
-      const urlWithOrder = `/coursedetails/${orderId}/${id}`;
-
-      // Navigate to the new page
-      navigate(urlWithOrder);
+const TutorCardStyled = styled.div`
+    .tutor{
+        width: 275px;
+        display: flex;
+        text-align: center;
     }
-  };
+    .tutorName{
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 33px;
+        letter-spacing: 0em;
+        margin-top: 35px;
+    }
+    .desc{
+        margin-top: 24px;
+        color: #2E2C2C;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 202.5%; /* 36.45px */
+    }
+`
 
-  // const handleMouseEnter = () => {
-  //   // Update the cursor style when the mouse enters the element
-  //   document.body.style.cursor = "pointer";
-  // };
+export const Card = ({
+    id,
+    orderId,
+    avatar,
+    thumbnail,
+    tutorName,
+    courseName,
+    rating,
+    desciption,
+}) => {
+    const navigate = useNavigate();
 
-  // const handleMouseLeave = () => {
-  //   // Reset the cursor style when the mouse leaves the element
-  //   document.body.style.cursor = "auto";
-  // };
-  return (
-    <CardStyled onClick={handleClick} style={{ cursor: "pointer" }}>
-      <div className="img">
-        <div className="thumbnail">
-          <img src={thumbnail} />
-        </div>
+    const handleClick = () => {
+        if (!orderId) {
+            const url = `/coursedetails/${id}`;
+
+            // Navigate to the new page
+            navigate(url);
+        } else {
+            const urlWithOrder = `/coursedetails/${orderId}/${id}`;
+
+            // Navigate to the new page
+            navigate(urlWithOrder);
+        }
+    };
+
+    // const handleMouseEnter = () => {
+    //   // Update the cursor style when the mouse enters the element
+    //   document.body.style.cursor = "pointer";
+    // };
+
+    // const handleMouseLeave = () => {
+    //   // Reset the cursor style when the mouse leaves the element
+    //   document.body.style.cursor = "auto";
+    // };
+    return (
+        <CardStyled onClick={handleClick} style={{ cursor: "pointer" }}>
+            <div className="img">
+                <div className="thumbnail">
+                    <img src={thumbnail} />
+                </div>
 
         <div className="tutorInfo">
           <img src={avatar} />
@@ -127,4 +150,40 @@ export const Card = ({
       </div>
     </CardStyled>
   );
+};
+
+export const TutorCard = ({
+    id,
+    avatar,
+    tutorName,
+    desciption,
+}) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        // if (!orderId) {
+        //     const url = `/coursedetails/${id}`;
+
+        //     // Navigate to the new page
+        //     navigate(url);
+        // } else {
+        //     const urlWithOrder = `/coursedetails/${orderId}/${id}`;
+
+        //     // Navigate to the new page
+        //     navigate(urlWithOrder);
+        // }
+    };
+
+    return (
+        <TutorCardStyled onClick={handleClick} style={{ cursor: "pointer" }}>
+            <div className="tutor">
+                <div className="tutorInfo">
+                    <img src={avatar} />
+                    <p className="tutorName">{tutorName}</p>
+                    <p className="desc">{desciption}</p>
+                </div>
+                
+            </div>
+        </TutorCardStyled>
+    );
 };

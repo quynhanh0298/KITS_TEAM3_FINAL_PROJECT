@@ -2,6 +2,8 @@
 --     ('Lisa', 'lisa@gmail.com', '12345'),
 --     ('Jaca', 'jaca@gmail.com', '12345');
 
+INSERT INTO users (name, email, password, role) VALUES
+    ("lisa", "lisa@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR");
 
 
 INSERT INTO courses (name, price, desciption, rating, enroll, active, list_of_video, thumbnail)
@@ -20,6 +22,7 @@ INSERT INTO courses (name, price, desciption, rating, enroll, active, list_of_vi
 VALUES ('Option Trading',49.99, 'Option Trading Basic to Advanced Level Course', 4.2, 200, 1,'https://youtu.be/HSeiOcN3Y5Y,https://youtu.be/rhioAEy5Pss,https://youtu.be/s5EHyCHAcQs','https://res.cloudinary.com/dzblifjhf/image/upload/v1690124299/e-learning/course2_ulmbyk.png');
 INSERT INTO courses (name, price, desciption, rating, enroll, active, list_of_video, thumbnail)
 VALUES ('Beginner Guitar Course',69.99, 'The Beginner Guitar Course has three grades, and Grade 1 is the first beginner guitar players', 4.9, 200, 1,'https://youtu.be/_QCt3UBTS1Y,https://youtu.be/X2EmpWr9vUc,https://youtu.be/MlV6WhM9YhE','https://res.cloudinary.com/dzblifjhf/image/upload/v1690124299/e-learning/course2_ulmbyk.png');
+
 
 
 -- -- Each course must have at least one tutor

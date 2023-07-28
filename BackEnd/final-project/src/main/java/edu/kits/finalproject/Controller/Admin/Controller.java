@@ -250,4 +250,12 @@ public class Controller {
         }
     }
 
+    @GetMapping("/tutor")
+    @ResponseBody
+    public  List<UserDto> getAllTutor(){
+        System.out.println("getAllTutor");
+        userService.getAllTutor();
+        return userService.getAllTutor().stream().map(User -> modelMapper.map(User, UserDto.class)).collect(Collectors.toList());
+    }
+
 }
