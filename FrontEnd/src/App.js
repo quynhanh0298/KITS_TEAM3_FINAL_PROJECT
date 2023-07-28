@@ -41,6 +41,7 @@ import AllCoursesPage from "pages/AllCoursesPage";
 import { RecentTutors } from "components/Dashboard/RecentTutors";
 import RecentTutorsPage from "pages/RecentTutorsPage";
 import AddCoursesPage from "pages/AddCourses";
+import { JoinClass } from "pages/JoinClass";
 
 function App() {
   return (
@@ -56,8 +57,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login-page" element={<LoginPage />} />
 
-            {/* protected routes */}
             <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
               <Route path="home" element={<Home />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="contact" element={<Contact />} />
@@ -73,6 +74,8 @@ function App() {
                 <Route path="checkout" element={<CheckoutPage />} />
               </Route>
             </Route>
+            {/* protected routes */}
+
             <Route element={<RequireAuth />}>
               <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
                 <Route path="" element={<DashboardPage />} />
@@ -97,6 +100,7 @@ function App() {
                 <Route path="all-classes/:orderId" element={<AllClasses />} />
                 <Route path="add-courses/:orderId" element={<AddCoursesPage />} />
                 <Route path="video-call" element={<VideoCallPage />} />
+                <Route path="join-class" element={<JoinClass />} />
               </Route>
             </Route>
           </Routes>

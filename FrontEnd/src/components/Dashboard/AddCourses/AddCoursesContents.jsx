@@ -107,6 +107,8 @@ const MyClassPageContentsStyled = styled.div`
 `;
 
 export const AddCoursesContents = () => {
+    const user = localStorage.getItem('user')
+
     const [formData, setFormData] = useState({
         name: "",
         price: 0,

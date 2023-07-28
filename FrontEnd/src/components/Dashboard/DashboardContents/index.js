@@ -1,2 +1,3 @@
 import { DashboardContents } from "./DashboardContents";
-export { DashboardContents };
+import { DashboardPopupInfo } from "./DashboardPopupInfo";
+export { DashboardContents, DashboardPopupInfo };

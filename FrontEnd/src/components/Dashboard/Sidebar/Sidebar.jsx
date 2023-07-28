@@ -256,17 +256,7 @@ export const Sidebar = (props) => {
                 icon={<SessionsIcon />}
               />
               { isStudent ?
-              (<></>
-              )
-              :
-              (
-              <NavItem
-                text="Add Courses"
-                path={`/mainboard/${orderId}/add-courses/${orderId}`}
-                icon={<SessionsIcon />}
-              />)
-}
-              <NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
+              (<><NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
               <NavItem
                 text="Hour purchase history"
                 path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
@@ -286,7 +276,17 @@ export const Sidebar = (props) => {
                 text="All classes"
                 path={allClassesUrl}
                 icon={<MyTutorsIcon />}
-              />
+              /></>
+              )
+              :
+              (
+              <NavItem
+                text="Add Courses"
+                path={`/mainboard/${orderId}/add-courses/${orderId}`}
+                icon={<SessionsIcon />}
+              />)
+} 
+              
             </>
           )}
 
