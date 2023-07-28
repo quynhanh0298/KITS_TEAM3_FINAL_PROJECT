@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ClassCard } from "../DashboardCard";
 import "reactjs-popup/dist/index.css";
 import { Button } from "components/Button/Button";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PopupStyled = styled(Popup)`
   &-overlay {
@@ -71,6 +72,8 @@ export const PopupDetails = ({
   detail,
   totalHours,
 }) => {
+  const navigate = useNavigate();
+  const { id, orderId } = useParams();
   return (
     <PopupStyled
       trigger={
@@ -102,6 +105,7 @@ export const PopupDetails = ({
                 height="52px"
                 bgColor="#0C4CA3"
                 fontSize="20px"
+                onClick={() => navigate(`/mainboard/${orderId}/join-class`)}
               >
                 Join Class
               </Button>

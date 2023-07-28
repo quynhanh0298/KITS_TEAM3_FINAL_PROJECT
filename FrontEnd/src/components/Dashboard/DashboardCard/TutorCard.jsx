@@ -77,7 +77,7 @@ export const TutorCard = ({
         <span>{rating}</span>
       </div>
       <div className="avatar-group">
-        <img className="avatar" src={avatar} alt="" />
+        <img className="avatar" src={avatar} alt="" width="100px" height="100px" style={{borderRadius: "142px"}}/>
         {isVerified && (
           <img className="verified-icon" src={verifiedIcon} alt="" />
         )}
