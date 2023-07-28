@@ -38,7 +38,8 @@ public class SecurityConfiguration {
                         "/admin/user/{email}",
                         "/admin/{id}/add-email",
                         "/admin/courses/{id}/{email}",
-                        "/admin/tutor"
+                        "/admin/tutor",
+                        "/admin/add-course"
 
                 )
                 .permitAll()

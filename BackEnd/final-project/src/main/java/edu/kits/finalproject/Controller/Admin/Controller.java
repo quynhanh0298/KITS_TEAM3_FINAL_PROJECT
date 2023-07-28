@@ -257,6 +257,7 @@ public class Controller {
 
     @PostMapping("/add-course")
     public ResponseEntity<ResponseObject> addCourse(@RequestBody Course course){
+        System.out.println("course: " + course);
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject(200, "Add course successfully", courseService.save(course))
         );
