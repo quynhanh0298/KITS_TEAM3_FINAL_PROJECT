@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
@@ -11,6 +10,7 @@ import fakeData3 from "../../../TUTOR_RANKING_MOCK_DATA.json";
 import { useState } from "react";
 import { TutorHoverCard } from "../DashboardCard/TutorHoverCard";
 import { TutorRankingTable } from "../Table";
+import { DashboardPopupInfo } from ".";
 
 const PageStyled = styled.div`
   width: 90%;
@@ -135,14 +135,13 @@ const responsive = {
 //   },
 // };
 export const DashboardContents = () => {
-  const { orderId } = useParams();
   const [isShow, setIsShow] = useState(false);
   const [getId, setId] = useState();
   const [getStudentReview, setStudentReview] = useState();
   return (
     <PageStyled>
       <div className="head-page">
-        <h1>Welcome back, {orderId}!</h1>
+        <h1>Welcome back, Abiola!</h1>
         <h3>
           {new Date().toLocaleDateString("en-US", {
             month: "long",
@@ -164,10 +163,8 @@ export const DashboardContents = () => {
         >
           {fakeData.map((o) => {
             return (
-              <TutorCard
-                bgColor="#D0C1F1"
+              <DashboardPopupInfo
                 avatar={o.avatar}
-                isVerified="true"
                 tutorName={o.name}
                 tutorSchool={o.school_name}
                 rating={o.rating}
@@ -179,6 +176,21 @@ export const DashboardContents = () => {
                 }}
                 onMouseLeave={() => setIsShow(false)}
               />
+              // <TutorCard
+              //   bgColor="#D0C1F1"
+              //   avatar={o.avatar}
+              //   isVerified="true"
+              //   tutorName={o.name}
+              //   tutorSchool={o.school_name}
+              //   rating={o.rating}
+              //   status={o.status}
+              //   onMouseEnter={() => {
+              //     setIsShow(true);
+              //     setId(o.id);
+              //     setStudentReview(o.rating);
+              //   }}
+              //   onMouseLeave={() => setIsShow(false)}
+              // />
             );
           })}
         </AliceCarousel>
