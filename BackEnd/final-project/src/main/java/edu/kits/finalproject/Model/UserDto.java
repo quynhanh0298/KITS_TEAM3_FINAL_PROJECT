@@ -1,6 +1,7 @@
 package edu.kits.finalproject.Model;
 
 import edu.kits.finalproject.entity.Course;
+import edu.kits.finalproject.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,8 @@ public class UserDto implements Serializable {
     private int active;
     private List<CourseDto> courseDtos;
     private List<Course> courses ;
+    private Role role;
+
 
     public UserDto(String name, String gender, String email, String password, int phoneNumber) {
         this.name = name;
