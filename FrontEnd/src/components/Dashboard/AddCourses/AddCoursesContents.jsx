@@ -6,6 +6,7 @@ import { Button } from "components/Button/Button";
 import fakeData from "../../../LIST_CLASS_MOCK_DATA.json";
 import { ClassCard } from "../DashboardCard";
 import { async } from "q";
+import Swal from "sweetalert2";
 
 const MyClassPageContentsStyled = styled.div`
   height: 1273px;
@@ -112,9 +113,9 @@ export const AddCoursesContents = () => {
         name: "",
         price: 0,
         desciption: "",
-        list_of_video: "",
+        listOfVideo: "",
         thumbnail: "",
-        user: user
+        tutor: localStorage.getItem("user")
     });
 
     const [formDataVIdeo, setformDataVIdeo] = useState([]);
@@ -138,7 +139,7 @@ export const AddCoursesContents = () => {
     const handleAddSubmit = async (e) => {
         e.preventDefault();
         // console.log(formDataVIdeo)
-        formData.list_of_video = formDataVIdeo.join()
+        formData.listOfVideo = formDataVIdeo.join()
         setFormData(formData)
         // console.log(formData)
         try {
@@ -156,13 +157,21 @@ export const AddCoursesContents = () => {
                 name: "",
                 price: 0,
                 desciption: "",
-                list_of_video: "",
+                listOfVideo: "",
                 thumbnail: "",
-                tutor: user
+                tutor: localStorage.getItem("user")
             })
             setInputList([])
             console.log(formData)
             const data = await response.json();
+
+
+            Swal.fire({
+                title: 'Success',
+                text: "Added a course",
+                type: 'success',
+
+            })
             // navigate("/login-page");
         } catch (error) {
             console.error("Error add course:", error);
@@ -179,7 +188,7 @@ export const AddCoursesContents = () => {
                     key={inputList.length}
                     className="input-styled"
                     type="text"
-                    // name="list_of_video"
+                    // name="listOfVideo"
                     placeholder="Price"
                     value={formDataVIdeo[inputList.length]}
                     onChange={handleInputChangeLinkVideo} />
@@ -188,6 +197,8 @@ export const AddCoursesContents = () => {
 
         ));
     };
+
+
 
     return (
         <MyClassPageContentsStyled>
