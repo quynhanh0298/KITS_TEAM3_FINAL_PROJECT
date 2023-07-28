@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                         "/admin/{id}/add-email",
                         "/admin/courses/{id}/{email}",
                         "/admin/tutor",
-                        "/admin/add-course"
+                        "/admin/add-course",
                         "/admin/courses/{id}/{email}"
 
                 )
