@@ -7,7 +7,7 @@ import { StudentReviewCard, TutorCard } from "../DashboardCard";
 import fakeData from "../../../TUTOR_CARD_MOCK_DATA.json";
 import fakeData2 from "../../../STUDENT_REVIEWS_MOCK_DATA.json";
 import fakeData3 from "../../../TUTOR_RANKING_MOCK_DATA.json";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { TutorHoverCard } from "../DashboardCard/TutorHoverCard";
 import { TutorRankingTable } from "../Table";
 
