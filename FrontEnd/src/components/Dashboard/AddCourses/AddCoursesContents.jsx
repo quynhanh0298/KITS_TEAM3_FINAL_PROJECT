@@ -106,12 +106,15 @@ const MyClassPageContentsStyled = styled.div`
 `;
 
 export const AddCoursesContents = () => {
+    const user = localStorage.getItem('user')
+
     const [formData, setFormData] = useState({
         name: "",
         price: 0,
         desciption: "",
         list_of_video: "",
         thumbnail: "",
+        user: user
     });
 
     const [formDataVIdeo, setformDataVIdeo] = useState([]);
@@ -155,6 +158,7 @@ export const AddCoursesContents = () => {
                 desciption: "",
                 list_of_video: "",
                 thumbnail: "",
+                tutor: user
             })
             setInputList([])
             console.log(formData)
