@@ -2,13 +2,10 @@ package edu.kits.finalproject.Controller.Admin;
 
 import edu.kits.finalproject.Repository.CourseRepository;
 import edu.kits.finalproject.Service.*;
-import edu.kits.finalproject.entity.Course;
-import edu.kits.finalproject.entity.Order;
-import edu.kits.finalproject.entity.User;
+import edu.kits.finalproject.entity.*;
 
 import edu.kits.finalproject.Model.*;
 import edu.kits.finalproject.Repository.UserRepository;
-import edu.kits.finalproject.entity.UserMail;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -256,6 +253,14 @@ public class Controller {
         System.out.println("getAllTutor");
         userService.getAllTutor();
         return userService.getAllTutor().stream().map(User -> modelMapper.map(User, UserDto.class)).collect(Collectors.toList());
+    }
+
+    @PostMapping("/add-course")
+    public ResponseEntity<ResponseObject> addCourse(@RequestBody Course course){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(200, "Add course successfully", courseService.save(course))
+        );
+
     }
 
 }

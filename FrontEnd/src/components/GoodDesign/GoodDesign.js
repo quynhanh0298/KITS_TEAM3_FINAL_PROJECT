@@ -5,6 +5,9 @@ import { Card } from "react-bootstrap";
 import { TutorCard } from "components/Card/Card";
 import avatar1 from "assets/images/avatars/avatar1.svg"
 import tutor1 from "assets/images/avatars/tutors/tutor1.png"
+import tutor2 from "assets/images/avatars/tutors/tutor2.png"
+import tutor3 from "assets/images/avatars/tutors/tutor3.png"
+import tutor4 from "assets/images/avatars/tutors/tutor4.png"
 
 const GoodDesignStyled = styled.div`
     /* height: 400px; */
@@ -20,7 +23,8 @@ const GoodDesign = () => {
     const responsiveAlice = {
         0: { items: 1 },
         568: { items: 2 },
-        1024: { items: 3 },
+        800: { items: 3 },
+        1024: { items: 4 },
     };
     const [tutors, setTutors] = useState([]);
     useEffect(() => {
@@ -36,6 +40,16 @@ const GoodDesign = () => {
         "I'm a full-stack web developer and designer with a passion for building beautiful web interfaces from scratch. I've been building websites and apps since 2010 and also have a Master's degree in Engineering.",
         "Having over 20 years of experience in the computer science and information technology fields. Taught many courses at the University level to thousands of students."
     ]
+    const listTutorAvatar = [tutor1, tutor2, tutor3, tutor4]
+    let tutorAvatarId = -1;
+    const getTutorAvatar = () => {
+        tutorAvatarId += 1;
+        if (tutorAvatarId >= listTutorAvatar.length){
+            tutorAvatarId = -1;
+            return listTutorAvatar[0]
+        }
+        return listTutorAvatar[tutorAvatarId]
+    }
 
     return <GoodDesignStyled>
         {console.log(tutors)}
@@ -52,7 +66,7 @@ const GoodDesign = () => {
         >
         {tutors.map((tutor) => (
             <TutorCard
-                avatar={tutor1}
+                avatar={getTutorAvatar()}
                 tutorName={tutor.name}
                 desciption={desc[Math.floor(Math.random() * desc.length)]}
             />

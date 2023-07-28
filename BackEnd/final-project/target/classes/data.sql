@@ -3,7 +3,12 @@
 --     ('Jaca', 'jaca@gmail.com', '12345');
 
 INSERT INTO users (name, email, password, role) VALUES
-    ("lisa", "lisa@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR");
+    ("lisa", "lisa@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR"),
+    ("itachi", "lisa1@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR"),
+    ("hinata", "lisa2@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR"),
+    ("nature", "lisa3@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR"),
+    ("luffy", "lisa4@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR"),
+    ("zaro", "lisa5@gmail.com", "$2a$10$ngZK2msAG0HXy2SeKnuqnetP5I05s1W1YSdpHum9VkkZh7ZUMsBjK", "TUTOR");
 
 INSERT INTO courses (name, price, desciption, rating, enroll, active, list_of_video, thumbnail)
     VALUES ('Java Complete Course',100, 'Everything about java', 4.5, 200, 1,'https://youtu.be/yRpLlJmRo2w,https://youtu.be/LusTv0RlnSU,https://youtu.be/I5srDu75h_M','https://res.cloudinary.com/dzblifjhf/image/upload/v1690124299/e-learning/course2_ulmbyk.png');
