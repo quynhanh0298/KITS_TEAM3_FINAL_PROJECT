@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
@@ -134,13 +135,14 @@ const responsive = {
 //   },
 // };
 export const DashboardContents = () => {
+  const { orderId } = useParams();
   const [isShow, setIsShow] = useState(false);
   const [getId, setId] = useState();
   const [getStudentReview, setStudentReview] = useState();
   return (
     <PageStyled>
       <div className="head-page">
-        <h1>Welcome back, Abiola!</h1>
+        <h1>Welcome back, {orderId}!</h1>
         <h3>
           {new Date().toLocaleDateString("en-US", {
             month: "long",
