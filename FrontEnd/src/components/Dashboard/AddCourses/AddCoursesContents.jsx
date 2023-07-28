@@ -217,6 +217,8 @@ export const AddCoursesContents = () => {
                     />
                     <br /><br />
 
+                    
+
                     <label>Description</label>
                     <br />
                     <input

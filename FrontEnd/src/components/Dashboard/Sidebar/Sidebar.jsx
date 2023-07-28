@@ -197,8 +197,7 @@ export const Sidebar = (props) => {
     } else {
       isStudent = false
   }  
-  console.log(userFetch)
-  console.log(isStudent)
+ 
 
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
@@ -308,7 +307,6 @@ export const Sidebar = (props) => {
               icon={<SessionsIcon />}
             />
            <NavItem
-                text="All Courses"
                 path={`/mainboard/${orderId}/all-courses/${orderId}`}
                 icon={<SessionsIcon />}
               />
