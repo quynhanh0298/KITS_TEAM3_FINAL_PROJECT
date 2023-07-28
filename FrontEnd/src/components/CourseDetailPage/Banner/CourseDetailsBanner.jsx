@@ -210,7 +210,7 @@ export const CourseDetailsBanner = () => {
           <div className="mentor">
             <img src={personAvt} alt="" width="50px" height="50px"/>
             <div className="mentor-name">
-              Taught by <span>Diallo Liam</span>
+              Taught by <span>{course.tutor}</span>
             </div>
           </div>
         </div>
@@ -222,13 +222,13 @@ export const CourseDetailsBanner = () => {
         {orderId ? (
           <Button
             bgColor="#0C4CA3"
-            width="251px"
+            width="351px"
             height="81px"
             borderRadius="55px"
             fontSize="22px"
             onClick={() => navi(`/mainboard/${orderId}/video-player/${id}`)}
           >
-            Learning
+            Start Learning
           </Button>
         ) : (
           <></>

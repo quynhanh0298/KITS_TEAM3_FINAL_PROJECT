@@ -24,10 +24,7 @@ const OurCoursesStyled = styled.div`
 `;
 
 const OurCourses = () => {
-  const [tutor, setTutor] = useState([]);
   const [courses, setCourses] = useState([]);
-  const [currentUser, setCurrentUser] = useState([]);
-  const [userCourses, setUserCourses] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,6 +43,35 @@ const OurCourses = () => {
         setCourses(data);
       });
   }, []);
+
+  const [userFetch, setUserFetch] = useState([]);
+  const [role, setRole] = useState([]);
+  const user = localStorage.getItem('user')
+
+  const orderId = user
+
+  useEffect(() => {
+    console.log(user)
+    const url = `http://localhost:8080/admin/user/${user}`
+    console.log(url)
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserFetch(data)
+        setRole(data.role)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+   
+  }, []);
+
+  let isStudent = false;
+  if (role === "STUDENT") {
+    isStudent = true
+    } else {
+      isStudent = false
+  }  
 
   //   useEffect(() => {
   //     console.log(user)
@@ -105,9 +131,15 @@ const OurCourses = () => {
                 <h5 className="price">${product.price}</h5>
 
                 {/* { !userCourseIds.includes(product.courseId) ? ( */}
-                <button onClick={() => handleAddToCart(product)}>
+                { isStudent ?
+                (<button onClick={() => handleAddToCart(product)}>
                   Add To Cart
-                </button>
+                </button>)
+                :
+                (<button onClick={() => navi(`/coursedetails/${orderId}/${product.courseId}`)}>
+                Watch Course
+              </button>)
+                }
                 {/* ) : (<button style={{ background: 'red' }}   >
                                         Purchased
                                     </button>)
