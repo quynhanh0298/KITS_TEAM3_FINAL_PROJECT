@@ -26,8 +26,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Optional<Course> getCourseById(Long id) {
-        return coursePepository.findCourseByCourseId(id);
+    public Optional<Course> getCourseById(Long courseId) {
+        return coursePepository.findCourseByCourseId(courseId);
 //        if(result.isPresent())
 //            return result.get();
 //        return new Course();

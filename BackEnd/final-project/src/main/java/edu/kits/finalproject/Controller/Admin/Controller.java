@@ -52,8 +52,15 @@ public class Controller {
     //Get Course detail
     @GetMapping("/courses/{id}")
     @ResponseBody
-    public CourseDto getCourseById(@PathVariable(name = "id") Long id){
-        return modelMapper.map(courseService.getCourseById(id), CourseDto.class);
+    public Course getCourseById(@PathVariable(name = "id") Long courseId){
+        Optional<Course> courseOptional = courseService.getCourseById(courseId);
+        if (courseOptional.isPresent()){
+            Course course = courseOptional.get();
+            return course;
+
+        }
+//        return modelMapper.map(courseService.getCourseById(courseId).get(), CourseDto.class);
+        return null;
     }
 
 //    @PostMapping("/{id}/add-email")
