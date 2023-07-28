@@ -7,7 +7,7 @@ import { StudentReviewCard, TutorCard } from "../DashboardCard";
 import fakeData from "../../../TUTOR_CARD_MOCK_DATA.json";
 import fakeData2 from "../../../STUDENT_REVIEWS_MOCK_DATA.json";
 import fakeData3 from "../../../TUTOR_RANKING_MOCK_DATA.json";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { TutorHoverCard } from "../DashboardCard/TutorHoverCard";
 import { TutorRankingTable } from "../Table";
 import { DashboardPopupInfo } from ".";
@@ -138,10 +138,30 @@ export const DashboardContents = () => {
   const [isShow, setIsShow] = useState(false);
   const [getId, setId] = useState();
   const [getStudentReview, setStudentReview] = useState();
+  const [userFetch, setUserFetch] = useState([]);
+  const [role, setRole] = useState([]);
+  const user = localStorage.getItem('user')
+
+  useEffect(() => {
+    console.log(user)
+    const url = `http://localhost:8080/admin/user/${user}`
+    console.log(url)
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserFetch(data)
+        setRole(data.role)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+   
+  }, []);
+
   return (
     <PageStyled>
       <div className="head-page">
-        <h1>Welcome back, Abiola!</h1>
+        <h1>Welcome back {role}, {user}!</h1>
         <h3>
           {new Date().toLocaleDateString("en-US", {
             month: "long",

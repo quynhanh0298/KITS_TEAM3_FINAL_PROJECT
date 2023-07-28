@@ -2,13 +2,10 @@ package edu.kits.finalproject.Controller.Admin;
 
 import edu.kits.finalproject.Repository.CourseRepository;
 import edu.kits.finalproject.Service.*;
-import edu.kits.finalproject.entity.Course;
-import edu.kits.finalproject.entity.Order;
-import edu.kits.finalproject.entity.User;
+import edu.kits.finalproject.entity.*;
 
 import edu.kits.finalproject.Model.*;
 import edu.kits.finalproject.Repository.UserRepository;
-import edu.kits.finalproject.entity.UserMail;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,8 +52,15 @@ public class Controller {
     //Get Course detail
     @GetMapping("/courses/{id}")
     @ResponseBody
-    public CourseDto getCourseById(@PathVariable(name = "id") Long id){
-        return modelMapper.map(courseService.getCourseById(id), CourseDto.class);
+    public Course getCourseById(@PathVariable(name = "id") Long courseId){
+        Optional<Course> courseOptional = courseService.getCourseById(courseId);
+        if (courseOptional.isPresent()){
+            Course course = courseOptional.get();
+            return course;
+
+        }
+//        return modelMapper.map(courseService.getCourseById(courseId).get(), CourseDto.class);
+        return null;
     }
 
 //    @PostMapping("/{id}/add-email")
@@ -204,10 +208,10 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
     }
 
-    @GetMapping("/order/{orderId}")
+    @GetMapping("/order/{mail}")
     @ResponseBody
-    public OrderDto getOrderById(@PathVariable(name = "orderId") String orderId){
-        return modelMapper.map(orderService.getOrderById(orderId), OrderDto.class);
+    public OrderDto getOrderById(@PathVariable(name = "mail") String userMail){
+        return modelMapper.map(orderService.getOrderByMail(userMail), OrderDto.class);
     }
 
 
@@ -256,6 +260,14 @@ public class Controller {
         System.out.println("getAllTutor");
         userService.getAllTutor();
         return userService.getAllTutor().stream().map(User -> modelMapper.map(User, UserDto.class)).collect(Collectors.toList());
+    }
+
+    @PostMapping("/add-course")
+    public ResponseEntity<ResponseObject> addCourse(@RequestBody Course course){
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject(200, "Add course successfully", courseService.save(course))
+        );
+
     }
 
 }

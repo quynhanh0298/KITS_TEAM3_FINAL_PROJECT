@@ -111,46 +111,46 @@ const StyledSignUp = styled.div`
 `;
 
 const Register = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    role: "",
-  });
+    const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        password: "",
+        role: "",
+    });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
 
-  const handleRegisterSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        "http://localhost:8080/api/v1/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+    const handleRegisterSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(
+                "http://localhost:8080/api/v1/auth/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
+            const data = await response.json();
+            // Save the JWT token to local storage or a cookie
+            console.log(data.token);
+            // Redirect or show success message
+            navigate("/login-page");
+        } catch (error) {
+            console.error("Error registering user:", error);
         }
-      );
-      const data = await response.json();
-      // Save the JWT token to local storage or a cookie
-      console.log(data.token);
-      // Redirect or show success message
-      navigate("/login-page");
-    } catch (error) {
-      console.error("Error registering user:", error);
-    }
-  };
+    };
 
-  return (
-    <>
-      {/* <form onSubmit={handleRegisterSubmit}>
+    return (
+        <>
+            {/* <form onSubmit={handleRegisterSubmit}>
         <input
           type="text"
           name="fullName"
@@ -184,106 +184,106 @@ const Register = () => {
           <button id="login-link">Move to Login Page</button>
         </Link>
       </form> */}
-      <StyledSignUp>
-        <div className="left">
-          <div className="sign-up-logo-info">
-            <img
-              className="sign-up-logo"
-              src={KITSLogo}
-              alt=""
-              onClick={() => navigate("/")}
-              style={{ cursor: "pointer" }}
-            />
-            <div className="welcome-to-kits">Welcome to KITS!</div>
-            <div className="sign-up-info">
-              KITS connects students and their families with qualified tutors
-              for improved learning outcomes.
-            </div>
-          </div>
-          <img className="sign-up-banner" src={SignUpBanner} alt="" />
-        </div>
-        <div className="right">
-          <div className="sign-up">
-            <span className="sign">Sign</span>
-            <span className="up"> Up</span>
-          </div>
-          <div className="already-have-account-log-in">
-            <span className="already-have-account">
-              Already have an account?
-            </span>
-            <a
-              className="log-in"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/login-page")}
-            >
-              {" "}
-              Log in
-            </a>
-          </div>
-          <form onSubmit={handleRegisterSubmit}>
-            <input
-              className="info"
-              type="text"
-              name="fullName"
-              placeholder="FullName"
-              value={formData.fullName}
-              onChange={handleInputChange}
-            />
-            <br />
-            <input
-              className="info"
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-            <br />
-            {/* Password field should have eye icon to show password */}
-            <input
-              className="info"
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleInputChange}
-            />
-            <br />
-            <div className="i-am-a">I am a</div>
-            <div className="selections">
-              <label htmlFor="TUTOR">
-                <input
-                  type="radio"
-                  id="role"
-                  name="role"
-                  placeholder="Role"
-                  value="TUTOR"
-                  onChange={handleInputChange}
-                />{" "}
-                TUTOR
-              </label>
+            <StyledSignUp>
+                <div className="left">
+                    <div className="sign-up-logo-info">
+                        <img
+                            className="sign-up-logo"
+                            src={KITSLogo}
+                            alt=""
+                            onClick={() => navigate("/")}
+                            style={{ cursor: "pointer" }}
+                        />
+                        <div className="welcome-to-kits">Welcome to KITS!</div>
+                        <div className="sign-up-info">
+                            KITS connects students and their families with qualified tutors
+                            for improved learning outcomes.
+                        </div>
+                    </div>
+                    <img className="sign-up-banner" src={SignUpBanner} alt="" />
+                </div>
+                <div className="right">
+                    <div className="sign-up">
+                        <span className="sign">Sign</span>
+                        <span className="up"> Up</span>
+                    </div>
+                    <div className="already-have-account-log-in">
+                        <span className="already-have-account">
+                            Already have an account?
+                        </span>
+                        <a
+                            className="log-in"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => navigate("/login-page")}
+                        >
+                            {" "}
+                            Log in
+                        </a>
+                    </div>
+                    <form onSubmit={handleRegisterSubmit}>
+                        <input
+                            className="info"
+                            type="text"
+                            name="fullName"
+                            placeholder="FullName"
+                            value={formData.fullName}
+                            onChange={handleInputChange}
+                        />
+                        <br />
+                        <input
+                            className="info"
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                        />
+                        <br />
+                        {/* Password field should have eye icon to show password */}
+                        <input
+                            className="info"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={formData.password}
+                            onChange={handleInputChange}
+                        />
+                        <br />
+                        <div className="i-am-a">I am a</div>
+                        <div className="selections">
+                            <label htmlFor="TUTOR">
+                                <input
+                                    type="radio"
+                                    id="role"
+                                    name="role"
+                                    placeholder="Role"
+                                    value="TUTOR"
+                                    onChange={handleInputChange}
+                                />{" "}
+                                TUTOR
+                            </label>
 
-              <label htmlFor="STUDENT">
-                <input
-                  type="radio"
-                  id="role"
-                  name="role"
-                  placeholder="Role"
-                  value="STUDENT"
-                  onChange={handleInputChange}
-                />{" "}
-                STUDENT
-              </label>
-            </div>
-            <Button bgColor={"#0C4CA3"} width={218} height={269} type="submit">
-              Sign Up
-              {console.log(formData.role)}
-            </Button>
-          </form>
-        </div>
-      </StyledSignUp>
-    </>
-  );
+                            <label htmlFor="STUDENT">
+                                <input
+                                    type="radio"
+                                    id="role"
+                                    name="role"
+                                    placeholder="Role"
+                                    value="STUDENT"
+                                    onChange={handleInputChange}
+                                />{" "}
+                                STUDENT
+                            </label>
+                        </div>
+                        <Button bgColor={"#0C4CA3"} width={218} height={269} type="submit">
+                            Sign Up
+                            {console.log(formData.role)}
+                        </Button>
+                    </form>
+                </div>
+            </StyledSignUp>
+        </>
+    );
 };
 
 export default Register;

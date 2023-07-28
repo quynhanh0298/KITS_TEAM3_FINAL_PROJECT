@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { ReactComponent as KitLogo } from "../../../assets/images/kits-logo.svg";
 import { ReactComponent as DashboardIcon } from "../../../assets/icons/dashboardicon/dashboard-icon.svg";
 import { ReactComponent as MessIcon } from "../../../assets/icons/dashboardicon/mess-icon.svg";
@@ -158,17 +159,46 @@ const NavItem = ({ path, text, icon, children }) => {
 export const Sidebar = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const user = localStorage.getItem('user')
+
   const { id, orderId } = useParams();
   const [isOpen, setOpen] = useState(false);
   const toggleShowMore = () => setOpen(!isOpen);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-
+  const [userFetch, setUserFetch] = useState([]);
+  const [role, setRole] = useState([]);
   //const { orderId } = props;
   const url = `/mainboard/${orderId}/my-courses/${orderId}`;
   const videoPlayerUrl = `/mainboard/${orderId}/video-player/${id}`;
   const mainboardUrl = `/mainboard/${orderId}`;
   const myClassesUrl = `/mainboard/${orderId}/my-classes/${orderId}`;
   const allClassesUrl = `/mainboard/${orderId}/all-classes/${orderId}`;
+
+
+  useEffect(() => {
+    console.log(user)
+    const url = `http://localhost:8080/admin/user/${user}`
+    console.log(url)
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserFetch(data)
+        setRole(data.role)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+   
+  }, []);
+
+  let isStudent = false;
+  if (role === "STUDENT") {
+    isStudent = true
+    } else {
+      isStudent = false
+  }  
+  console.log(userFetch)
+  console.log(isStudent)
 
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
@@ -225,12 +255,8 @@ export const Sidebar = (props) => {
                 path={`/mainboard/${orderId}/all-courses/${orderId}`}
                 icon={<SessionsIcon />}
               />
-              <NavItem
-                text="Add Courses"
-                path={`/mainboard/${orderId}/add-courses/${orderId}`}
-                icon={<SessionsIcon />}
-              />
-              <NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
+              { isStudent ?
+              (<><NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
               <NavItem
                 text="Hour purchase history"
                 path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
@@ -250,7 +276,17 @@ export const Sidebar = (props) => {
                 text="All classes"
                 path={allClassesUrl}
                 icon={<MyTutorsIcon />}
-              />
+              /></>
+              )
+              :
+              (
+              <NavItem
+                text="Add Courses"
+                path={`/mainboard/${orderId}/add-courses/${orderId}`}
+                icon={<SessionsIcon />}
+              />)
+} 
+              
             </>
           )}
 
@@ -271,10 +307,12 @@ export const Sidebar = (props) => {
               path={`/mainboard/${orderId}/all-courses/${orderId}`}
               icon={<SessionsIcon />}
             />
-            <NavItem
-              path={`/mainboard/${orderId}/add-courses/${orderId}`}
-              icon={<SessionsIcon />}
-            />
+           <NavItem
+                text="All Courses"
+                path={`/mainboard/${orderId}/all-courses/${orderId}`}
+                icon={<SessionsIcon />}
+              />
+              
             <NavItem path={url} icon={<SessionsIcon />} />
             <NavItem
               path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
