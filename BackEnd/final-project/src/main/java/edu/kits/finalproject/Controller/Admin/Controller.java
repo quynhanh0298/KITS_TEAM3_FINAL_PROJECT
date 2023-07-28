@@ -204,10 +204,10 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
     }
 
-    @GetMapping("/order/{orderId}")
+    @GetMapping("/order/{mail}")
     @ResponseBody
-    public OrderDto getOrderById(@PathVariable(name = "orderId") String orderId){
-        return modelMapper.map(orderService.getOrderById(orderId), OrderDto.class);
+    public OrderDto getOrderById(@PathVariable(name = "mail") String userMail){
+        return modelMapper.map(orderService.getOrderByMail(userMail), OrderDto.class);
     }
 
 
@@ -248,14 +248,6 @@ public class Controller {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto("fail"));
         }
-    }
-
-    @GetMapping("/tutor")
-    @ResponseBody
-    public  List<UserDto> getAllTutor(){
-        System.out.println("getAllTutor");
-        userService.getAllTutor();
-        return userService.getAllTutor().stream().map(User -> modelMapper.map(User, UserDto.class)).collect(Collectors.toList());
     }
 
 }

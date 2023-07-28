@@ -137,10 +137,12 @@ export const DashboardContents = () => {
   const [isShow, setIsShow] = useState(false);
   const [getId, setId] = useState();
   const [getStudentReview, setStudentReview] = useState();
+  const user = localStorage.getItem('user')
+
   return (
     <PageStyled>
       <div className="head-page">
-        <h1>Welcome back, Abiola!</h1>
+        <h1>Welcome back, {user}!</h1>
         <h3>
           {new Date().toLocaleDateString("en-US", {
             month: "long",

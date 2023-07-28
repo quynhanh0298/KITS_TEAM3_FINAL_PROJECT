@@ -138,6 +138,8 @@ const PageStyled = styled.div`
   }
 `;
 export const ProfileColumn = () => {
+  const user = localStorage.getItem('user')
+
   return (
     <PageStyled>
       <div className="head">
@@ -146,8 +148,7 @@ export const ProfileColumn = () => {
       </div>
       <div className="avt-name">
         <img src={Avatar} alt="" />
-        <div className="name">Abiola Savage</div>
-        <div className="name-tag">@abbeysvee</div>
+        <div className="name">{user}</div>
       </div>
       <div className="statistics-summary">
         <div className="rank">
