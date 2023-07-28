@@ -15,7 +15,9 @@ const RequireAuth = () => {
         <div>
         { token
     ? <Outlet />
-    : <Navigate to="/login-page" replace />
+    : 
+    
+    <Navigate to="/login-page" replace />
 }
     </div>
     )

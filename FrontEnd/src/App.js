@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import React, { useState,useEffect } from 'react';
+
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
@@ -44,6 +46,16 @@ import AddCoursesPage from "pages/AddCourses";
 import { JoinClass } from "pages/JoinClass";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Set initial login status to false
+
+  const checkLoginStatus = () => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // Set the login status based on the existence of the user token
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
   return (
     <PayPalScriptProvider
       options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}
@@ -71,12 +83,14 @@ function App() {
               />
               <Route path="cart" element={<Cart />} />
               <Route element={<RequireAuth />}>
+  
                 <Route path="checkout" element={<CheckoutPage />} />
               </Route>
             </Route>
             {/* protected routes */}
 
             <Route element={<RequireAuth />}>
+              
               <Route path="/mainboard/:orderId" element={<DashboardLayout />}>
                 <Route path="" element={<DashboardPage />} />
                 <Route path="messages/:orderId" element={<MessagesPage />} />

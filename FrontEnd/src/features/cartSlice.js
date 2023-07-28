@@ -49,7 +49,7 @@ const cartSlice = createSlice({
             state.cartItem = nextCartItem;
             localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
 
-            toast.error(`${action.payload.name} removed from cart`, {
+            toast.success(`${action.payload.name} removed from cart`, {
                 position: "bottom-left",
             })
         },
@@ -58,7 +58,7 @@ const cartSlice = createSlice({
             state.cartItem = [];
             localStorage.setItem("cartItem", JSON.stringify(state.cartItem));
 
-            toast.error(`Cart Cleared!`, {
+            toast.success(`Cart Cleared!`, {
                 position: "bottom-left",
             })
         },

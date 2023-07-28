@@ -66,11 +66,11 @@ const OurCourses = () => {
    
   }, []);
 
-  let isStudent = false;
-  if (role === "STUDENT") {
-    isStudent = true
+  let isStudent = true;
+  if (role === "TUTOR") {
+    isStudent = false
     } else {
-      isStudent = false
+      isStudent = true
   }  
 
   //   useEffect(() => {
