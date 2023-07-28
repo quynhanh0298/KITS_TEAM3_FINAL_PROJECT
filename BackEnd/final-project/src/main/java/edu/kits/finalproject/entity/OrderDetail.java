@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "orderdetails")
 public class OrderDetail implements Serializable {
-    @Id
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderDetailId;
     //    @Column(nullable = false)

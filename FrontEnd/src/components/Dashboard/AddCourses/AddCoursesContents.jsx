@@ -5,6 +5,7 @@ import { CalenderSelector } from "../Selector";
 import { Button } from "components/Button/Button";
 import fakeData from "../../../LIST_CLASS_MOCK_DATA.json";
 import { ClassCard } from "../DashboardCard";
+import { async } from "q";
 
 const MyClassPageContentsStyled = styled.div`
   height: 1273px;
@@ -82,47 +83,171 @@ const MyClassPageContentsStyled = styled.div`
       width: 100%;
     }
   }
+  .btn-add-link{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: cornflowerblue;
+    display: block;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  .btn-submit{
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: green;
+    color: #fff;
+    display: block;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
 `;
 
 export const AddCoursesContents = () => {
-  return (
-    <MyClassPageContentsStyled>
-      <div className="form-group">
-        <label>Title</label>
-        <br />
-        <input className="input-styled" type="" placeholder="Title" />
-        <br />
-        <label>Description</label>
-        <br />
-        <input className="input-styled" type="" placeholder="Description" />
-        <br />
-        <label>Thumbnail</label>
-        <br />
-        <input className="input-styled" type="" placeholder="Thumbnail" />
-        <br />
-        <label>Tutor name</label>
-        <br />
-        <input className="input-styled" type="" placeholder="Tutor name" />
-        <br />
-        <label>Video</label>
-        <br />
-        <input className="input-styled" type="" placeholder="Video" />
-        <br />
-      </div>
-      <Button bgColor="green">Add Video</Button>
-      <div className="class-wrapper">
-        {/* {fakeData.map((course) => (
-          <PopupDetails
-            avatar={course.avatar}
-            thumbnail={course.thumbnail}
-            tutorName={course.tutorName}
-            courseName={course.courseName}
-            rating={course.rating}
-            detail={course.detail}
-            totalHours={course.totalHours}
-          />
-        ))} */}
-      </div>
-    </MyClassPageContentsStyled>
-  );
+    const [formData, setFormData] = useState({
+        name: "",
+        price: 0,
+        desciption: "",
+        list_of_video: "",
+        thumbnail: "",
+    });
+
+    const [formDataVIdeo, setformDataVIdeo] = useState([]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const [inputList, setInputList] = useState([]);
+
+    const handleInputChangeLinkVideo = (e) => {
+        const { name, value } = e.target;
+
+        let tempformDataVIdeo = formDataVIdeo;
+        tempformDataVIdeo[inputList.length] = value;
+        setformDataVIdeo(tempformDataVIdeo);
+    };
+
+
+    const handleAddSubmit = async (e) => {
+        e.preventDefault();
+        // console.log(formDataVIdeo)
+        formData.list_of_video = formDataVIdeo.join()
+        setFormData(formData)
+        // console.log(formData)
+        try {
+            const response = await fetch(
+                "http://localhost:8080/admin/add-course",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
+            setFormData({
+                name: "",
+                price: 0,
+                desciption: "",
+                list_of_video: "",
+                thumbnail: "",
+            })
+            setInputList([])
+            console.log(formData)
+            const data = await response.json();
+            // navigate("/login-page");
+        } catch (error) {
+            console.error("Error add course:", error);
+        }
+    }
+
+
+    const onAddBtnClick = event => {
+        setInputList(inputList.concat(
+            <>
+                <label>Link of video</label>
+                <br />
+                <input
+                    key={inputList.length}
+                    className="input-styled"
+                    type="text"
+                    // name="list_of_video"
+                    placeholder="Price"
+                    value={formDataVIdeo[inputList.length]}
+                    onChange={handleInputChangeLinkVideo} />
+                <br /><br />
+            </>
+
+        ));
+    };
+
+    return (
+        <MyClassPageContentsStyled>
+            <div className="form-group">
+                <form onSubmit={handleAddSubmit}>
+                    <label>Title</label>
+                    <br />
+                    <input
+                        className="input-styled"
+                        type="text"
+                        name="name"
+                        placeholder="Title"
+                        value={formData.name}
+                        onChange={handleInputChange}
+
+                    />
+                    <br /><br />
+
+                    <label>Description</label>
+                    <br />
+                    <input
+                        className="input-styled"
+                        type="text"
+                        name="desciption"
+                        placeholder="Description"
+                        value={formData.desciption}
+                        onChange={handleInputChange} />
+                    <br /><br />
+
+                    <label>Price ($)</label>
+                    <br />
+                    <input
+                        className="input-styled"
+                        type="number"
+                        name="price"
+                        placeholder="Price"
+                        value={formData.price}
+                        onChange={handleInputChange} />
+                    <br /><br />
+
+                    <button className="btn-add-link" type="button"
+                        onClick={onAddBtnClick}
+                    >Add video</button>
+                    {inputList}
+
+                    <label>thumbnail</label>
+                    <br />
+                    <input
+                        className="input-styled"
+                        type="text"
+                        name="thumbnail"
+                        placeholder="thumbnail"
+                        value={formData.thumbnail}
+                        onChange={handleInputChange} />
+                    <br />
+                    {/* <Button className="btn-submit" bgColor="green" type="submit">Add Course</Button> */}
+
+                    <button className="btn-submit" type="submit"
+                    >Add Course</button>
+                </form>
+
+            </div>
+            <div className="class-wrapper">
+            </div>
+        </MyClassPageContentsStyled>
+    );
 };
