@@ -30,16 +30,28 @@ const CardStyled = styled.div`
     line-height: normal;
     margin-left: 20px;
   }
-  .courseName {
-    color: #504e4e;
-    font-size: 19px;
+  .courseName,
+  .courseDes {
+    color: #2e2c2c;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
     padding: 0 46px;
   }
+  .courseDes {
+    color: #504e4e;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: justify;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
   .rating {
-    padding: 35px 46px;
+    padding: 25px 46px;
     color: #2e2c2c;
     font-style: normal;
     font-weight: 400;
@@ -118,26 +130,26 @@ export const Card = ({
                     <img src={thumbnail} />
                 </div>
 
-                <div className="tutorInfo">
-                    <img src={avatar} />
-                    <p className="tutorName">{tutorName}</p>
-                </div>
-                <div style={{ cursor: "pointer" }}>
-                    <p onClick={handleClick} className="courseName">
-                        {courseName}
-                    </p>
-                    <p className="courseName">{desciption}</p>
-                </div>
-                <div className="rating">
-                    <p>
-                        {rating}
-                        <span className="rating5">/5.0</span>
-                    </p>
-                    <div className="Stars" style={{ ratingStart: rating }}></div>
-                </div>
-            </div>
-        </CardStyled>
-    );
+        <div className="tutorInfo">
+          <img src={avatar} />
+          <p className="tutorName">{tutorName}</p>
+        </div>
+        <div style={{ cursor: "pointer" }}>
+          <p onClick={handleClick} className="courseName">
+            {courseName}
+          </p>
+          <p className="courseDes">{desciption}</p>
+        </div>
+        <div className="rating">
+          <p>
+            {rating}
+            <span className="rating5">/5.0</span>
+          </p>
+          <div className="Stars" style={{ ratingStart: rating }}></div>
+        </div>
+      </div>
+    </CardStyled>
+  );
 };
 
 export const TutorCard = ({

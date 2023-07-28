@@ -40,6 +40,7 @@ import LoginPage from "pages/student/LoginPage";
 import AllCoursesPage from "pages/AllCoursesPage";
 import { RecentTutors } from "components/Dashboard/RecentTutors";
 import RecentTutorsPage from "pages/RecentTutorsPage";
+import AddCoursesPage from "pages/AddCourses";
 
 function App() {
   return (
@@ -94,6 +95,7 @@ function App() {
                 />
                 <Route path="video-player/:id" element={<VideoPlayerPage />} />
                 <Route path="all-classes/:orderId" element={<AllClasses />} />
+                <Route path="add-courses/:orderId" element={<AddCoursesPage />} />
                 <Route path="video-call" element={<VideoCallPage />} />
               </Route>
             </Route>

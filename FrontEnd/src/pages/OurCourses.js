@@ -101,7 +101,7 @@ const OurCourses = () => {
                     <span>Tutor: {product.tutor}</span>
                   </div>
                 </div>
-                <p>{product.desciption}</p>
+                <p className="description">{product.desciption}</p>
                 <h5 className="price">${product.price}</h5>
 
                 {/* { !userCourseIds.includes(product.courseId) ? ( */}

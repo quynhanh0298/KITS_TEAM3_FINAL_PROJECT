@@ -225,6 +225,11 @@ export const Sidebar = (props) => {
                 path={`/mainboard/${orderId}/all-courses/${orderId}`}
                 icon={<SessionsIcon />}
               />
+              <NavItem
+                text="Add Courses"
+                path={`/mainboard/${orderId}/add-courses/${orderId}`}
+                icon={<SessionsIcon />}
+              />
               <NavItem text="My Courses" path={url} icon={<SessionsIcon />} />
               <NavItem
                 text="Hour purchase history"
@@ -262,6 +267,14 @@ export const Sidebar = (props) => {
               path={`/mainboard/${orderId}/sessions/${orderId}`}
               icon={<SessionsIcon />}
             />
+            <NavItem
+              path={`/mainboard/${orderId}/all-courses/${orderId}`}
+              icon={<SessionsIcon />}
+            />
+            <NavItem
+              path={`/mainboard/${orderId}/add-courses/${orderId}`}
+              icon={<SessionsIcon />}
+            />
             <NavItem path={url} icon={<SessionsIcon />} />
             <NavItem
               path={`/mainboard/${orderId}/hour-purchase-history/${orderId}`}
@@ -269,6 +282,10 @@ export const Sidebar = (props) => {
             />
             <NavItem
               path={`/mainboard/${orderId}/my-tutors/${orderId}`}
+              icon={<MyTutorsIcon />}
+            />
+            <NavItem
+              path={`/mainboard/${orderId}/recent-tutors/${orderId}`}
               icon={<MyTutorsIcon />}
             />
             <NavItem path={allClassesUrl} icon={<MyTutorsIcon />} />

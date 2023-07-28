@@ -69,3 +69,7 @@
   color: white;
   letter-spacing: 1.15px;
 }
+.home-container .products .product .description {
+  overflow: hidden;
+  height: 626px;
+}
