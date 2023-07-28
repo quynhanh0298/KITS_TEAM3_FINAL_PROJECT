@@ -201,10 +201,10 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(message));
     }
 
-    @GetMapping("/order/{orderId}")
+    @GetMapping("/order/{mail}")
     @ResponseBody
-    public OrderDto getOrderById(@PathVariable(name = "orderId") String orderId){
-        return modelMapper.map(orderService.getOrderById(orderId), OrderDto.class);
+    public OrderDto getOrderById(@PathVariable(name = "mail") String userMail){
+        return modelMapper.map(orderService.getOrderByMail(userMail), OrderDto.class);
     }
 
 
