@@ -28,8 +28,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderById(String orderId) {
-        Optional<Order> result = orderRepository.findById(orderId);
+    public Order getOrderByMail(String userMail) {
+        Optional<Order> result = orderRepository.findByUserMail(userMail);
         if(result.isPresent())
             return result.get();
         return new Order();

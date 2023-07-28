@@ -56,6 +56,9 @@ export const DashboardLayout = () => {
     query: "(min-width: 1620px)",
   });
   const mainboardUrl = `/mainboard/${user}`;
+
+
+  
   return (
     <Container
       style={

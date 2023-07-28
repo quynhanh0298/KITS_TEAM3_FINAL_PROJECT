@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                         "/api/v1/Categories/**",
                                 "/admin/courses",
                         "/admin/courses/{id}",
-                        "/admin/order/{orderId}",
+                        "/admin/order/{mail}",
                         "/admin/add-order",
                         "/admin/courses-tutor",
                         "/admin/user/{email}",
@@ -40,6 +40,7 @@ public class SecurityConfiguration {
                         "/admin/courses/{id}/{email}",
                         "/admin/tutor",
                         "/admin/add-course"
+                        "/admin/courses/{id}/{email}"
 
                 )
                 .permitAll()

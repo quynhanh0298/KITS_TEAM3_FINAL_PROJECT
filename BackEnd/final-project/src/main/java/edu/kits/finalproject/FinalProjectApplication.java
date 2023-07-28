@@ -33,6 +33,7 @@ public class FinalProjectApplication {
                 registry.addMapping("/admin/tutor").allowedOrigins("http://localhost:3000");
                 registry.addMapping("/admin/add-course").allowedOrigins("http://localhost:3000");
 
+                registry.addMapping("/admin/order/{mail}").allowedOrigins("http://localhost:3000");
             }
         };
     }
