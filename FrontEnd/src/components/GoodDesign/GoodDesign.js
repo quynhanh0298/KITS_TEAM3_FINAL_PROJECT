@@ -23,13 +23,13 @@ const GoodDesign = () => {
         1024: { items: 3 },
     };
     const [tutors, setTutors] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:8080/admin/tutor")
-        .then((res) => res.json())
-        .then((result) => {
-            setTutors(result)
-        })
-    }, []);
+    // useEffect(() => {
+    //     fetch("http://localhost:8080/admin/tutor")
+    //     .then((res) => res.json())
+    //     .then((result) => {
+    //         setTutors(result)
+    //     })
+    // }, []);
     const desc = [
         'I love teaching because it’s so satisfying when you see that little light bulb go off plus my co-workers are great.',
         'I have spent the last few years teaching people to program at 2 different immersive bootcamps where I helped hundreds of people become web developers and change their lives.',
