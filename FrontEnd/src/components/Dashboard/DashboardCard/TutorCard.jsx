@@ -14,6 +14,7 @@ const CardStyled = styled.div`
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(42px);
   padding: 16px 14px 20px 14px;
+  cursor: pointer;
   .rating-group {
     width: 100%;
     display: flex;
@@ -63,6 +64,7 @@ export const TutorCard = ({
   status,
   onMouseEnter,
   onMouseLeave,
+  onClick,
   isBook,
   isVerified,
 }) => {
@@ -71,13 +73,14 @@ export const TutorCard = ({
       bgColor={bgColor}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
     >
       <div className="rating-group">
         <img src={ratingIcon} alt="" />
         <span>{rating}</span>
       </div>
       <div className="avatar-group">
-        <img className="avatar" src={avatar} alt="" />
+        <img className="avatar" src={avatar} alt="" width="100px" height="100px" style={{borderRadius: "142px"}}/>
         {isVerified && (
           <img className="verified-icon" src={verifiedIcon} alt="" />
         )}

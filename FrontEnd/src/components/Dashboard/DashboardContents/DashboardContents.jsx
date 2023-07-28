@@ -10,6 +10,7 @@ import fakeData3 from "../../../TUTOR_RANKING_MOCK_DATA.json";
 import { useState,useEffect } from "react";
 import { TutorHoverCard } from "../DashboardCard/TutorHoverCard";
 import { TutorRankingTable } from "../Table";
+import { DashboardPopupInfo } from ".";
 
 const PageStyled = styled.div`
   width: 90%;
@@ -182,10 +183,8 @@ export const DashboardContents = () => {
         >
           {fakeData.map((o) => {
             return (
-              <TutorCard
-                bgColor="#D0C1F1"
+              <DashboardPopupInfo
                 avatar={o.avatar}
-                isVerified="true"
                 tutorName={o.name}
                 tutorSchool={o.school_name}
                 rating={o.rating}
@@ -197,6 +196,21 @@ export const DashboardContents = () => {
                 }}
                 onMouseLeave={() => setIsShow(false)}
               />
+              // <TutorCard
+              //   bgColor="#D0C1F1"
+              //   avatar={o.avatar}
+              //   isVerified="true"
+              //   tutorName={o.name}
+              //   tutorSchool={o.school_name}
+              //   rating={o.rating}
+              //   status={o.status}
+              //   onMouseEnter={() => {
+              //     setIsShow(true);
+              //     setId(o.id);
+              //     setStudentReview(o.rating);
+              //   }}
+              //   onMouseLeave={() => setIsShow(false)}
+              // />
             );
           })}
         </AliceCarousel>

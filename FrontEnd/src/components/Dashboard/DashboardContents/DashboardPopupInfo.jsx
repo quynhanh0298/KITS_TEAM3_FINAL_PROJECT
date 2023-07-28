@@ -1,6 +1,6 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
-import { ClassCard } from "../DashboardCard";
+import { TutorCard } from "../DashboardCard";
 import "reactjs-popup/dist/index.css";
 import { Button } from "components/Button/Button";
 import { useNavigate, useParams } from "react-router-dom";
@@ -63,26 +63,31 @@ const PopupStyled = styled(Popup)`
   }
 `;
 
-export const PopupDetails = ({
+export const DashboardPopupInfo = ({
   avatar,
-  thumbnail,
   tutorName,
-  courseName,
+  tutorSchool,
   rating,
+  status,
   detail,
-  totalHours,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   const navigate = useNavigate();
   const { id, orderId } = useParams();
   return (
     <PopupStyled
       trigger={
-        <ClassCard
-          thumbnail={thumbnail}
-          courseName={courseName}
+        <TutorCard
+          bgColor="#D0C1F1"
           avatar={avatar}
+          isVerified="true"
           tutorName={tutorName}
+          tutorSchool={tutorSchool}
           rating={rating}
+          status={status}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
       }
       modal
@@ -93,22 +98,14 @@ export const PopupDetails = ({
           <button className="close" onClick={close}>
             &times;
           </button>
-          <div className="header"> {courseName} </div>
+          <div className="header"> </div>
           <div className="content">
-            <img src={thumbnail} alt="" />
+            <img src="" alt="" />
             <div className="detail-info">
               <div>By {tutorName}</div>
-              <div>Total hours: {totalHours}</div>
+              <div>Total hours: </div>
               {detail}
-              <Button
-                width="165px"
-                height="52px"
-                bgColor="#0C4CA3"
-                fontSize="20px"
-                onClick={() => navigate(`/mainboard/${orderId}/join-class`)}
-              >
-                Join Class
-              </Button>
+              
             </div>
           </div>
         </div>
