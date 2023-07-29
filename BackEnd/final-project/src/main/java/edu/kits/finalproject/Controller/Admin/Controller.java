@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("admin")
+@CrossOrigin
 public class Controller {
 
     @Autowired
@@ -154,7 +155,7 @@ public class Controller {
 
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/add-order",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("admin/products")
+@CrossOrigin
 public class ProductController {
     @Autowired
     ProductService productService;
