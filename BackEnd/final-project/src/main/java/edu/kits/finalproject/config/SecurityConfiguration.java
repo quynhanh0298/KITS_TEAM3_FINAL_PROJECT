@@ -20,6 +20,7 @@ public class SecurityConfiguration {
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
+    @SuppressWarnings("removal")
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors()
@@ -42,14 +43,9 @@ public class SecurityConfiguration {
                         "/admin/add-course",
                         "/admin/courses/{id}/{email}"
 
+
                 )
                 .permitAll()
-
-                //                .requestMatchers("")
-                //                .hasAuthority("")
-                //
-                //                .requestMatchers("")
-                //                .hasAuthority("")
                 .anyRequest()
                 .authenticated()
                 .and()
