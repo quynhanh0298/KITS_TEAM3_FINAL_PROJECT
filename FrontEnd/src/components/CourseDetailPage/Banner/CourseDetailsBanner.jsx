@@ -163,6 +163,10 @@ const StyleCourseDetailsBanner = styled.div`
     .start-group {
       flex-direction: column;
     }
+    .banner-wrapper{
+      flex-direction: column;
+      align-items: center;
+    }
   }
 `;
 
