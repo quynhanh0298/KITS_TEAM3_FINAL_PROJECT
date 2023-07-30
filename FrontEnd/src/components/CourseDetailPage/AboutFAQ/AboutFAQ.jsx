@@ -5,6 +5,7 @@ const StyledDiv = styled.div`
   height: 2265px;
   display: block;
   background: #fafeff;
+  margin-top: 100px;
   .background-opacity {
     height: 100%;
     background: #fafeff;

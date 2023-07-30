@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const StyleCourseDetailsBanner = styled.div`
   height: 1000px;
-  padding-top: 176px;
+  padding-top: 130px;
   width: 70%;
   display: flex;
   flex-direction: column;
