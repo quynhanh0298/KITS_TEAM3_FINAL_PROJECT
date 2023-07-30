@@ -26,13 +26,12 @@ const StyledDiv = styled.div`
     }
   }
 `;
-export const WhatYouWouldLearnCard = () => {
+export const WhatYouWouldLearnCard = ({children}) => {
   return (
     <StyledDiv>
       <CheckIcon />
       <div className="text">
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore{" "}
+        "{children}{" "}
       </div>
     </StyledDiv>
   );
