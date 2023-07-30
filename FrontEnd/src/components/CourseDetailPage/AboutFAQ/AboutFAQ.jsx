@@ -77,33 +77,42 @@ export const AboutFAQ = () => {
       <div className="about-instructor">
         <h2>About instructor</h2>
         <div className="about-instructor-details">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
+          "Tim's been a professional software developer for close to 40 years.
+          During his career, he has worked for major companies such as Fujitsu,
+          Mitsubishi, and Saab. His video courses are used to train developers
+          in major companies such as Mercedes-Benz, Paypal, VW, Pitney Bowes,
+          IBM, and T-Mobile just to name a few (via the Udemy for Business
+          program). What makes Tim unique is his professional programming career
+          - many instructors have never programmed professionally, let alone had
+          a distinguished professional development career like Tim. Tim has
+          trained over 1.33 million students how to program, way more than a
+          typical IT Professor at a college does in a lifetime."
         </div>
       </div>
       <div className="what-you-would-learn">
         <h2>What you would learn</h2>
         <div className="wrapper-card-column">
           <div className="wrapper-card-row">
-            <WhatYouWouldLearnCard></WhatYouWouldLearnCard>
-            <WhatYouWouldLearnCard></WhatYouWouldLearnCard>
+            <WhatYouWouldLearnCard>
+              Learn the core Java skills needed to apply for Java developer
+              positions in just 14 hours.
+            </WhatYouWouldLearnCard>
+            <WhatYouWouldLearnCard>
+              Be able to sit for and pass the Oracle Java Certificate exam if
+              you choose.
+            </WhatYouWouldLearnCard>
           </div>
           <div className="wrapper-card-row">
-            <WhatYouWouldLearnCard></WhatYouWouldLearnCard>
+            <WhatYouWouldLearnCard>
+              Be able to demonstrate your understanding of Java to future
+              employers.
+            </WhatYouWouldLearnCard>
           </div>
         </div>
       </div>
       <div className="faq">
         <h2>FAQ’s</h2>
-        <FaqCard
-          question="Is this course really 100% online? Do I need to attend any classes in person?"
-          answer="This course is completely online, so there’s no need to show up to a classroom in person. You can access your lectures, readings and assignments anytime and anywhere via the web or your mobile device."
-        ></FaqCard>
+        <FaqCard question="Is this course really 100% online? Do I need to attend any classes in person?"></FaqCard>
         <FaqCard question="What do web designers and developers do?"></FaqCard>
         <FaqCard question="How long does it take to complete the specialization?"></FaqCard>
         <FaqCard question="What background knowledge is necessary?"></FaqCard>
